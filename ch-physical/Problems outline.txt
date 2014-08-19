@@ -1,0 +1,103 @@
+1 Signals in the Physical World 1
+	1.1 Multimedia and Sensation 
+	1.2 Sensation and Perception 
+		Has important terms section
+	1.3 Computer Video Displays 
+		one example (CRT)
+	1.4 Multimedia System Operation 
+		A1 and A2 questions embedded in paragraph
+		Both deal with bit rate:
+			All of these place a high demand on computer power. For example, let's assume that
+			we encode audio information as 8 bits per sample at 8000 samples per second (this would
+			be considered very low quality). How many bits per second is that (answer in A.1 #1)?
+			Perhaps that doesn't sound too bad, so let's consider video. Let's say we encode each frame
+			in a video stream as 1000x1000 pixels, 24 bits/pixel, and 30 frames/second. How many
+			bits per second is that (answer in A.1 #2)? Even if we were to achieve an extremely high
+			compression ratio of 1/500, this would still mean more than 1 million bits/second.
+	1.5 Vibrations and Sound 
+		Embedded Q: 
+		So, we need to find a function, x(t), whose second derivative is proportional to itself. Can
+		you think of one or two (answer in A.1 #3)?
+		If the two forks were close together, we would heard the sum of their tones. What would that sum be (answer in A.1 #6)?
+	1.6 Phasors 
+		What does u + v look like if u and v are rotating at the same rate (answer in A.1 #7)?
+		Review Exercises: Complex Numbers
+			1. What is the sum of the two complex numbers x + jy and v + jw (answer in A.1 #8)?
+			2. What is the product of the two complex numbers x + jy and v + jw (answer in A.1 #9)?
+			3. Convert the complex number z = x + jy to polar form, R6  (answer in A.1 #10).
+			4. Multiply the two polar-form complex numbers R16 1 and R26 2 (answer in A.1 #11).
+		Self-Test Exercises
+			1. Multiply the two complex sinusoids z1 and z2 (answer in A.1 #12).
+			2. The complex conjugate is indicated by z. If z = x+jy, z = x??jy. What is the complex
+			conjugate of the complex sinusoid, z = Rej (answer in A.1 #13)?
+			3. Answer the following for z = x + jy (answers in A.1 #14):
+				(a) What is z + z?
+				(b) What is z ?? z?
+				(c) What is zz?
+	1.7 Spectra 
+		1.7.1 Interlude: Vectors 
+		1.7.2 Derivation of the Fourier Series 
+			Self-Test Exercises
+				See A.1 #15-16 for answers.
+				1. Prove the relationship in (1-43).
+				2. From equation (1-45), derive (1-46). Hint: Use the fact that equation (1-45) is a real signal to simplify the complex multiplication.
+			Self-Test Exercise
+				See A.1 #17 for the answer.
+				1. Prove (1-58).
+	1.8 Problems 
+		1. Discuss how does fork mass affects tuning fork vibration frequency.
+		2. What musical instruments might be governed by properties analogous to that of a
+		tuning fork?
+		3. When you add two sinusoids with frequencies that differ by delta, the result is beating.
+		Imagine you're tuning a guitar. As the two strings get closer together in tone, what
+		happens to the beat frequency? Show how this result is predicted by the sum of the
+		complex sinusoids.
+		4. Implement a "Complex" class for an object oriented programming language (i.e., Java, C++/#, python) representing complex numbers. Your class should include at least the following methods:
+			 add()
+			 multiply()
+			 real()
+			 imag()
+			 magnitude()
+			 angle()
+		Document your code so that this class could be used by someone else. Write a test
+		program that exercises all of this class' methods. Submit hard copy of your code, your
+		test program output, and your documentation.
+		5. Derive equation (1-54) from equation (1-53). (Simplifying sum of complex exponentials)
+		6. Determine the coeffcients of the Fourier series for the signal
+		x(t) = cos pi/3 t
+		
+	Major testable concepts:
+	1. Vib And Sound: Periodicity occurs in nature and is governed by differential equations
+		(prob 1 adresses) 
+		*This concept is complete but questions are tied to the physics, needs some restructuring
+			The differential equation for a tuning fork is -k/m sin(omega t), where m= the mass of the tuning fork. As the tuning fork gets heavier, what happens to vibration frequency?
+	2. Vib and Sound: Sinusoidal phase through tuning forks. 
+		(prob 2 addresses and is complete and open ended)
+	3. Phasors: A rotating vector in the complex plane. 
+		(prob 3 addresses beating as notes get closer together)
+		*Needs additional problem on combining multiple sinusoids, use lab 1 for more
+	4. Phasors: Sinusoids are actually exponentials (Euler) 
+		(no problems except self test)
+		*Needs some additional problems with a little more paper and pencil work, use lab 1 for more problems
+			Use problems step 2.2 #1,2,4,5,6
+			Use problems step 2.3 #1-2
+			Use problem 3.2 (f) 
+	5. Phasors: Frequency and period 
+		(no problems)
+		*Need one or two problems on calculating the period of a sum of complex exponentials.
+			What is the period of exp(-j pi/4 t) + exp(-j pi/2 t)?
+			What is the period of exp(-j T_0 t) + exp(-j 5T_0 t)?
+	6. Spectra: Harmonics can represent any signal 
+		(no problems)
+		These problems get tough and are taken care of by the Fourier Series questions
+	7. Spectra Vectors: adding, subtracting, dot product in the plane 
+		(covered in self test)
+		No additional problems needed
+	8. Spectra Fourier series: How to derive the coefficients from a harmonic waveform 
+		(prob 5 and 6, very simple)
+		Clarify to calculate the C_k complex coefficients here.
+		*Need a couple more one medium and one hard
+			Medium: recitified sine wave
+			Hard: Sawtooth derivation
+	
+	

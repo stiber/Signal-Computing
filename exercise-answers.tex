@@ -1,0 +1,751 @@
+% -*-LaTeX-*-
+
+% $Log: exercise-answers.tex,v $
+% Revision 1.4  2007/12/25 18:00:39  stiber
+% Changes and corrections for Winter 2008.
+%
+% Revision 1.3  2007/03/20 23:50:28  stiber
+% Cleaned up for standalone text. Fixed various errors, updated LaTeX.
+%
+% Revision 1.3  2006/04/12 02:57:35  stiber
+% Added an exercise to chapter 3.
+% 
+% Revision 1.2  2004/03/29 19:46:31  stiber
+% Updated for Spring 2004 and new textbook (DSP First).
+% 
+% Revision 1.1  2004/02/19 00:20:01  stiber
+% Initial revision
+% 
+
+\chapter{Answers to Self-Test Exercises}
+\label{ap:exercise-answers}
+
+\section{Chapter~\ref{ch:physical-signals}: Signals in the Physical World}
+\label{sc:ch1ex}
+
+\begin{enumerate}
+\item Let's assume that we encode audio information as 8 bits
+  per sample at 8000 samples per second (this would be considered very
+  low quality). How many bits per second is that?\label{it:ch1ex1}
+
+  \textit{Answer}: 64,000 bits/second.
+
+\item Let's say we encode each frame in a
+  video stream as 1000x1000 pixels, 24 bits/pixel, and 30 frames/second.
+  How many bits per second is that?\label{it:ch1ex2}
+
+  \textit{Answer}: 720 million bits/second.
+
+\item We need to find a function of $x$ whose second derivative is proportional
+  to itself. Can you think of one or two?\label{it:ch1ex3}
+
+  \textit{Answer}: $\sin\omega t$ and $\cos\omega t$ both work.
+
+\item Solve for $\omega$ in terms of $k$ and $m$.\label{it:ch1ex4}
+
+  \textit{Answer}: $\omega = \sqrt{k/m}$.
+
+\item Fork stiffness ($k$) clearly affects vibration frequency. As the
+  fork get stiffer ($k$ increases), does the vibration frequency go up
+  or down?\label{it:ch1ex5}
+
+  \textit{Answer}: as $k$ increases, $\omega$ (which is vibration
+  frequency) increases.
+
+\item If the two forks were close
+  together, we would heard the sum of their tones. What would that sum
+  be?\label{it:ch1ex6}
+
+  \textit{Answer}: $a_1 \cos(\omega t + \phi_1) + a_2
+  \cos(\omega t + \phi_2)$, where $a_1$ and $a_2$ are the vibrational
+  amplitudes and $\phi_1$ and $\phi_2$ are the two phases.
+
+\item What does $\mathbf{u}+\mathbf{v}$ look like if
+  $\mathbf{u}$ and $\mathbf{v}$ are rotating?\label{it:ch1ex7}
+
+  \textit{Answer}: If
+  the $\omega$s of $\mathbf{u}$ and $\mathbf{v}$ are equal, then
+  $\mathbf{u}+\mathbf{v}$ rotates with them, the magnitudes staying
+  constant. Therefore, $\mathbf{u}+\mathbf{v}$ is a sinusoid of the same
+  frequency, $\omega$.
+
+\item What is the sum of the two complex numbers $x + jy$ and $v +
+  jw$?\label{it:ch1excn1}
+
+  \textit{Answer}: You add the reals and imaginaries separately,
+  yielding $(x+v) + j (y+w)$.
+
+\item What is the product of the two complex numbers $x + jy$ and $v +
+  jw$?\label{it:ch1excn2}
+
+  \textit{Answer}: It works just like multiplying polynomials,
+  $(x + jy)(v + jw) = xv + jyv + jwx + j^2yw = (xv-yw) + j(xw+yv)$
+  (remember that $j^2 = -1$).
+
+\item Convert the complex number $z = x + jy$ to polar form,
+  $R\angle\theta$.\label{it:ch1excn3}
+
+  \textit{Answer}: $R = |z| =  \sqrt{x^2+y^2}$; $\theta =
+  \arctan(y/x)$.
+
+\item Multiply the two polar-form complex numbers $R_1\angle\theta_1$ and
+  $R_2\angle\theta_2$.\label{it:ch1excn4}
+
+  \textit{Answer}: $R_1R_2\angle(\theta_1+\theta_2)$.
+
+\item Multiply the two complex sinusoids $z_1$ and
+  $z_2$.\label{it:ch1exce1}
+
+  \textit{Answer}: Just like multiplying the polar
+  representation of two vectors, $z_1z_2 =
+  R_1R_2e^{j(\theta_1+\theta_2)}$.
+
+\item The complex conjugate is indicated by $z^*$. If $z=x+jy$,
+  $z^*=x-jy$.  What is the complex conjugate of the complex sinusoid,
+  $z=Re^{j\theta}$?\label{it:ch1exce2}
+
+  \textit{Answer}: Like the polar representation, it
+  has the same magnitude but a negative angle, $z^* =
+  Re^{-j\theta}$.
+
+\item Answer the following for $z = x + jy$:\label{it:ch1exce3}
+  \begin{enumerate}
+  \item What is $z + z^*$?
+
+    \textit{Answer}: $2\Real(z)$.
+  \item What is $z - z^*$?
+
+    \textit{Answer}: $2j\Imag(z)$.
+
+  \item What is $zz^*$?
+
+    \textit{Answer}: $|z|^2$.
+  \end{enumerate}
+
+\item Prove the relationship in~(\ref{eq:fs-cs3}).\label{it:ch1ex8}
+
+  \textit{Answer}:
+  \begin{equation*}
+    c_{-k}^* = \left[\frac{1}{T}\int_0^T f(t)e^{jk\omega_0t}dt\right]^*
+    = \frac{1}{T}\int_0^T f^*(t)e^{-jk\omega_0t}dt
+    = \frac{1}{T}\int_0^T f(t)e^{-jk\omega_0t}dt
+    = c_k
+  \end{equation*}
+  because $f(t) = f(t)^*$ ($f(t)$ is real).
+
+\item From equation~(\ref{eq:fs-freal1}),
+  derive~(\ref{eq:fs-freal2}).\label{it:ch1ex9}
+
+  \textit{Answer}:
+  \begin{align*}
+    \Real [c_k e^{jk\omega_0t}]
+    &= \Real[c_k\cos k\omega_0t + jc_k\sin k\omega_0t ]\\
+    &= \Real(c_k)\cos k\omega_0t + \Real(jc_k)\sin k\omega_0t ]\\
+    &= \Real(c_k)\cos k\omega_0t - \Imag(c_k)\sin k\omega_0t
+  \end{align*}
+
+\item Prove (\ref{eq:fs-S0}).\label{it:ch1ex10}
+
+  \textit{Answer}: Since
+  the denominator of $\sin\alpha/\alpha$ is zero at $\alpha=0$, we
+  instead evaluate this as
+  \begin{equation*}
+    \sinc(0) = \lim_{\alpha\rightarrow 0}\sin\alpha/\alpha
+  \end{equation*}
+  and use L'H\^{o}pital's rule. The limit becomes
+  \begin{align*}
+    \sinc(0) & =  \left.\frac{\deriv{}{\alpha}\sin\alpha}
+      {\deriv{\alpha}{\alpha}}\right|_{\alpha=0} \\
+    & =  \left.\frac{\cos\alpha}{1}\right|_{\alpha=0} \\
+    & =  1
+  \end{align*}
+
+\end{enumerate}
+
+\section{Chapter~\ref{ch:computer-signals}: Signals in the Computer}
+\label{sc:ch2ex}
+
+\begin{enumerate}
+
+\item The hubcap of a car coming to a stop in a motion
+  picture.\label{it:ch2ex1}
+
+  \textit{Answer}: Signal: the spokes; sampling: the discrete
+  images in the movie.
+
+\item A TV news anchor squirming while wearing a tweed jacket.\label{it:ch2ex2}
+
+  \textit{Answer}: Signal: the tweed texture; sampling: the
+  discrete frames of the video.
+
+
+\item A helicopter blade while the helicopter is starting up on a
+  sunny day.\label{it:ch2ex3}
+
+  \textit{Answer}: Signal: the blade motion;
+  sampling: the strobing effect as each blade blocks, then reveal, the
+  sun.
+
+\item In this case, $\mu=0$ and the variable's range is [-1/2, +1/2]
+  LSB. The result is a standard deviation (equivalent to the RMS error
+  computed in the textbook) of $\sigma = 1/\sqrt{12} \, \textrm{LSB}
+  \approx 0.29 \, \textrm{LSB}$ (how?).\label{it:ch2ex4}
+
+  \textit{Answer}: Given the value for $\mu$
+  and the range of the (now definite) integral, we have:
+  \begin{align*}
+    \sigma^2 &= \int_{-1/2}^{+1/2} x^2 \mathrm{d}x \\
+    &= \left. \frac{x^3}{3} \right|_{-1/2}^{+1/2} \\
+    &= \frac{1}{24} + \frac{1}{24} \\
+    &= \frac{1}{12}
+  \end{align*}
+  And so $\sigma=1/\sqrt{12}$.
+
+\item If we use an 8-bit ADC, 5V corresponds
+  to 255 and 1mV is then 0.051 LSB. (What is the SNR for the original
+  signal?\label{it:ch2ex5}
+
+  \textit{Answer}: It is $20 \log 5/0.001 = 74\textrm{dB}$,
+  which is quite good.
+
+\item What ratio of amplitudes is represented by one bel?\label{it:ch2ex6}
+
+  \textit{Answer}: A bel is ten dB; and 10dB is an amplitude
+  ratio of $\sqrt{10} \approx 3.2$.
+
+
+\end{enumerate}
+
+\section{Chapter~\ref{ch:filt-intro}: Filtering and Feedforward Filters}
+\label{sc:ch3ex}
+
+\begin{enumerate}
+
+\item Is the signal of equation~\ref{eq:sine4} periodic? If so, what
+  is its period?\label{it:ch3ex0}
+
+  \textit{Answer:} Since this signal is a sum of sinusoids with
+  frequencies that have a common divisor, then, yes, the signal is
+  periodic. The greatest common divisor is 50Hz, and so the smallest
+  period for the signal is $T=0.02$ seconds.
+
+\item Since $|\cos(\omega\tau)|\leq 1$, the maximum value
+  $|H(\omega)|$ can reach is $(1+a_1)$, which occurs when the angle
+  $\omega\tau=n\pi, n=0,2,4,...$ (zero or even multiples of
+  $\pi$). Why is this?\label{it:ch3ex1}
+
+  \textit{Answser}: These are the values of $\omega\tau$ for which
+  $\cos\omega\tau=+1$.
+
+\item Use Euler's formula and the definition of the magnitude of a
+  complex vector to derive~(\ref{eq:ff-mh})
+  from~(\ref{eq:ff-mha}).\label{it:ch3ex2}
+
+  \textit{Answer}: Subsituting $e^{-j\omega \tau} = \cos\omega\tau -
+  j\sin\omega\tau$, we obtain $|H(\omega)| = |1+b_1 (\cos\omega\tau +
+  j\sin\omega\tau)| = |1+b_1 \cos\omega\tau + j
+  b_1\sin\omega\tau|$. The magnitude of a complex number is the square
+  root of the absolute value of the sum of the squares of its real and
+  imaginary parts, so $|H(\omega)| = |(1+b_1 \cos\omega\tau)^2 +
+  b_1^2\sin^2\omega\tau|^\frac{1}{2}$. Computing the squared values,
+  $|H(\omega)| = |1 + 2b_1\cos\omega\tau + b_1^2\cos^2\omega\tau +
+  b_1^2\sin^2\omega\tau|^{\frac{1}{2}}$. Factor out the $b_1^2$ from
+  the last two terms and remember that $\cos^2\theta | \sin^2\theta =
+  1$, and you're home free.
+
+
+\item Suppose that we sample a signal at 1000Hz. For each of the
+  following analog frequencies $f$, determine $\omega$,
+  $\hat{f}$, and $\hat{\omega}$. Indicate if that frequency will be
+  aliased.\label{it:ch3ex2.2}
+  \begin{enumerate}
+  \item $f=100$Hz: $\omega = 2\pi f = 200\pi$ radians/sec.
+    $\hat{f} = f/f_s = 100/1000 = 0.1$ cycles/sample.
+    $\hat{\omega} = 2\pi \hat{f} = 0.2\pi$ radians/sample. Not aliased.
+  \item $f=200$Hz: $\omega = 2\pi f = 400\pi$ radians/sec.
+    $\hat{f} = f/f_s = 200/1000 = 0.2$ cycles/sample.
+    $\hat{\omega} = 2\pi \hat{f} = 0.4\pi$ radians/sample. Not aliased.
+  \item $f=500$Hz: $\omega = 2\pi f = 1000\pi$ radians/sec.
+    $\hat{f} = f/f_s = 500/1000 = 0.5$ cycles/sample.
+    $\hat{\omega} = 2\pi \hat{f} = \pi$ radians/sample. Not aliased.
+  \item $f=1000$Hz: $\omega = 2\pi f = 2000\pi$ radians/sec.
+    $\hat{f} = f/f_s = 1000/1000 = 1$ cycle/sample.
+    $\hat{\omega} = 2\pi \hat{f} = 2\pi$ radians/sample. This is
+    aliased, because it is greater than the Nyquist limit, $f_s/2 =
+    500$Hz ($\hat{\omega}_{\mathit{Nyquist}} = \pi$).
+  \end{enumerate}
+
+\item Suppose that we sample a signal at 44.1kHz (the sampling rate
+  used in audio CDs). For each of the following analog frequencies
+  $f$, determine $\omega$, $\hat{f}$, and $\hat{\omega}$. Indicate if
+  that frequency will be aliased.\label{it:ch3ex2.3}
+  \begin{enumerate}
+  \item $f=100$Hz: $\omega = 2\pi f = 200\pi$ radians/sec.
+    $\hat{f} = f/f_s = 100/44100 \approx 0.0023$ cycles/sample.
+    $\hat{\omega} = 2\pi \hat{f} \approx 0.014$ radians/sample. Not aliased.
+  \item $f=1000$Hz: $\omega = 2\pi f = 2000\pi$ radians/sec.
+    $\hat{f} = f/f_s = 1000/44100 \approx 0.023$ cycles/sample.
+    $\hat{\omega} = 2\pi \hat{f} \approx 0.14$ radians/sample. Not aliased.
+  \item $f=10000$Hz: $\omega = 2\pi f = 20000\pi$ radians/sample.
+    $\hat{f} = f/f_s = 10000/44100 \approx 0.23$ cycles/sample.
+    $\hat{\omega} = 2\pi \hat{f} \approx 1.4$ radians/sample. Not aliased.
+  \item $f=20000$Hz: $\omega = 2\pi f = 40000\pi$ radians/sec.
+    $\hat{f} = f/f_s = 20000/44100 \approx 0.45$ cycles/sample.
+    $\hat{\omega} = 2\pi \hat{f} \approx 2.8$ radians/sample. Not aliased.
+  \item $f=25000$Hz: $\omega = 2\pi f = 50000\pi$ radians/sec.
+    $\hat{f} = f/f_s = 25000/44100 \approx 0.57$ cycles/sample.
+    $\hat{\omega} = 2\pi \hat{f} \approx 3.6$ radians/sample. This is
+    aliased, because it is greater than the Nyquist limit, $f_s/2 =
+    22.05$kHz ($\hat{\omega}_{\mathit{Nyquist}} = \pi$).
+  \end{enumerate}
+
+
+\item Write equation~(\ref{eq:ff-manyk}) for $k=0, 1, 2, 3$, then
+  write the transfer function for each.\label{it:ch3ex3}
+
+  \textit{Answer}: For $k=0$, $y[n] = b_0 x[n]$ and $H(z) = b_0$;
+  $k=1$, $y[n] = x[n] (b_0 + b_1 e^{-j\hat{\omega}})$ and $H(z) = b_0
+  + b_1z^{-1}$; 
+  $k=2$, $y[n] = x[n](b_0 + b_1 e^{-j\hat{\omega}} + b_2
+  e^{-2j\hat{\omega}})$ and $H(z) = b_0 + b_1z^{-1} + b_2 z^{-2}$; 
+  $k=3$, $y[n] = x[n](b_0 + b_1 e^{-j\hat{\omega}} + b_2
+  e^{-2j\hat{\omega}} + b_3 e^{-3j\hat{\omega}})$ and $H(z) = b_0 +
+  b_1z^{-1} + b_2 z^{-2} + b_3 z^{-3}$.
+
+\item Given the signal $x(t) = \sin t$ and the derivative operator
+  $D=\derivin{}{t}$, what is $Dx(t)$?\label{it:ch3ex4}
+
+  \textit{Answer}: $Dx(t)=\cos t$.
+
+\item When 
+  \begin{align*}
+    H_1(z) &= b_0 + b_1z^{-1}\\
+    H_2(z) &= b'_0 + b'_1z^{-1}
+  \end{align*}
+  with $b_0$, $b_1$, $b'_0$, and $b'_1$ are constants, show that
+  $H_2(z)H_1(z) = H_1(z)H_2(z)$.\label{it:ch3ex5}
+
+  \textit{Answer}: Multiplying $H_1(z)H_2(z)$, we obtain
+  $(b_0+b_1z^{-1})(b'_0+b'_1z^{-1})=b_0b'_0 + (b_0b'_1 +
+  b_1b'_0)z^{-1} + b_1b'_1z^{-2}$. Multiplying $H_2(z)H_1(z)$, we get
+  $(b'_0+b'_1z^{-1})(b_0+b_1z^{-1}) = b'_0b_0 + (b'_0b_1 +
+  b'_1b_0)z^{-1} + b'_1b_1z^{-2}$.  Because multiplication is
+  commutative, these two expressions are equal. In other words, series
+  combination of filters is commutative because multiplication of
+  polynomials is commutative.
+
+\item Prove $|z^2|=1$ in
+  equation~(\ref{eq:twostep-ex}).\label{it:ch3ex6}
+
+  \textit{Answer}: $|z^2| = |e^{2j\omega}|$. From Euler's formula,
+  this is $|\cos 2\omega + j\sin 2\omega|$. Since the magnitude of a
+  complex number in rectangular form is the square root of the sum of
+  the squares of its real and imaginary components, and $\cos^2
+  2\omega + \sin^2 2\omega = 1$, $|z^2|=1$.
+
+\item Starting with the factored magnitude response in
+  equation~(\ref{eq:twostep-factored}), derive expressions for $b_1$
+  and $b_2$ in terms of $z_1$ and $z_2$.\label{it:ch3ex7}
+
+  \textit{Answer}: The factored magnitude response is
+  $|H(z)|=|(z-z_1)(z-z_2)|$. Multiplying the two terms out yields
+  $|H(z)|=|z^2 - zz_1 - zz_2 + z_1z_2|=|z^2 - (z_1+z_2)z +
+  z_1z_2|$. Because $|H(z)|=|z^2 + b_1z + b_2|$,
+  $b_1=-(z_1+z_2)$ and $b_2=z_1z_2$.
+
+\item What abstract data type (ADT) should hold the delayed
+  inputs?\label{it:ch3ex8}
+
+  \textit{Answer}: a queue.
+
+\end{enumerate}
+
+\section{Chapter~\ref{ch:convolution}: The Z-Transform and Convolution}
+\label{sc:ch6ex}
+
+\begin{enumerate}
+
+\item Determine the z-transform for the sequence
+  $x[n]=\{1,2,5,7,0,1\}$, $n=0,1,2,3,4,5$\label{it:ch6ex1}
+
+  \textit{Answer}:
+  \begin{equation}
+    X(z)=1+2z^{-1}+5z^{-2}+7z^{-3}+z^{-5}
+  \end{equation}
+
+\item Determine the z-transform of the sequence
+  $x[n]=\{1,2,5,7,0,1\}$, $n=-2,-1,0,1,2,3$\label{it:ch6ex2}
+
+  \textit{Answer}:
+  \begin{equation}
+    X(z)=1z^2+2z+5+7z^{-1}+z^{-3}
+  \end{equation}
+
+\item Sketch equation~(\ref{eq:zt-delta}).\label{it:ch6ex3}
+
+  \textit{Answer}: In a magnitude ($|\mathcal{X}(\omega)|$)
+  vs. frequency plot, it is a horizontal line of value one.
+
+\item Compute the z-transform and frequency content for the signal
+  $\delta[n+n_0]$.\label{it:ch6ex4}
+
+  \textit{Answer}:
+  \begin{align*}
+    \Delta(z) &= \sum_{k=-\infty}^{\infty} \delta[k+n_0] z^{-k} \\
+    &= 1z^{n_0}=z^{n_0}
+  \end{align*}
+  The convergence region is entire $z$ plane, except $z=\infty$. The
+  frequency content is
+  $|\mathcal{D}(\hat{\omega})| = |\Delta(e^{j\hat{\omega}})| =
+  |e^{jn_0\hat{\omega}}|=1$.
+
+\item What is the derivative of $u[n-k]$ (the unit step at time step
+  $k$)?\label{it:ch6ex5}
+
+  \textit{Answer}: $\delta[n-k]$.
+
+\item Show that $e^{j\hat{\omega}/2}-e^{-j\hat{\omega}/2} =
+  2j\sin\omega/2$.\label{it:ch6ex6}
+
+  \textit{Answer}: Euler's formula states that $e^{j\theta} =
+  \cos\theta + j\sin\theta$. For negative angles, $e^{-j\theta} =
+  \cos(-\theta) + j\sin(-\theta) = \cos\theta - j\sin\theta$ (because
+  cosine is an even function and sine is an odd function). The
+  difference of these two is $e^{j\theta}-e^{-j\theta} =
+  2j\sin\theta$; substitute $\theta=\hat{\omega}/2$ to finish up.
+
+\item Prove that $e^{-j\pi/2}=-j$.\label{it:ch6ex7}
+
+  \textit{Answer}: Using Euler's formula,
+  $e^{-j\pi/2}=\cos\pi/2-j\sin\pi/2=0-j \times 1=-j$.
+
+\item Determine if $u[n] \ast H \ne H$ is true, where $h[n] = n$,
+  $n=0,1,2,\ldots$ (a \emph{ramp}).\label{it:ch6ex8}
+
+  \textit{Answer}: Yes, it is true:
+  \begin{align*}
+    u[n] \ast H &= \sum_{k=0}^{n}1 (n-k) \\
+    &= \sum_{k=0}^{n}n -\sum_{k=0}^{n} k \\
+    &= n^2 - \frac{n(n+1)}{2} \\
+    &= \frac{n(n-1)}{2} \\
+    &\ne n
+  \end{align*}
+
+\item Compute $u[n] \ast u[n]$.\label{it:ch6ex9}
+
+  \textit{Answer}:
+  \begin{equation}
+    u[n] \ast u[n]=\sum_{k=0}^{n}1=n
+  \end{equation}
+  So $u[n] \ast u[n] \ne u[n]$.
+
+\item How does the MATLAB function \verb|conv| deal with boundary
+  conditions?\label{it:ch6ex10}
+
+  \textit{Answer}: It zero pads.
+
+\item Use MATLAB to compute the convolution $e^{-n} \ast e^{-n}$ and
+  plot the result.\label{it:ch6ex11}
+
+  \textit{Hint}: use \texttt{conv} and \texttt{plot}.
+
+\item Prove the scaling property of the z-transform; that is, if
+  \begin{equation*}
+    x[n]\stackrel{\mathbf{Z}}{\longleftrightarrow} X(z)
+  \end{equation*}
+  then 
+  \begin{equation*}
+    a^nx[n]\stackrel{\mathbf{Z}}{\longleftrightarrow} X(a^{-1}z)
+  \end{equation*}\label{it:ch6ex12}
+
+  \textit{Answer}:
+  From~(\ref{eq:zt}), 
+  \begin{align*}
+    Z\left\{a^nx[n]\right\} &= \sum_{n=-\infty}^{\infty} a^nx[n]z^{-n}
+    &= \sum_{n=-\infty}^{\infty}x[n](a^{-1}z)^{-n} \\
+    &= X(a^{-1}z)
+  \end{align*}
+
+\end{enumerate}
+
+\section{Chapter~\ref{ch:fb-filters}: Feedback Filters}
+\label{sc:ch4ex}
+
+\begin{enumerate}
+
+\item Derive equation~(\ref{eq:fb-band2b})
+  from~(\ref{eq:fb-band2a}).\label{it:ch4ex1}
+
+  \textit{Answer}: Start
+  from~(\ref{eq:fb-band2a}):
+  \begin{align*}
+    2(1-2R+R^2) &= 1-2R\cos\hat{\omega}_B + R^2 \\
+    1-4R+r^2    &= -2R\cos\hat{\omega}_B
+  \end{align*}
+  so 
+  \begin{align*}
+    \cos\hat{\omega}_B &= -\frac{1}{2R}(1-4R+R^2) \\
+    &= 2-\frac{1}{2}(R+\frac{1}{R})
+  \end{align*}
+
+\item In the situation where the sampling rate is 44,100Hz and the
+  desired bandwidth is 20Hz, $R$ in~(\ref{eq:calc-bw}) is 0.998575.
+  Solve for $R$ the situation where the desired bandwidth is 200Hz. Is
+  it true that when $R$ is far away from one, $B$ grows
+  large?\label{it:ch4ex2}
+
+  \textit{Answer}: $R=1-\pi(200/44100)=0.9858$. Yes.
+
+\end{enumerate}
+
+
+
+\section{Chapter~\ref{ch:fft}: Spectral Analysis}
+\label{sc:ch7ex}
+
+\begin{enumerate}
+
+\item Show which frequencies will be equal for a spectrum
+  with:\label{it:ch5ex4}
+  \begin{enumerate}
+  \item 16 points.
+
+    \textit{Answer}:
+    \begin{equation*}
+      \underset{\underset{\text{DC}}{\uparrow}}{0} \quad \underbrace{1
+        \quad \overbrace{2 \quad \underbrace{3 \quad \overbrace{4
+              \quad \underbrace{5 \quad \overbrace{6 \quad
+                  \underbrace{7 \quad 8 \quad 9} \quad 10} \quad 11}
+              \quad 12} \quad 13} \quad 14} \quad 15}
+    \end{equation*}
+
+  \item 15 points.
+
+    \textit{Answer}:
+    \begin{equation*}
+      \underset{\underset{\text{DC}}{\uparrow}}{0} \quad \underbrace{1
+        \quad \overbrace{2 \quad \underbrace{3 \quad \overbrace{4
+              \quad \underbrace{5 \quad \overbrace{6 \quad
+                  \underbrace{7 \quad 8} \quad 9} \quad 10} \quad 11}
+            \quad 12} \quad 13} \quad 14}
+    \end{equation*}
+  \end{enumerate}
+
+\item Prove that the DFT of $x[n]$ for any $n=m$ and $N=1$ is
+  $x[m]$.\label{it:ch5ex5}
+
+  \textit{Answer}:
+  \begin{equation*}
+    X[k] = \sum_{n=m}^{m}x[n]e^{-jnk2\pi/1}=x[m]e^{jmk2\pi}=x[m]
+  \end{equation*}
+  because $k, m$ are integers and so $e^{jmk2\pi}=1$.
+
+\item Perform step-by-step division for the example given in
+  table~\ref{tb:fft-bitrevers} to prove the final result is equal to the
+  bit-reversed input.\label{it:ch5ex6}
+
+  \textit{Answer}: The answer given in decimal
+  is in the following table:
+  \begin{center}
+    \begin{tabular}{|c|c|c|c|} \hline
+      Input & N/2 & N/4 & N/8\\ \hline\hline
+      0 & 0 & 0 & 0\\ \cline{4-4}
+      1 & 2 & 4 & 4\\ \cline{3-4}
+      2 & 4 & 2 & 2\\ \cline{4-4}
+      3 & 6 & 6 & 6\\ \cline{2-4}
+      4 & 1 & 1 & 1\\ \cline{4-4}
+      5 & 3 & 5 & 5\\ \cline{3-4}
+      6 & 5 & 3 & 3\\ \cline{4-4}
+      7 & 7 & 7 & 7\\ \hline
+    \end{tabular}
+  \end{center}
+
+\item Perform the 4-point FFT of the signal $x[n] = \{1, 2, 3, 4\}$ by
+  hand.\label{it:ch5ex6.5}
+
+  \textit{Answer:} We first do the bit reversal to get:
+  \begin{center}
+    \begin{tabular}{|c|c|c|c|c|} \hline
+      \multicolumn{2}{|c|}{Input} & 
+      \multicolumn{3}{c|}{Bit-Reversed Result} \\ \hline
+      Decimal & Binary & Binary & Decimal & Value \\ \hline\hline
+      0 & 00 & 00 & 0 & 1\\
+      1 & 01 & 10 & 2 & 3\\
+      2 & 10 & 01 & 1 & 2\\
+      3 & 11 & 11 & 3 & 4\\ \hline
+    \end{tabular}
+  \end{center}
+
+  Each row of this table corresponds to a 1-point FFT. Starting with
+  $N=2$, we combine neighbors to form the two-point FFTs according to
+  equations~(\ref{eq:2fft-even}) and~(\ref{eq:2fft-odd}):
+  \begin{center}
+    \begin{tabular}{|c|c|c|}\cline{2-3}
+      \multicolumn{1}{c|}{}                 & $k$ & $X[k]$ \\ \hline
+      \multirow{2}{*}{\rotatebox{90}{even}} & 0   & 4  \\
+      & 1   & -2  \\ \hline
+      \multirow{2}{*}{\rotatebox{90}{odd}}  & 0   & 6  \\
+      & 1   & -2  \\ \hline
+    \end{tabular}
+  \end{center}
+  
+  We now have a 2-point ``even'' FFT and a 2-point ``odd'' FFT.
+  We can combine corresponding elements of this using $k=\{0, 1, 2,
+  3\}$ and $N=4$; the four equations are:
+  \begin{align*}
+    X[0] &= X[0]^{\mathit{even}} + e^{-j(0)2\pi/4}X[0]^{\mathit{odd}} \\
+    &= X[0]^{\mathit{even}} + X[0]^{\mathit{odd}} \\
+    X[1] &= X[1]^{\mathit{even}} + e^{-j(1)2\pi/4}X[1]^{\mathit{odd}} \\
+    &= X[1]^{\mathit{even}} + e^{-j\pi/2}X[1]^{\mathit{odd}} \\
+    &= X[1]^{\mathit{even}} - j X[1]^{\mathit{odd}} \\
+    X[2] &= X[0]^{\mathit{even}} + e^{-j(2)2\pi/4}X[0]^{\mathit{odd}} \\
+    &= X[0]^{\mathit{even}} + e^{-j\pi}X[0]^{\mathit{odd}} \\
+    &= X[0]^{\mathit{even}} - X[0]^{\mathit{odd}} \\
+    X[3] &= X[1]^{\mathit{even}} + e^{-j(3)2\pi/4}X[1]^{\mathit{odd}} \\
+    &= X[1]^{\mathit{even}} + e^{-j3\pi/2}X[1]^{\mathit{odd}} \\
+    &= X[1]^{\mathit{even}} + j X[1]^{\mathit{odd}}
+  \end{align*}
+  And so the FFT values (and the \emph{power spectrum}, $|X[k]|^2$) are:
+  \begin{center}
+    \begin{tabular}{|c|c|c|} \hline
+      $k$ & $X[k]$ & $|X[k]|^2$ \\ \hline
+      0   & 10      & 100 \\
+      1   & -2 + j2 & 8 \\
+      2   & -2      & 4 \\
+      3   & -2 - j2 & 8 \\ \hline
+    \end{tabular}
+  \end{center}
+
+
+\item Fill in the steps leading from~(\ref{eq:usefft-rWk1})
+  to~(\ref{eq:usefft-rWk2}).\label{it:ch7ex1}
+
+  \textit{Answer}:
+  Equation~(\ref{eq:usefft-rWk1}) is a geometric series with common
+  ratio $e^{-j\hat{\omega}_k}$, so
+  \begin{displaymath}
+    W(\hat{\omega}_k)=\frac{1-e^{-j\hat{\omega}_kN}}{1-e^{-j\hat{\omega}_k}}
+  \end{displaymath}
+  Using Euler's formula, the numerator becomes
+  \begin{equation*}
+    1-e^{-j\hat{\omega}_kN} =
+    e^{-j\hat{\omega}_kN/2}(e^{j\hat{\omega}_kN/2}-e^{-j\hat{\omega}_kN/2})
+    =2j e^{-j\hat{\omega}_kN/2}\sin(\hat{\omega}_kN/2)
+  \end{equation*}
+  Similarly, the denominator is $2j
+  e^{-j\hat{\omega}_k/2}\sin(\hat{\omega}_k/2)$, so
+  \begin{displaymath}
+    W(\hat{\omega}_k)=\frac{\sin(\hat{\omega}_kN/2)}{\sin\hat{\omega}_k/2}
+    e^{-j\hat{\omega}_k(N-1)/2}
+  \end{displaymath}
+  which is~(\ref{eq:usefft-rWk2}).
+
+\item Plot the Hann and Hamming windows in the time domain and compare
+  their shapes.\label{it:ch7ex2}
+
+  \textit{Hint}: Use the MATLAB built-in commands
+  \texttt{hamming()} and \texttt{hanning()}.
+
+\end{enumerate}
+
+\section{Chapter~\ref{ch:compression}: Compression}
+\label{sc:ch8ex}
+
+\begin{enumerate}
+
+\item If a rate of 44,100 samples/second at 16bits/sample, what is
+  the digital data rate in bits/second?\label{it:ch8ex1}
+
+  \textit{Answer}: 705.6kb/s.
+
+\item If we are digitizing high-quality video --- 1k x 1k
+  pixels/frame, 30 frames/sec, 24 bits/pixel --- what is the bit
+  rate?\label{it:ch8ex2}
+
+  \textit{Answer}: 755Mb/s.
+
+\item If a signal is sent in which all samples have the same value,
+  what is the information content in bits (ignoring the first
+  sample)?\label{it:ch8ex3}
+
+  \textit{Answer}: Since you can predict all subsequent signals
+  with 100\% accuracy, no additional information is sent after the first
+  sample (this assumes infinite signal length; otherwise, there is
+  additional information --- the number of samples).
+
+\item What kind of signal would have maximum information
+  content?\label{it:ch8ex4}
+
+  \textit{Answer}: It would have to be a signal in which the
+  next sample could never be predicted at better than chance, regardless
+  of the number of previous samples used as ``clues'' to the next
+  sample's value. So, for example, if there were 8 bits/sample, the
+  chance of predicting the next signal would have to be 1/256. Such an
+  unpredictable signal is called \emph{stochastic}, or \emph{random}. In
+  multimedia terms, \emph{noise}.
+
+\item Can you give an example of an application which would demand
+  symmetric coding?\label{it:ch8ex5}
+
+  \textit{Answer}: Video conferencing. Both
+  ends typically have the same hardware, both ends must perform both
+  encoding and decoding, and both operations must be done in real
+  time.
+
+\item Can you give an example of an application which could allow
+  asymmetric coding?\label{it:ch8ex6}
+
+  \textit{Answer}: Video broadcasting. If the
+  broadcast is not live, then large computers can be allowed long times
+  to optimize a recording.  Even in a live broadcast, the studio can
+  invest more money in encoding equipment than the viewer in decoding
+  equipment (TVs or computers).
+
+\item Two example codes with the prefix property are given in
+  Table~\ref{tb:prefix}. Decoding code 1 is easy, as we can just read
+  three bits at a time (for example, decode
+  ``001010011'').\label{it:ch8ex7}
+
+  \textit{Answer}: ``2, 3, 4''.
+
+\item What would the symbol sequence be for
+  ``01000001000''?\label{it:ch8ex8}
+
+  \textit{Answer}: ``3141''.
+
+\end{enumerate}
+
+
+\section{Chapter~\ref{ch:audio-video}: Audio \& Video Compression and Coding}
+\label{sc:ch9ex}
+
+\begin{enumerate}
+
+\item For almost all versions, the input signal
+  is assumed to be 20kHz. What is the minimum sampling rate for such a
+  signal?\label{it:ch9ex1}
+
+  \textit{Answer}: 40kHz.
+
+\item Question: under what conditions is it acceptable to have
+  greater coder complexity?\label{it:ch9ex2}
+
+  \textit{Answer}: When coding is done
+  once and not in real time, or is done by someone with a lot of money,
+  like a TV station.
+
+\end{enumerate}
+
+
+\section{Chapter~\ref{ch:review}: Review and Conclusions}
+\label{sc:ch10ex}
+
+\begin{enumerate}
+
+\item Question: what's wrong with low-pass filters with abrupt
+  cutoffs (sometimes called \emph{brick wall} filters)?\label{it:ch10ex1}
+
+  \textit{Answer}: Phase distortion; filters with steep cutoffs introduce large,
+  frequency dependent delays, or phase shifts.
+
+\end{enumerate}

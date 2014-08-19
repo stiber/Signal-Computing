@@ -1,0 +1,298 @@
+% -*-LaTeX-*-
+
+% The log below is the old log from when RCS was being used in
+% conjunction with this.
+%
+% $Log: master.tex,v $
+% Revision 1.7  2010/03/16 00:32:56  stiber
+% Final revisions prior to Spring 2010.
+%
+% Revision 1.6  2007/12/25 18:01:46  stiber
+% Final changes for winter 2008.
+%
+% Revision 1.5  2007/03/20 23:49:49  stiber
+% Final cleanup for start of spring 2007.
+%
+% Revision 1.4  2006/05/13 17:08:46  stiber
+% Updated version number for second revision, Spring 2006.
+%
+% Revision 1.3  2006/03/27 23:32:04  stiber
+% Modified for Spring 2006, with corrections and incorporation of
+% newer LaTeX packages.
+%
+% Revision 1.2  2004/03/29 19:46:04  stiber
+% Updated for Spring 2004 and new textbook (DSP First).
+%
+% Revision 1.1  2004/02/19 00:19:10  stiber
+% Initial revision
+%
+
+\documentclass[12pt]{book}
+
+\newif\ifHtml
+\Htmlfalse
+
+\newif\ifPDF
+\PDFtrue
+
+\ifHtml
+  \PDFfalse
+  \usepackage[tex4ht,colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,pdftitle={Signal Computing: Digital Signals in the Software Domain}]{hyperref}
+  \hyperlinkfileprefix{}
+\else
+  \ifPDF
+    \usepackage[pdftex,pdftitle={Signal Computing: Digital Signals in the Software Domain},colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,bookmarks,bookmarksopen]{hyperref}
+    \usepackage{fullpage}
+  \else
+    \usepackage{hyperref}
+    \usepackage{mathptmx,helvet,courier,fullpage}
+  \fi
+\fi
+
+
+\usepackage{fullpage,graphicx,algorithmic,multirow,rotating}
+%\usepackage{html}
+\usepackage[chapter]{algorithm}
+
+% Superscripts outside math mode
+\newcommand{\spscript}[2]{\mbox{#1}$^\mathrm{#2}$}
+
+\usepackage{makeidx}
+\makeindex
+
+% XMP include for Creative Commons
+\usepackage{xmpincl}
+\includexmp{metadata}
+
+% Sidebars implemented with picinpar.  Use for defining
+% important terms, mentioning important points in the text, indicating 
+% the current reading assignment, links to useful resources, etc.
+\usepackage{xcolor}
+\definecolor{psetback}{HTML}{CFECEC} %html is : light cyan 2
+\usepackage{picinpar}
+\newcommand{\sidebar}[1]{{\fbox{\parbox{0.4\textwidth}{\footnotesize #1}}}}
+%\newcommand{\problemset}[1]{{\fbox{\parbox{0.9\textwidth}{\footnotesize #1}}}}
+%\newcommand{\problemset}[1]{{\colorbox{psetback}{{#1}}}}
+\newcommand{\problemset}[1]{\vline  {\colorbox{psetback}{{\parbox{0.9\textwidth}{\footnotesize #1}}}}}
+
+
+% Number figures within the chapter
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
+\renewcommand{\thetable}{\thechapter.\arabic{table}}
+\renewcommand{\theequation}{\thechapter-\arabic{equation}}
+
+\setcounter{tocdepth}{2}
+
+% Fancy chapter beginnings
+\usepackage[Lenny]{fncychap}
+
+\makeatletter
+  \def\@chapapp{}
+
+  \renewcommand{\DOCH}{}
+
+  \renewcommand{\DOTI}[1]{%
+    \settowidth{\px}{\CTV\FmTi{#1}\space}
+    \addtolength{\px}{5pt}
+    \settoheight{\py}{\CTV\FmTi{#1}}
+    \addtolength{\py}{1pt}
+
+    \settowidth{\mylen}{\CNoV\thechapter\space\CTV\FmTi{#1}}
+    \addtolength{\mylen}{1pt}
+    \settowidth{\pxx}{\CNoV\thechapter}
+    \addtolength{\pxx}{-1pt}
+
+    \settoheight{\pyy}{\CNoV\thechapter}
+    \addtolength{\pyy}{-2pt}
+    \setlength{\myhi}{\pyy}
+    \addtolength{\myhi}{-1\py}
+    \par
+    \parbox[b]{\textwidth}{%
+    \raggedright%
+    \CNoV\thechapter\space\CTV\FmTi{#1}%
+    \hskip -\px%
+    \rule[\pyy]{\px}{\RW}
+    \hskip -5pt%
+    \mghrulefill{\RW}%
+    \rule{\RW}{\pyy}\par\nobreak%
+    \vskip -\baselineskip%
+    \vskip -\pyy%
+    \hskip \mylen%
+    \mghrulefill{\RW}\par\nobreak%
+    \vskip \pyy}%
+    \vskip 40\p@}
+
+  \renewcommand{\DOTIS}[1]{%
+    \settowidth{\px}{\CTV\FmTi{#1}}
+    \addtolength{\px}{1pt}
+    \settoheight{\py}{\CTV\FmTi{#1}}
+    \addtolength{\py}{1pt}
+
+    \settowidth{\mylen}{\CNoV\thechapter\space\CTV\FmTi{#1}}
+    \addtolength{\mylen}{1pt}
+    \settowidth{\pxx}{\CNoV\thechapter}
+    \addtolength{\pxx}{-1pt}
+
+    \settoheight{\pyy}{\CNoV\thechapter}
+    \addtolength{\pyy}{-2pt}
+    \setlength{\myhi}{\pyy}
+    \addtolength{\myhi}{-1\py}
+    \par
+    \parbox[b]{\textwidth}{%
+    \rule[\py]{\RW}{\myhi}%
+    \raggedright%
+    \CTV\FmTi{#1}%
+    \hskip -\px%
+    \rule[\pyy]{\px}{\RW}
+    \hskip -5pt%
+    \mghrulefill{\RW}%
+    \rule{\RW}{\pyy}\par\nobreak%
+    \vskip -\baselineskip%
+    \vskip -\pyy%
+    \mghrulefill{\RW}\par\nobreak%
+    \vskip \pyy}%
+    \vskip 40\p@}
+\makeatother
+
+\renewcommand{\topfraction}{0.9} % max fraction of page for floats at top
+\renewcommand{\bottomfraction}{0.9}
+                 % max fraction of page for floats at bottom
+\renewcommand{\textfraction}{0.10} % min fraction of page for text
+\renewcommand{\floatpagefraction}{0.8}
+                 % min fraction of floatpage that should have floats
+
+% Fancy page headings
+\usepackage{fancyhdr}
+\setlength{\headheight}{15pt}
+
+\fancyhf{} % clear all header and footer fields
+\fancyfoot[L]{Signal Computing}
+\fancyfoot[R]{\thepage}
+\fancyhead[L]{\slshape\leftmark}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancypagestyle{plain}{%
+\fancyhf{} % clear all header and footer fields
+\fancyfoot[L]{Signal Computing}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}}
+
+\pagestyle{fancy}
+
+
+% Math and logic
+\usepackage{amsmath}
+\newcommand{\pred}[1]{\ensuremath{\textit{#1}}}
+\newcommand{\const}[1]{\ensuremath{\textsf{#1}}}
+\newcommand{\deriv}[2]{\ensuremath{\frac{\mathrm{d} #1}{\mathrm{d} #2}}}
+\newcommand{\derivin}[2]{\ensuremath{{\mathrm{d} #1}/{\mathrm{d} #2}}}
+\newcommand{\sderiv}[2]{\ensuremath{\frac{\mathrm{d}^{2} #1}{\mathrm{d} #2^{2}}}}
+\newcommand{\nderiv}[3]{\ensuremath{\frac{d^{#3} #1}{d #2^{#3}}}}
+\newcommand{\pderiv}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
+\newcommand{\spderiv}[2]{\ensuremath{\frac{\partial^2 #1}{\partial #2^{2}}}}
+\newcommand{\pderivin}[2]{\ensuremath{{\partial #1}/{\partial #2}}}
+\newcommand{\spderivin}[2]{\ensuremath{{\partial^2 #1}/{\partial #2^{2}}}}
+\newcommand{\transpose}{\ensuremath{^{\mathsf{T}}}}
+\DeclareMathOperator{\Real}{Re}
+\DeclareMathOperator{\Imag}{Im}
+\DeclareMathOperator{\sinc}{sinc}
+
+\newcommand{\commentedout}[1]{}
+
+\title{Signal Computing: Digital Signals in the Software Domain}
+
+\author{Michael Stiber \and Bilin Stiber\\ 
+{\normalsize University of Washington, Bothell}\\
+{\normalsize and}\\
+{\normalsize S-Squared Technical Consulting}}
+
+% \date{August 2014}
+
+% \includeonly{ch-fft/fft} % ch-iir/fb-filters} % ch-conv/convolution}
+% %
+% %intro,ch-physical/physical-signals,ch-computer/computer-signals,ch-fir/filt-intro}
+
+\begin{document}
+
+\begin{titlepage}
+
+\mbox{}\\[0.5in]
+\begin{center}
+\mbox{}\hrulefill\mbox{}\\[0.25in]
+{\Huge Signal Computing:}\\[0.25in]
+{\LARGE Digital Signals in the Software Domain}\\[0.25in]
+\mbox{}\hrulefill\mbox{}\\[3in]
+
+\mbox{}\hfill
+\parbox{1.5in}{\mbox{}}
+\parbox{3in}{Fall 2014}\\[0.25in]
+\mbox{}\hfill
+\parbox{3in}{\raggedright
+Prof. Michael Stiber\\
+Dr. Bilin Zhang Stiber\\
+University of Washington Bothell\\
+18115 Campus Way NE\\
+Bothell, Washington 98011\\[0.25in]
+Eric C. Larson\\
+Southern Methodist University\\
+Lyle School of Engineering\\
+3145 Dyer Street\\
+Dallas, TX 75205}
+\end{center}
+
+\newpage
+\mbox{}\vspace{4in}
+\begin{flushright}
+Copyright \copyright\ 2002--2014 by Michael and Bilin Stiber and Eric
+C. Larson\\[2in]
+This work is licensed under the Creative Commons
+Attribution-ShareAlike 4.0 International License. To view a copy of
+this license, visit
+\url{http://creativecommons.org/licenses/by-sa/4.0/}.\\
+\includegraphics[height=1.5in]{by-sa}
+\end{flushright}
+
+\thispagestyle{empty}
+
+\end{titlepage}
+
+\frontmatter
+
+\tableofcontents
+\listoffigures
+\listoftables
+\listofalgorithms
+\markboth{LIST OF ALGORITHMS}{}
+
+\include{intro}
+
+%\newpage
+
+%\pagenumbering{arabic}
+
+\mainmatter
+
+\include{ch-physical/physical-signals}
+\include{ch-computer/computer-signals}
+\include{ch-fir/filt-intro}
+\include{ch-conv/convolution}
+\include{ch-iir/fb-filters}
+% \include{chapter5/fourier}  % Superseded by ch-fft/fft
+\include{ch-fft/fft}
+\include{ch-comp/compression}
+\include{ch-av/audio-video}
+\include{ch-rev/review}
+
+\appendix
+
+\include{exercise-answers}
+
+\backmatter
+
+\addcontentsline{toc}{chapter}{Index}
+\printindex
+
+\end{document}
+% LocalWords:  MATLAB

@@ -1,0 +1,105 @@
+2 Signals in the Computer 
+2.1 From the physical to the digital 
+	1. Process of digitization
+	
+2.2 Measuring Noise 
+	RMS
+	Signal to noise ratio
+	DeciBel
+2.3 Sampling
+	Sampling can destroy information
+	Sample and Hold device
+	basic aliasing
+	2.3.1 Aliasing 
+		actual, digital, and apparent frequency
+		Nyquist
+		Self-Test Exercises 
+			See A.2 #1–3 for answers. 
+			1. Aliasing can happen in the world around you. Identify the source of the original signal and 
+			the sampling mechanism in the following situations: 
+			(a) The hubcap of a car coming to a stop in a motion picture; 
+			(b) A TV news anchor squirming while wearing a tweed jacket; 
+			(c) A helicopter blade while the helicopter is starting up on a sunny day. 
+2.4 Quantization
+	LSB as a means of gathering statistics of error in ADC
+			In this case, µ = 0 and the variable’s range is [-1/2, +1/2]. The result is a standard 
+			deviation of σ = 1/√12 LSB 
+			≈ 0.29 LSB (how [answer in A.2 #4]?).
+			If weusean 
+			8-bitADC, 5Vcorrespondsto255and1mVisthen0.051LSB. (WhatistheSNRforthe 
+			original signal (answerinA.2#5)?
+			
+			Self-Test Exercises 
+			See A.2 #6 for the answer. 
+
+2.5 Dynamic Range
+	Companding
+2.6 Periodic and Aperiodic Signals 
+	Out of place, Continuous Fourier for aperiodic signals
+2.7 Old Problems 
+	These are primarily MATLAB housekeeping problems. Although, I really like the aliasing problems.
+		1. The analytical formula for synthesis of a 50% duty cycle square wave as a sum of 
+		harmonically related sine waves (its Fourier series) is: 
+		x(t) = 4 
+		π 􏰇sin(ω0 t) + 
+		1 
+		3 sin(3ω0 t) + 
+		1 
+		5 sin(5ω0 t) + · · · 􏰈 
+		Write a MATLAB program to compute and plot the spectrum of a square wave given 
+		this equation. Your program should prompt the user for ω0 and which harmonic is 
+		the maximum to plot. Note that you are not being asked to plot the square wave 
+		as a function of time; you should plot the amplitudes of the component sinusoids as 
+		a function of the sinusoids’ frequencies (like ﬁgure 1.12). Hand in hard copy of your 
+		MATLAB code and a plot of the spectrum with 10 harmonics. You may ﬁnd the 
+		MATLAB function stem() useful. 
+		
+		2. Modify your above program to show how these harmonics are aliased if the square 
+		wave is sampled at ωs (prompting the user for ωs ). Hand in hard copy of your code 
+		and an example plot for ωs < ω0 . 		
+		
+		3. Modify your program to play the sound of the aliased square wave (synthesize x(t) from 
+		problem 2). Next, write a program to generate a band-limited square wave from a sum 
+		of sinusoids, given ω0 and ωs , with no frequency components above the Nyquist limit. 
+		Play that sound (the MATLAB function soundsc() is useful for this). Compare the 
+		sounds with and without (from problem 1, given that ωs determines ωmax ) aliasing. 
+		Can you ﬁnd an interesting use for intentional aliasing? Hand in your code’s hard 
+		copy, plots of the sample square wave and the band limited square wave (as functions 
+		of time ), and your written comments. 
+
+	
+		
+	Major testable concepts:
+		RMS, need two problems
+			1. What is the RMS magnitude of the sine wave A*sin(wt)?
+			answer: A/sqrt(2)
+			2. What is the RMS magnitude of the sawtooth waveform 
+			x(t) = A/T * t, 0<t<=T
+			And x(t) repeats every T seconds
+			answer: A/sqrt(3)
+			
+		SNR, need two problems built off RMS from previous 
+			3. The sin wave from problem 1 is sampled in noise, 
+			if the desired SNR is 20 dB, how large can the RMS magnitude of the noise be?
+			answer: 20 = 20 log(A/(sqrt(2) Nrms)), Nrms=A/(sqrt(2)*exp(1))
+			4. If the sawtooth waveform from problem 2 is considered noise and
+			the sine wave from problem 1 is the signal, what is the SNR in dB?
+			answer: 10 log(sqrt(3/2))=5 log(3/2)=0.9dB
+			
+		Aliasing, two or three problems
+			5. The signal exp(j 2pi 200 t) is sampled at ws=2pi*300. 
+			What are the actual, digital, and apparent frequencies?
+			answer: 2pi*200rad/s, -2/3 pi rad/sample, -100 *2pi rad/s
+			6. The signal cos( 2pi 200 t) is sampled at ws=2pi*250.
+			What are the actual, digital and apparent frequencies of the resulting cosines?
+			answer: 2pi*200rad/s, 2/5 pi rad/sample, 50 *2pi rad/s
+			7. The fourier series of a square wave is given by XXX. 
+			(a) What is the RMS magnitude?
+			(b) If we consider the band limit of the square wave to be when it has no other frequencies with magnitudes larger than 1% of the RMS magnitude, then what is the minimum sampling rate to capture all frequencies below the band limit without aliasing?
+			
+		Quantization, 2 problems
+			8. Suppose we wish to sample from an audio signal that ranges from 0 to 2.5V (Assume that the range of our ADC is 0-2.5V also). If the analog noise on the line is 3mV and our ADC is 8bits, what percentage of the total SNR is from the analog noise and what percentage is from the 8 bit quantization?
+			9. If we have the same signal from question 8 (audio signal from 0-2.5V with 3mV analog noise), 
+			(a) how many bits should our ADC have so that the noise added by quantization is less than the analog noise?
+			(b) how many bits should our ADC have so that the quantization noise does not decrease our SNR by more than 1%?
+			

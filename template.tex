@@ -1,0 +1,73 @@
+% -*-LaTeX-*-
+\documentclass[12pt]{article}
+
+\usepackage{times,fullpage}
+
+%\usepackage{epsfig}
+
+% Math and logic
+\usepackage{amsmath}
+\newcommand{\pred}[1]{\ensuremath{\textit{#1}}}
+\newcommand{\const}[1]{\ensuremath{\textsf{#1}}}
+
+%\usepackage{algorithmic}
+%\usepackage[part]{algorithm}
+
+% Sidebars implemented with picinpar.  Use for defining
+% important terms, mentioning important points in the text, indicating 
+% the current reading assignment, links to useful resources, etc.
+\usepackage{picinpar}
+\newcommand{\sidebar}[1]{{\fbox{\parbox{0.4\textwidth}{\small #1}}}}
+
+% Number figures within the lesson
+\setcounter{part}{1}
+\newcommand{\thepart}{\arabic{part}}
+\renewcommand{\thefigure}{\thepart.\arabic{figure}}
+\renewcommand{\thetable}{\thepart.\arabic{table}}
+\renewcommand{\theequation}{\thepart-\arabic{equation}}
+
+\title{Lesson~\thepart: Name}
+
+\begin{document}
+\part*{Lesson~\thepart: Name}
+
+% Use the starred versions of section, subsection, etc.
+\section*{Introduction}
+
+% The following is an example of a sidebar with paragraph text
+% wrapping around it. Replace the material inside the ``sidebar''
+% command with the stuff you want.  Remember that the _entire_
+% paragraph needs to be within the window environment. The first
+% optional argument to the window environment is the number of lines
+% in the paragraph before the window is cut out.  Let's make this 3
+% for all but the first paragraph in a page; change it to 0 for others.
+\begin{window}[3,r,%
+\sidebar{\textbf{Required Reading:}\\
+List what's required.},{}]
+What is covered by this lesson? The rest of this is just filler to
+make the paragraph long enough. dkfjdkj dfdkjfkdj ldjfld dflkjd
+dkfjdkj dfdkjfkdj ldjfld dflkjd dkfjdkj dfdkjfkdj ldjfld dflkjd
+dkfjdkj dfdkjfkdj ldjfld dflkjd dkfjdkj dfdkjfkdj ldjfld dflkjd
+dkfjdkj dfdkjfkdj ldjfld dflkjd dkfjdkj dfdkjfkdj ldjfld dflkjd
+dkfjdkj dfdkjfkdj ldjfld dflkjd dkfjdkj dfdkjfkdj ldjfld dflkjd
+dkfjdkj dfdkjfkdj ldjfld dflkjd dkfjdkj dfdkjfkdj ldjfld dflkjd
+dkfjdkj dfdkjfkdj ldjfld dflkjd dkfjdkj dfdkjfkdj ldjfld dflkjd
+dkfjdkj dfdkjfkdj ldjfld dflkjd dkfjdkj dfdkjfkdj ldjfld dflkjd
+dkfjdkj dfdkjfkdj ldjfld dflkjd dkfjdkj dfdkjfkdj ldjfld dflkjd 
+\end{window}
+
+Objectives --- what the student will be able to do after this lesson.
+
+\section*{Topic}
+
+\begin{figure}
+\caption{Example figure caption.}
+\end{figure}
+
+
+Let's have self-test exercises, where appropriate, in each section,
+rather than a bunch at the end.
+
+\section*{Assignment~\thepart}
+
+\end{document}

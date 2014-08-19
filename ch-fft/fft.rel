@@ -1,0 +1,223 @@
+;; RefTeX parse info file
+;; File: /Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex
+;; User: stiber (Prof. Michael Stiber)
+
+(set reftex-docstruct-symbol '(
+
+
+(xr nil "\\\\\\\\\\\\")
+
+(index-tags "idx")
+
+(is-multi nil)
+
+(bibview-cache)
+
+(master-dir . "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/")
+
+(label-numbers ("eq:" . 1))
+
+(bof "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex")
+
+(toc "toc" "  1 Spectral Analysis" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil 1 "1" "\\chapter{Spectral Analysis}" 828)
+
+("ch:fft" "s" "We begin our study of signal frequency analysis with the representation of continuous-time periodic " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(toc "toc" "    1.1 The Fourier Transform" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil 2 "1.1" "\\section{The Fourier Transform}" 1914)
+
+("sc:fourier-xform" "s" "\\index{Fourier Transform|emph} We developed the Fourier series to represent a \\emph{periodic} signal" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(index "idx" "\\index{Fourier Transform|emph}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" 1972 "Fourier Transform|emph" "Fourier Transform" "Fourier Transform" "fourier transform" 17)
+
+("eq:1" "e" nil "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil "")
+
+("eq:ft-x" "e" "x(t) &= \\int_{-\\infty}^{\\infty}X(f)e^{j2\\pi ft}df  " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+("eq:ft-X" "e" "X(f) &= \\int_{-\\infty}^{\\infty}x(t)e^{-j2\\pi ft}dt  " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(toc "toc" "      1.1.1 Example: Fourier transform of a rectangular pulse" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil 3 "1.1.1" "\\subsection{Example: Fourier transform of a rectangular pulse}" 3965)
+
+("fig:ft-pulse-x" "f" "A rectangular pulse with width $\\tau$. " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+("fig:ft-pulse-X" "f" "Fourier transform of the pulse in figure~\\protect\\ref{fig:ft-pulse-x}. " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(index "idx" "\\index{Fourier Transform!of a pulse}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" 4518 "Fourier Transform!of a pulse" "Fourier Transform!of a pulse" "Fourier Transform ! of a pulse" "fourier transform!of a pulse" nil)
+
+("eq:ft-pulse-X" "e" "&= V_0\\tau\\sinc(\\pi f \\tau)  " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+("fig:ft-pulse-xX" "f" "Fourier transform of a rectangular pulse for various width values" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(toc "toc" "    1.2 The Discrete Fourier Transform" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil 2 "1.2" "\\section{The Discrete Fourier Transform}" 6584)
+
+(index "idx" "\\index{Discrete Fourier Transform (DFT)}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" 6625 "Discrete Fourier Transform (DFT)" "Discrete Fourier Transform (DFT)" "Discrete Fourier Transform (DFT)" "discrete fourier transform (dft)" nil)
+
+("eq:dft" "e" "X[k] = \\sum_{n=0}^{N-1} x[n] e^{-j n k 2\\pi/N}, \\quad k = 0,1,2,\\ldots, N-1  " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+("eq:idft" "e" "x[n]=\\frac{1}{N} \\sum_{k=0}^{N-1} X[k] e^{j n k 2\\pi/N}, \\quad n=0,1,2,\\ldots, N-1  " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+("eq:fs-ckrepeat" "e" "c_k=\\langle f(t), e^{jk\\omega_0 t}\\rangle = \\frac{1}{T}\\int_0^T f(t)e^{-jk\\omega_0 t}dt  " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+("eq:dft-w" "e" "k \\Delta\\omega = k\\frac{2\\pi}{N}, \\quad k = 0, 1, 2, \\ldots, N-1  " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+("tb:delta-f" "t" nil "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil "")
+
+("eq:dft-2idft1" "e" "\\sum_{k=0}^{N-1} X[k] e^{j n' k 2\\pi/N} = \\sum_{n=0}^{N-1} x[n] \\sum_{k=0}^{N-1} e^{j k(n'-n) 2\\pi/N" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(toc "toc" "      1.2.1 Properties of the DFT" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil 3 "1.2.1" "\\subsection{Properties of the DFT}" 14138)
+
+(index "idx" "\\index{Discrete Fourier Transform (DFT)!properties of}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" 12094 "Discrete Fourier Transform (DFT)!properties of" "Discrete Fourier Transform (DFT)!properties of" "Discrete Fourier Transform (DFT) ! properties of" "discrete fourier transform (dft)!properties of" nil)
+
+(index "idx" "\\index{FFT!points}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" 12540 "FFT!points" "FFT!points" "FFT ! points" "fft!points" nil)
+
+(toc "toc" "        1.2.1.1 Self-Test Exercises" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil 4 "1.2.1.1" "\\subsubsection{Self-Test Exercises}" 17200)
+
+(toc "toc" "        1.2.1.2 Example: Spectrum of an exponential" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil 4 "1.2.1.2" "\\subsubsection{Example: Spectrum of an exponential}" 17466)
+
+("fig:dft-exp-xX" "f" "Plot of the sequence {$x[n] = 0.8^n$} and the magnitude of its DFT" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(index "idx" "\\index{Discrete Fourier Transform (DFT)!of an exponential}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" 15959 "Discrete Fourier Transform (DFT)!of an exponential" "Discrete Fourier Transform (DFT)!of an exponential" "Discrete Fourier Transform (DFT) ! of an exponential" "discrete fourier transform (dft)!of an exponential" nil)
+
+("eq:exp-dft1" "e" "&= \\sum_{n=0}^{N-1} a^n e^{-jnk2\\pi/N}  " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(index "idx" "\\index{geometric series!common ratio}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" 16225 "geometric series!common ratio" "geometric series!common ratio" "geometric series ! common ratio" "geometric series!common ratio" nil)
+
+("fig:dft-exp-X2" "f" "The magnitude of DFT for the signal~\\protect\\ref{fig:dft-exp-xX} top is plotted for the first half o" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(toc "toc" "      1.2.2 Computing the DFT Directly" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil 3 "1.2.2" "\\subsection{Computing the DFT Directly}" 19096)
+
+(index "idx" "\\index{Discrete Fourier Transform (DFT)!direct computation}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" 17057 "Discrete Fourier Transform (DFT)!direct computation" "Discrete Fourier Transform (DFT)!direct computation" "Discrete Fourier Transform (DFT) ! direct computation" "discrete fourier transform (dft)!direct computation" nil)
+
+(index "idx" "\\index{Discrete Fourier Transform (DFT)!direct computation!complexity}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" 17847 "Discrete Fourier Transform (DFT)!direct computation!complexity" "Discrete Fourier Transform (DFT)!direct computation!complexity" "Discrete Fourier Transform (DFT) ! direct computation ! complexity" "discrete fourier transform (dft)!direct computation!complexity" nil)
+
+(toc "toc" "      1.2.3 The Fast Fourier Transform Algorithm" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil 3 "1.2.3" "\\subsection{The Fast Fourier Transform Algorithm}" 20537)
+
+("sc:fft" "s" "\\index{Discrete Fourier Transform (DFT)!FFT} The development of computationally efficient algorithms" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(index "idx" "\\index{Discrete Fourier Transform (DFT)!FFT}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" 18523 "Discrete Fourier Transform (DFT)!FFT" "Discrete Fourier Transform (DFT)!FFT" "Discrete Fourier Transform (DFT) ! FFT" "discrete fourier transform (dft)!fft" nil)
+
+("eq:fft-xexo" "e" "&= X[k]^{\\textit{even}} + e^{-jk2\\pi/N} X[k]^{\\textit{odd}}, \\quad k=0,1,2,\\ldots, N-1  " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+("eq:2fft-even" "e" "&= x[\\mathit{even}] + x[\\mathit{odd}] " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+("eq:2fft-odd" "e" "&= x[\\mathit{even}] - x[\\mathit{odd}]  " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+("alg:fft-recursive" "s" "\\begin{algorithmic} \\REQUIRE $x$ is a discrete function of time of length $N=2^m$ \\ENSURE $X$ is the" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+("tb:fft-bitrevers" "t" "Example of the effect of bit reversal on an eight-element input vector." "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+("alg:fft" "s" "\\begin{algorithmic} \\REQUIRE $x$ is a discrete function of time of length $N$ \\ENSURE $X$ is the DFT" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+("fg:fft-iterative" "f" "Schematic outline of an iterative 8-point FFT " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(toc "toc" "        1.2.3.1 Self-Test Exercises" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil 4 "1.2.3.1" "\\subsubsection{Self-Test Exercises}" 28934)
+
+(toc "toc" "    1.3 The inverse DFT" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil 2 "1.3" "\\section{The inverse DFT}" 29381)
+
+(toc "toc" "      1.3.1 Example: Sum of Two Sinusoids" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil 3 "1.3.1" "\\subsection{Example: Sum of Two Sinusoids}" 30462)
+
+("fig:fft-sin-xX" "f" "Sum of two sinusoids $x$ with $N=512$ samples and its FFT $|X|$" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(index "idx" "\\index{Discrete Fourier Transform (DFT)!of sum of two sinusoids}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" 29610 "Discrete Fourier Transform (DFT)!of sum of two sinusoids" "Discrete Fourier Transform (DFT)!of sum of two sinusoids" "Discrete Fourier Transform (DFT) ! of sum of two sinusoids" "discrete fourier transform (dft)!of sum of two sinusoids" nil)
+
+("fig:fft-leakage" "f" "Sum of two sinusoids $x$ with $N=512$ samples and its FFT $|X|$; different frequencies" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(toc "toc" "    1.4 Power Leakage [\\textsc{Optional}]" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil 2 "1.4" "\\section{Power Leakage [\\textsc{Optional}]}" 33516)
+
+(index "idx" "\\index{FFT!of finite-duration signals|(}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" 31937 "FFT!of finite-duration signals|(" "FFT!of finite-duration signals" "FFT ! of finite-duration signals" "fft!of finite-duration signals" 30)
+
+(index "idx" "\\index{FFT!rectangular window and}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" 32648 "FFT!rectangular window and" "FFT!rectangular window and" "FFT ! rectangular window and" "fft!rectangular window and" nil)
+
+("eq:usefft-Y1" "e" "&= \\frac{1}{2} (W(\\hat{\\omega}_k-\\hat{\\omega}_0) + W(\\hat{\\omega}_k+\\hat{\\omega}_0))  " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+("eq:usefft-rWk1" "e" "&= \\sum_{n=0}^{N-1} e^{-j\\hat{\\omega}_k n} " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+("eq:usefft-rWk2" "e" "&= \\frac{\\sin(\\hat{\\omega}_k N/2)}{\\sin\\hat{\\omega}_k/2}e^{-j\\hat{\\omega}_k(N-1)/2}  " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+("fig:usefft-rWX1" "f" "Magnitude spectrum of windowed signal {$x[n]=\\cos\\hat{\\omega}_0 n$}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(index "idx" "\\index{FFT!of finite-duration signals|)}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" 35447 "FFT!of finite-duration signals|)" "FFT!of finite-duration signals" "FFT ! of finite-duration signals" "fft!of finite-duration signals" 30)
+
+("fig:usefft-rWinfX" "f" "Magnitude spectrum of a one-sided signal $x[n]=\\cos\\hat{\\omega}_0 n$ with $\\hat{\\omega}_0=0.2\\pi$." "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+("eq:usefft-rWkinf" "e" "&= \\frac{-je^{j\\hat{\\omega}_k/2}}{2\\sin(\\hat{\\omega}_k/2)}  " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(toc "toc" "        1.4.0.1 Self-Test Exercise" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil 4 "1.4.0.1" "\\subsubsection{Self-Test Exercise}" 38899)
+
+(toc "toc" "    1.5 Tradeoff Between Time and Frequency Resolution [\\textsc{Optional}]" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil 2 "1.5" "\\section{Tradeoff Between Time and Frequency Resolution
+  [\\textsc{Optional}]}" 39114)
+
+(index "idx" "\\index{FFT!frequency resolution}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" 37114 "FFT!frequency resolution" "FFT!frequency resolution" "FFT ! frequency resolution" "fft!frequency resolution" nil)
+
+(index "idx" "\\index{FFT!of time-varying signals}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" 37550 "FFT!of time-varying signals" "FFT!of time-varying signals" "FFT ! of time-varying signals" "fft!of time-varying signals" nil)
+
+("eq:usefft-cos3a" "e" "x[n] = \\cos\\hat{\\omega}_0 n+\\cos\\hat{\\omega}_1 n + \\cos\\hat{\\omega}_2 n  " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+("eq:usefft-cos3" "e" "Y(\\hat{\\omega}_k) = \\frac{1}{2}[W(\\hat{\\omega}-\\hat{\\omega})+W(\\hat{\\omega}-\\hat{\\omega}_1) + W(\\hat" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+("fig:usefft-rWX3-1" "f" "Magnitude spectrum of the signal~(\\protect\\ref{eq:usefft-cos3a}) made up of three sinusoids" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+("fig:usefft-rWX3-2" "f" "The same figure as~\\protect\\ref{fig:usefft-rWX3-1}, but with rectangular window length $N=128$" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(index "idx" "\\index{FFT!time/frequency tradeoff}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" 42669 "FFT!time/frequency tradeoff" "FFT!time/frequency tradeoff" "FFT ! time/frequency tradeoff" "fft!time/frequency tradeoff" nil)
+
+(index "idx" "\\index{spectrogram|emph}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" 42849 "spectrogram|emph" "spectrogram" "spectrogram" "spectrogram" 11)
+
+(index "idx" "\\index{Fourier transform!short-time|emph}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" 42937 "Fourier transform!short-time|emph" "Fourier transform!short-time" "Fourier transform ! short-time" "fourier transform!short-time" 28)
+
+("fig:ufft-birdspg-c1" "f" "A bird call waveform and its spectrogram" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+("fig:ufft-birdspg-c2" "f" "Same data as figure~\\ref{fig:ufft-birdspg-c1}; window size 128 samples, overlap 127" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(index "idx" "\\index{spectrogram!of a bird call}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" 44468 "spectrogram!of a bird call" "spectrogram!of a bird call" "spectrogram ! of a bird call" "spectrogram!of a bird call" nil)
+
+("fig:ufft-birdspg-b1" "f" "Another bird call waveform and its spectrogram; 512 sample window, overlap 511" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+("fig:ufft-birdspg-b2" "f" "Same data as figure~\\protect\\ref{fig:ufft-birdspg-b1}; 128 sample window, overlap 127" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(toc "toc" "    1.6 Windowing [\\textsc{Optional}]" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil 2 "1.6" "\\section{Windowing [\\textsc{Optional}]}" 49009)
+
+(toc "toc" "        1.6.0.1 Hamming Window" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil 4 "1.6.0.1" "\\subsubsection{Hamming Window}" 49732)
+
+("fig:ufft-hmw" "f" "A 512-point Hann window in the time domain." "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(index "idx" "\\index{FFT!Hamming window and}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" 47854 "FFT!Hamming window and" "FFT!Hamming window and" "FFT ! Hamming window and" "fft!hamming window and" nil)
+
+("eq:ufft-hnw" "e" "\\operatorname{Hamming}[n] = 0.54 - 0.46 \\cos(2\\pi n/(L-1)) \\quad n=0,1,\\ldots,L-1  " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(toc "toc" "        1.6.0.2 Bartlett Window" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil 4 "1.6.0.2" "\\subsubsection{Bartlett Window}" 50487)
+
+(index "idx" "\\index{FFT!Bartlett window and}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" 48440 "FFT!Bartlett window and" "FFT!Bartlett window and" "FFT ! Bartlett window and" "fft!bartlett window and" nil)
+
+("fig:ufft-baw" "f" "The 512-point Bartlett window in the time domain." "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(toc "toc" "        1.6.0.3 Using Window Functions" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil 4 "1.6.0.3" "\\subsubsection{Using Window Functions}" 51496)
+
+("eq:ufft-gw" "e" "y[n] = x[n] w[n]  " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(toc "toc" "        1.6.0.4 Example: Windowed Sinusoid" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil 4 "1.6.0.4" "\\subsubsection{Example: Windowed Sinusoid}" 51932)
+
+("fig:ufft-hnrt-cosx" "f" "Hann windowed cosine waveform and its spectrum" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+("fig:ufft-bart-cosx" "f" "Bartlett windowed cosine waveform and its spectrum" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+("fig:ufft-hnba-cosx" "f" "Comparison between Hann and Bartlett windows for a cosine wave" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(toc "toc" "        1.6.0.5 Example: Windowed Bird Call" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil 4 "1.6.0.5" "\\subsubsection{Example: Windowed Bird Call}" 54938)
+
+("fig:ufft-birdspg-c3" "f" "Similar spectrogram as figure~\\protect\\ref{fig:ufft-birdspg-c2}, but here a rectangular window is us" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(index "idx" "\\index{spectrogram!of a bird call}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" 53165 "spectrogram!of a bird call" "spectrogram!of a bird call" "spectrogram ! of a bird call" "spectrogram!of a bird call" nil)
+
+("fig:ufft-birdspg-b3" "f" "Similar spectrogram as figure~\\ref{fig:ufft-birdspg-b2}, but here a rectangular window is used." "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(toc "toc" "        1.6.0.6 Self-Test Exercise" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil 4 "1.6.0.6" "\\subsubsection{Self-Test Exercise}" 56292)
+
+(toc "toc" "    1.7 Problems" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil 2 "1.7" "\\section{Problems}" 56502)
+
+("it:64" "i" "The 64-point DFT of the sequence  \\begin{equation*} x[n]=\\left\\{\\begin{array}{ll} 1 & n=0,1,\\ldots,7" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil)
+
+(toc "toc" "    1.8 Further Reading" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex" nil 2 "1.8" "\\section{Further Reading}" 58990)
+
+(eof "/Users/stiber/Documents/Classes/CSS457/ebook/ch-fft/fft.tex")
+))
+

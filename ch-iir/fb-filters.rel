@@ -1,0 +1,108 @@
+;; RefTeX parse info file
+;; File: /Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex
+;; User: stiber (Prof. Michael Stiber)
+
+(set reftex-docstruct-symbol '(
+
+
+(xr nil "\\\\\\\\\\\\")
+
+(index-tags "idx")
+
+(is-multi nil)
+
+(bibview-cache)
+
+(master-dir . "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/")
+
+(label-numbers ("eq:" . 1))
+
+(bof "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex")
+
+(toc "toc" "  1 Feedback Filters" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil 1 "1" "\\chapter{Feedback Filters}" 380)
+
+("ch:fb-filters" "s" "\\section{Introduction} In this chapter, I will continue to introduce filters, this chapter focusing " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil)
+
+(toc "toc" "    1.1 Introduction" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil 2 "1.1" "\\section{Introduction}" 430)
+
+(toc "toc" "      1.1.1 Poles" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil 3 "1.1.1" "\\subsection{Poles}" 1316)
+
+("fig:fb-bdiag" "f" "Block diagram of a simple filter with both feedforward and feedback terms." "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil)
+
+("eq:fb-1p" "e" "y[n] = x[n] + a_1 y[n-1]  " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil)
+
+("eq:1" "e" nil "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil "")
+
+("eq:fb-1pmh" "e" "|\\mathcal{H}(\\hat{\\omega})| = |H(z)| = \\left|\\frac{z}{z-a_1}\\right|=\\left|\\frac{1}{z-a_1}\\right|  " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil)
+
+(index "idx" "\\index{filter!poles|emph}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" 3123 "filter!poles|emph" "filter!poles" "filter ! poles" "filter!poles" 12)
+
+("fig:fb-exp1pc90" "f" "One pole in the $z$-plane, located at $r=0.9$ and $\\hat{\\omega}_0=\\pi/2$." "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil)
+
+("fig:fb-exp1ph90r2" "f" "Magnitude response of two filters" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil)
+
+(toc "toc" "              * Example~1" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil 5 "    *" "\\paragraph*{Example~1}" 4388)
+
+(toc "toc" "      1.1.2 Example: Computing Transfer Function and Impulse Response" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil 3 "1.1.2" "\\subsection{Example: Computing Transfer Function and Impulse Response}" 4771)
+
+(toc "toc" "      1.1.3 Stability" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil 3 "1.1.3" "\\subsection{Stability}" 6181)
+
+("eq:fb-1pexp" "e" "y[n] &=& 0.5^n " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil)
+
+("eq:manypoles" "e" "&=&\\frac{z^N}{z^N+\\sum_{k=1}^N a_k z^{N-k}} " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil)
+
+("eq:mp-denomprod" "e" "&=&\\frac{z^N}{\\prod_{k=1}^N(z-p_k)} " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil)
+
+(index "idx" "\\index{partial fraction expansion}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" 8523 "partial fraction expansion" "partial fraction expansion" "partial fraction expansion" "partial fraction expansion" nil)
+
+(index "idx" "\\index{filter!parallel one-pole}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" 8966 "filter!parallel one-pole" "filter!parallel one-pole" "filter ! parallel one-pole" "filter!parallel one-pole" nil)
+
+(toc "toc" "      1.1.4 Resonance and Bandwidth" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil 3 "1.1.4" "\\subsection{Resonance and Bandwidth}" 10832)
+
+(index "idx" "\\index{filter!resonance}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" 10069 "filter!resonance" "filter!resonance" "filter ! resonance" "filter!resonance" nil)
+
+("eq:fb-band" "e" "|\\mathcal{H}(\\hat{\\omega})|_B = \\frac{1}{2}|\\mathcal{H}(\\hat{\\omega})|_p^2 = \\frac{1}{\\sqrt{2}}|\\mat" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil)
+
+(index "idx" "\\index{filter!cutoff frequency}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" 11409 "filter!cutoff frequency" "filter!cutoff frequency" "filter ! cutoff frequency" "filter!cutoff frequency" nil)
+
+("fig:fb-exp1pc0_phi" "f" "One pole $a_1=re^{j\\hat{\\omega}_0}$ in z-plane. $r=R$, $\\hat{\\omega}_0=0$ and $z=e^{j\\hat{omega}}$ " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil)
+
+("eq:fb-band2a" "e" "2(1-R)^2&=&1-2R\\cos\\hat{\\omega}+R^2 " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil)
+
+("eq:fb-band2b" "e" "\\cos\\hat{\\omega}&=&2-\\frac{1}{2}\\left(R+\\frac{1}{R}\\right)  " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil)
+
+("eq:calc-bw" "e" "R \\approx 1-B/2  " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil)
+
+(toc "toc" "        1.1.4.1 Self-Test Exercises" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil 4 "1.1.4.1" "\\subsubsection{Self-Test Exercises}" 15490)
+
+(toc "toc" "    1.2 Mixing Feedback and Feedforward Filters" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil 2 "1.2" "\\section{Mixing Feedback and Feedforward Filters}" 15971)
+
+(index "idx" "\\index{reson filter}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" 15509 "reson filter" "reson filter" "reson filter" "reson filter" nil)
+
+("eq:gen-xfer" "e" "H(z)=\\frac{b_0+b_1z^{-1}+\\cdots+b_Mz^{-M}}{1+a_1z^{-1}+\\cdots+a_Nz^{-N}}  " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil)
+
+("eq:gen-impl" "e" "y[n] = \\underbrace{b_0x[n] + b_1x[n-1] + \\cdots + b_Mx[n-M]}_\\mathrm{feedforward\\ terms} - \\underbra" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil)
+
+(toc "toc" "    1.3 Implementation" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil 2 "1.3" "\\section{Implementation}" 17221)
+
+(toc "toc" "      1.3.1 Avoiding Complex Numbers" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil 3 "1.3.1" "\\subsection{Avoiding Complex Numbers}" 17503)
+
+(toc "toc" "      1.3.2 Limitations of Numerical Accuracy" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil 3 "1.3.2" "\\subsection{Limitations of Numerical Accuracy}" 19221)
+
+(toc "toc" "          1.3.2.0.1 Example~4" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil 5 "1.3.2.0.1" "\\paragraph{Example~4}" 20956)
+
+("eq:series-direct" "e" "x'[n] = \\frac{1}{3} x'[n-1]  " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil)
+
+("eq:series-twoterms" "e" "x''[n] = \\frac{10}{3} x''[n-1] - x''[n-2]  " "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil)
+
+(index "idx" "\\index{MATLAB code!numerical error|(}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" 21050 "MATLAB code!numerical error|(" "MATLAB code!numerical error" "MATLAB code ! numerical error" "matlab code!numerical error" 27)
+
+(index "idx" "\\index{MATLAB code!numerical error|)}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" 22577 "MATLAB code!numerical error|)" "MATLAB code!numerical error" "MATLAB code ! numerical error" "matlab code!numerical error" 27)
+
+(index "idx" "\\index{filter!cascade}" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" 23415 "filter!cascade" "filter!cascade" "filter ! cascade" "filter!cascade" nil)
+
+(toc "toc" "    1.4 Problems" "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex" nil 2 "1.4" "\\section{Problems}" 25208)
+
+(eof "/Users/stiber/Documents/Classes/CSS457/ebook/ch-iir/fb-filters.tex")
+))
+
