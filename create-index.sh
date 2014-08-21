@@ -1,4 +1,4 @@
 #!/bin/sh
 
-makeindex -o master.ind master.idx
+makeindex -o Signal\ Computing.ind Signal\ Computing.idx
 
