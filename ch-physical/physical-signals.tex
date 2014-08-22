@@ -1,5 +1,8 @@
 % -*-LaTeX-*-
 
+% The log below is the old log from when RCS was being used in
+% conjunction with this.
+%
 % $Log: physical-signals.tex,v $
 % Revision 1.11 2010/5/1 Larson
 % Revised wording and figures throughout
@@ -40,13 +43,13 @@
 \chapter{Signals in the Physical World}
 \label{ch:physical-signals}
 
-This lesson introduces the fundamental concepts of multimedia from an
-``outside the computer'' perspective. I define the term
+This chapter introduces the fundamental concepts of multimedia from an
+``outside the computer'' perspective. We define the term
 ``multimedia,'' discuss why it is an important issue, how multimedia
 signals (sound, images) are generated in the ``real world'' (by both
-natural and artificial means) and how we perceive them. I also
+natural and artificial means) and how we perceive them. We also
 introduce a set of convenient mathematical tools for describing
-signals. When you are done with this chapter, I hope you will
+signals. When you are done with this chapter, we hope you will
 appreciate the complexity and importance of multimedia communications
 and will be eager to see how signals can be processed by computer.
 
@@ -74,7 +77,10 @@ Given all this, it is perhaps not surprising that people find computer
 systems difficult to use, uninspiring, or even objects of
 distaste. Computers by and large produce a very impoverished set of
 stimuli, composed almost entirely of patterns of light that we must
-interpret as text. It is only very recently that computers have done
+interpret as text (when people use devices that provide a richer
+experience, such as tablets or smartphones, they often mentally
+categorize them just that way: as \emph{devices}, not
+\emph{computers}). It is only fairly recently that computers have done
 much more than this, as processing power and hardware speed has
 enabled \emph{multi}media capabilities (though these are almost always
 used to imitate other appliances, like televisions, telephones, photo
@@ -131,7 +137,8 @@ based on reflected radiation.  In this respect, it is much like a
 remote-sensing satellite and ground data analysis system: we want to
 know about crop conditions, we gather reflected light data at a number
 of wavelengths, and then we analyze the data to produce a report on
-crop conditions.
+crop conditions. We don't really care about the reflected light; it is
+merely a means to an end.
 \end{window}
 
 Likewise, when we ``see'' a chair, what we perceive is no more a chair
@@ -140,13 +147,13 @@ representation} of a chair --- a useful representation, which can
 allow us to recognize the object's purpose, location, size,
 composition, etc., but a representation nonetheless. What we perceive
 about the world is at least as much a psychological issue as a data
-acquisition one. For brevity's sake, however, I will confine myself in
+acquisition one. For brevity's sake, however, we will confine ourselves in
 this section to discuss the basics of ``low-level'' sensory organs,
 rather than high-level perceptual issues.
 
 Our eyes are made up of an optical system and a sensory system.  The
 sensory system --- the \emph{retina} --- is composed of a number of
-different kind of nerve cells arranged in well-structured layers. I
+different kind of nerve cells arranged in well-structured layers. We
 won't go into the details of the eye's structure, but instead
 concentrate on one class of cells: the \emph{photoreceptors}.
 
@@ -217,18 +224,25 @@ All of the foregoing is of course a great simplification of how these
 systems actually work.  However, these issues have great impact on the
 design of computer multimedia systems, because the main point of such
 systems is delivering a particular user experience. In the following
-sections, I will outline first how computer systems can generate
+sections, we will outline first how computer systems can generate
 images, then delve deeper into how we can develop a more precise,
 mathematical view of sound. This mathematical view will be essential
 to our understanding of computer representation and manipulation of
 multimedia information.
 
-When we eventually want to represent physical signals in the computer, perception of the signals will play an even more vital design role. For instance the sensors we use to capture light and sound are not nearly as advanced as the human ear or human eye. They contain various forms of noise that corrupt the \emph{integrity} of the signal. The difference between how we perceive \emph{physical signals} and how we perceive signals that have been \emph{captured by different sensors} will be of great importance to us. We will return to this concept later on.
+When we eventually want to represent physical signals in the computer,
+perception of the signals will play an even more vital design
+role. For instance the sensors we use to capture light and sound are
+not nearly as advanced as the human eye or human ear. They contain
+various forms of noise that corrupt the \emph{integrity} of the
+signal. The difference between how we perceive \emph{physical signals}
+and how we perceive signals that have been \emph{captured by different
+  sensors} will be of great importance to us. We will return to this
+concept later on.
 
 \section{Computer Video Displays}
 
 \begin{figure}
-\vspace{2in}
 \centerline{\includegraphics[width=\textwidth]{ch-physical/crt}}
 \caption{Schematic diagram of a CRT.\label{fg:crt}}
 \end{figure}
@@ -237,7 +251,9 @@ The two most prevalent computer displays are \emph{cathode ray tubes}
 (CRTs) and \emph{liquid crystal displays} (LCDs); we'll just discuss
 \index{CRT|(}
 \index{LCD}
-CRTs here. A simplified CRT is sketched in figure~\ref{fg:crt}. It is
+CRTs here (while they are becoming rarities, their operation is more
+accessible for our purposes here). A simplified CRT is sketched in
+figure~\ref{fg:crt}. It is
 composed of an \emph{electron gun}, which generates \emph{cathode
 \index{CRT!electron gun|(}
 rays} (aka, ``electrons''). In this gun, a metal cathode is heated to
@@ -259,9 +275,9 @@ beam magnetically to hit any part of the screen.
 \index{CRT!electron gun|)}
 
 The screen itself is coated with one (for B\&W) or more (for color)
-\emph{phosphors}: chemical which glow (emit visible light) when struck
+\emph{phosphors}: chemicals which glow (emit visible light) when struck
 \index{CRT!phosphor}
-with electrons. Different phosphors emit different light wavelengths,
+by electrons. Different phosphors emit different light wavelengths,
 and so multiple phosphors can be used to produce the perception of
 color images (typically by combining red, green, and blue
 phosphors). Another property of phosphors is \emph{persistence}: how
@@ -273,7 +289,6 @@ hand, a high persistence phosphor will glow longer, and so will
 produce blurry moving images.
 
 \begin{figure}
-\vspace{2in}
 \centerline{\includegraphics[width=\textwidth]{ch-physical/raster}}
 \caption[Interlaced and non-interlaced raster 
   scanning]{Interlaced (left) and non-interlaced (right) raster
@@ -387,9 +402,17 @@ In nature, sound is the result of a chaotic mix of events. It may at first seem 
 \caption[Real periodic signals]{Real periodic signals. Top: human speech of the vowel `a' as in `bat.' Bottom: ringing of a tuning fork. \label{fg:periodicexample}}
 \end{figure}
 
-As we will see, it turns out that any periodic signal can be represented as a weighted sum of \emph{harmonically} 
-\index{harmonics}
-related sines and cosines (sinusoids at frequencies that are integer multiples of each other). If a periodic signal has a period of $T_0$, it can be represented by a weighted sum of sinusoids at harmonics of $T_0$, namely sinusoids with periods of $T_0$, $\frac{1}{2}T_0$, $\frac{1}{3}T_0$, $\frac{1}{4}T_0$, $\cdots$. This is potentially very powerful! It means that if we know the period of any repeating function, we can be represent it by a discrete set of weights (one weight for each harmonic). 
+As we will see, it turns out that any periodic signal can be
+represented as a weighted sum of \emph{harmonically} \index{harmonics}
+related sines and cosines (sinusoids at frequencies that are integer
+multiples of each other). If a periodic signal has a period of $T_0$
+(where period is merely the reciprocal of frequency, so $T_0 =
+1/f_0$), it can be represented by a weighted sum of sinusoids at
+harmonics of $T_0$, namely sinusoids with periods of $T_0$,
+$\frac{1}{2}T_0$, $\frac{1}{3}T_0$, $\frac{1}{4}T_0$, $\cdots$. This
+is potentially very powerful! It means that if we know the period of
+any repeating function, we can be represent it by a discrete set of
+weights (one weight for each harmonic).
 
 Each weight tells us exactly how much to multiply by each harmonic, and thus, how much of a certain frequency is present in a given signal. By graphing the weights of each harmonic versus the frequency, we can analyze the frequency content of the signal. This is commonly known as the Fourier Series (we will discuss this later). 
 
@@ -400,7 +423,7 @@ The reason sines and cosines occur so often in nature is due to the physics of t
 \end{equation}
 \index{differential equations}
 where C is some constant and $\sderiv{x(t)}{t} $ is the acceleration of the object. This kind of equation --- which relates a derivative of
-something to itself --- is called a \emph{differential equation}. I'll
+something to itself --- is called a \emph{differential equation}. We
 bet you didn't know they were that simple! To \emph{solve} a
 differential equation, we look for a function, $x(t)$, that will satisfy the equation. This is analogous to
 solving an algebraic equation, where we look for a number that
@@ -526,7 +549,7 @@ Sinusoids occur naturally in the real world when an object is acted on by a forc
 
 \subsection*{Sinusoid Phase}
 
-Because sines and cosines are so powerful it is necessary to represent them as neatly and compactly as possible. Above we saw why $\sin (\omega t)$ occurs naturally. The same argument can be used for $\cos\omega t$.  In fact, cosine is
+Because sines and cosines are so powerful it is necessary to represent them as neatly and compactly as possible. Above we saw why $\sin\omega t$ occurs naturally. The same argument can be used for $\cos\omega t$.  In fact, cosine is
 just a delayed version of sine, as $\cos\omega t = \sin(\omega t +
 \pi/2)$.  So, a more general solution to~(\ref{eq:diffeq1}) would
 be:
@@ -564,11 +587,13 @@ work easier.
 Instead of thinking of a sinusoid as a function which oscillates up
 and down, let's think of it as something that goes round and round: a
 rotating vector of length $a$ (where $a$ is the sinusoid's
-amplitude). Think of this vector rotating around the origin of the $x$-$y$ plane.
-At any point in time, the vector makes an angle
-$\theta(t)$ with the positive $x$ axis. The phase, $\phi$, is defined as $\phi = \theta(0)$
-(i.e., the angle that the vector makes with the $x$-axis at $t=0$).  As figure~\ref{fg:phasor-components} shows,
- the $x$ and $y$ \emph{components} of the vector are cosine and sine functions.
+amplitude). Think of this vector rotating around the origin of the
+$x$-$y$ plane.  At any point in time, the vector makes an angle
+$\theta(t)$ with the positive $x$ axis. The phase, $\phi$, is defined
+as $\phi = \theta(0)$ (i.e., the angle that the vector makes with the
+$x$-axis at $t=0$).  As figure~\ref{fg:phasor-components} shows, the
+$x$ and $y$ \emph{components} of the vector as it moves
+counterclockwise are cosine and sine functions.
 
 If we have two vectors $\mathbf{u}$ and $\mathbf{v}$, we can add them
 by adding their components.  This is done graphically in
@@ -587,12 +612,12 @@ rotating at the same rate (answer in~\ref{sc:ch1ex} \#\ref{it:ch1ex7})?
 \subsection*{Complex Exponential Representation}
 
 While we used the $x$ and $y$ axes above as frames of reference (for
-considering components of the vectors), we didn't actually define what
-the plane was. Let's imagine that our rotating vectors are in the
-\emph{complex} plane, where $x$ is the real axis and $y$ is the
-imaginary axis.  At any point in time, the location of a vector is
-therefore a complex number:
-\index{complex numbers|(emph}
+considering components --- sine and cosine --- of the vector), we
+didn't actually define what the plane was. Let's imagine that our
+rotating vectors are in the \emph{complex} plane, where $x$ is the
+real axis and $y$ is the imaginary axis.  At any point in time, the
+location of a vector is therefore a complex number: \index{complex
+  numbers|(emph}
 
 \begin{equation}
 \mathbf{v} = x + j y \label{eq:complexrect}
@@ -750,7 +775,8 @@ $\delta\ll\omega$:
 \begin{align}
 a_1 e^{j\omega t} + a_2 e^{j(\omega+\delta)t} &=
    a_1 e^{j\omega t} + a_2 e^{j\omega t} e^{j\delta t} \notag \\
- & = \underbrace{e^{j\omega t}}_{high frequency} \underbrace{(a_1 + a_2 e^{j\delta t})}_{low frequency}
+ & = \underbrace{(a_1 + a_2 e^{j\delta t})}_\mathrm{low~frequency} 
+        \underbrace{e^{j\omega t}}_\mathrm{high~frequency} 
 \end{align}
   
 \begin{figure} 
@@ -764,15 +790,15 @@ a_1 e^{j\omega t} + a_2 e^{j(\omega+\delta)t} &=
 \end{figure} 
 
 This has the form of a complex sinusoid of frequency $\omega$ and
-amplitude that is a function of time: $a_1 + a_2 e^{j\delta
-  t}$. Figure~\ref{fg:beating} presents the graphical version of this,
-which looks like a top view of the amusement park ``octopus''
-ride. There are times when the $e^{j\delta t}$ adds a factor of up to
-$a_2$ to the first sinusoid and times when it subtracts a factor of up
-to $a_2$. The result is the beating waveform seen in
-figure~\ref{fg:beating-waveform} (in this case, the result of adding
-10Hz and a 12Hz sinusoids, which can be seen to produce a 2Hz ``beat
-frequency'').
+amplitude that is a function of time, $a_1 + a_2 e^{j\delta t}$, that
+varies with a frequency of $\delta$. Figure~\ref{fg:beating} presents
+the graphical version of this, which looks like a top view of the
+amusement park ``octopus'' ride. There are times when the $e^{j\delta
+  t}$ adds a factor of up to $a_2$ to the first sinusoid and times
+when it subtracts a factor of up to $a_2$. The result is the beating
+waveform seen in figure~\ref{fg:beating-waveform} (in this case, the
+result of adding 10Hz and a 12Hz sinusoids, which can be seen to
+produce a 2Hz ``beat frequency'').
 
 \problemset{
 \subsubsection*{MATLAB and Sound Files}
@@ -966,7 +992,8 @@ where $^*$ denotes complex conjugate.
 
 We can also consider arbitrary functions to be more generalized forms
 of vectors. If $f(t)$ and $g(t)$ are periodic functions of a
-continuous time variable $t$ with period $T$,
+continuous time variable $t$ with period $T$, their inner product is
+defined as
 \begin{equation}
 \langle f, g\rangle = \frac{1}{T}\int_0^T f(t)g^*(t) dt \label{eq:func-ip}
 \end{equation}
@@ -1043,7 +1070,7 @@ the phasor in radians/second. By our earlier definition, $\omega_0$ is the
 \emph{fundmental frequency}. In a Fourier series, the periodic
 \index{frequency!fundamental}
 function $f(t)$ is expressed in terms of the basis and $c_k$ is the
-projection of $f(t)$ onto the basis $e^{jk\omega_0 t}$, just like
+projection of $f(t)$ onto the basis $e^{jk\omega_0 t}$, just like the
 projection $v_x$ of a vector $\mathbf{v}$ onto the basis $\vec{\mathbf{x}}$. The weight, $c_k$, tells us exactly ``how much'' of the signal, $f(t)$, is a result of the frequency $k\omega_0$. From
 equation~\ref{eq:func-ip}, the inner product of $f(t)$ and
 $e^{jk\omega_0 t}$ is
@@ -1053,20 +1080,22 @@ c_k = \langle f(t), e^{jk\omega_0 t}\rangle
 \label{eq:fs-ck}
 \end{equation}
 where the \emph{Fourier coefficients} $c_k$ are called the
-\index{Fourier coefficients|emph}
-\emph{frequency content} or \emph{spectrum} of $f(t)$, $k=0, \pm 1,
-\pm 2, \ldots, \pm\infty$. This spectrum is just like the familiar
-shorthand of writing a vector as a column or row of numbers, with the
-understanding that each is the coefficient of one of the basis vectors
-(i.e., when we write $\mathbf{v} = [1 2 3]$, what we actually mean is
-$\mathbf{v} = 1 \vec{\mathbf{x}} + 2 \vec{\mathbf{y}} + 3
-\vec{\mathbf{z}}$).  This is the signal's representation in the
-\emph{frequency domain}, where frequency is the coordinate (in other
-words, the signal expressed as a function of frequency).  Similar,
-$f(t)$ is the signal's \emph{time domain} representation, where time
-is the coordinate. Notice that the Fourier series transforms a finite
-(periodic), continuous signal in the time domain into an infinite,
-discrete spectrum in the frequency domain.
+\index{Fourier coefficients|emph} \emph{frequency content} or
+\emph{spectrum} of $f(t)$, $k=0, \pm 1, \pm 2, \ldots,
+\pm\infty$. This spectrum is just like the familiar shorthand of
+writing a vector as a column or row of numbers, with the understanding
+that each is the coefficient of one of the basis vectors (i.e., when
+we write $\mathbf{v} = [1 2 3]$, what we actually mean is $\mathbf{v}
+= 1 \vec{\mathbf{x}} + 2 \vec{\mathbf{y}} + 3 \vec{\mathbf{z}}$).
+This is the signal's representation in the \emph{frequency domain},
+where frequency is the coordinate (in other words, the signal
+expressed as a function of frequency).  Similar, $f(t)$ is the
+signal's \emph{time domain} representation, where time is the
+coordinate. Notice that the Fourier series transforms a finite
+(periodic), continuous signal in the time domain into an infinite
+(because the values of $k$ range from $-\infty$ to $+\infty$),
+discrete (because $k$ only takes on integer values) spectrum in the
+frequency domain.
 
 \subsubsection{Alternative Derivation of the Fourier Series [\textsc{Optional}]}
 
@@ -1156,19 +1185,20 @@ Consequently,
 \label{eq:real-f-pspec}
 \end{equation}
 
-Since $c_k$ is the spectrum of $f(t)$, $|c_k|^2$ is the \emph{power
-  spectrum}. Equation~(\ref{eq:real-f-pspec}) tell us that the power
-\index{power spectrum} spectrum is a symmetric (or ``even'') function
-of frequency. Also when $f(t)$ is real we can further decompose the Fourier Series. Equation ~(\ref{eq:fs}) becomes
+Since $c_k$ is the (amplitude) spectrum of $f(t)$, $|c_k|^2$ is the
+\emph{power spectrum}. Equation~(\ref{eq:real-f-pspec}) tell us that
+the power \index{power spectrum} spectrum is a symmetric (or ``even'')
+function of frequency. Also, when $f(t)$ is real, we can further
+decompose the Fourier Series. Equation ~(\ref{eq:fs}) becomes
 \begin{align}
 f(t) &= \sum_{k=-\infty}^{\infty} c_k e^{j k\omega_0 t} \notag\\
 &= c_0+\sum_{k=1}^{\infty} c_k e^{j k\omega_0 t}
 +\sum_{k=-1}^{-\infty} c_k e^{jk\omega_0 t} 
-&&\text{(split sum into parts)}
+&&\text{(split sum into 0/+/- parts)}
 \notag\\
 &= c_0+\sum_{k=1}^{\infty} c_k e^{jk\omega_0t}+
 \sum_{k=1}^{\infty} c_{-k} e^{-jk\omega_0 t} 
-&&\text{(distribute -1 into sum)}
+&&\text{(distribute -1 into second sum)}
 \notag\\
 &= c_0+\sum_{k=1}^{\infty} [c_k e^{jk\omega_0t}+
 c_{-k} e^{-jk\omega_0 t}] 
@@ -1221,7 +1251,7 @@ See~\ref{sc:ch1ex} \#\ref{it:ch1ex8}--\ref{it:ch1ex9} for answers.
 \index{Fourier Series!of a square wave} The simplest type of square
 wave has a 50\% duty cycle: that is, 50\% of the time
 $f(t)$ takes on the value of 1 and 50\% of the time it has the value
--1. Let's do a bit more general of a case. I will consider a train of
+-1. Let's do a bit more general of a case. We will consider a train of
 rectangular pulses (a kind of square wave, but shifted upward and
 scaled so that it has a minimum of zero and a maximum of $V_0$) with
 pulse duration $\tau$ and period $T$ seconds. This waveform can be
@@ -1273,7 +1303,7 @@ nT+t_0$), $f(t)=V_0$ (region b, when $nT+t_0 \leq t < nT+t_0+\tau$), and
 $f(t)=0$ (region c, when $nT+t_0+\tau \leq t < (n+1)T$). The first and third
 terms are equal to zero, leaving only the middle term, which is just
 the integral of an exponential. If we remember that the derivative of
-an exponential is $\deriv{e^{at}}{t}$ is $ae^{at}$, then the
+an exponential $\deriv{e^{at}}{t}$ is $ae^{at}$, then the
 anti-derivative from~(\ref{eq:sq-fs2}) to~(\ref{eq:sq-fs3}) should
 make sense. Finally, we just need to evaluate the expression
 in~(\ref{eq:sq-fs3}) between the two limits $t_0$ and $t_0+\tau$ to
@@ -1448,7 +1478,6 @@ $T$.
 
 There are several observations which we may make that relate
 changes in the line spectrum to changes in the graph of rectangular pulses
-%the line spectrum of a periodic sequence of rectangular pulses as
 given in figure~\ref{fig:fs-pulsecn}. Firstly, note that the width of the envelope
 depends upon changes in $\tau$, the pulse width. In fact,
 the \emph{shape} of the envelope does not vary with changes in $T$;
@@ -1461,7 +1490,7 @@ illustrate this.
 
 A shift in the phase $t_0$ does not change the line spectrum,
 that is, $|c_k|$ is not a function of $t0$. The \emph{phase} of the
-frequency components \emph{do} change with the choice of $t_0$ (I just
+frequency components \emph{do} change with the choice of $t_0$ (we just
 haven't plotted those).
 
 When talking about the generalized square wave, with fixed period $T$
@@ -1654,7 +1683,7 @@ x_4(t) &= 5 \sin(2\pi(200)t - 0.9\pi)
 
 \item Determine the coefficients of the Fourier series for the following signals:
 \begin{enumerate}
-\item  \[x(t) = \cos \frac{\pi}{3} t\].
+\item The sinusoid \[x(t) = \cos \frac{\pi}{3} t\]
 \item The sawtooth waveform \[ x(t) = t-\lfloor t \rfloor \]
 \item The rectified wave \[ x(t) = |\cos(\frac{\pi}{3} t)| \]
 \end{enumerate}
