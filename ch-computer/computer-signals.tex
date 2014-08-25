@@ -1,5 +1,8 @@
 % -*-LaTeX-*-
 
+% The log below is the old log from when RCS was being used in
+% conjunction with this.
+%
 % $Log: computer-signals.tex,v $
 % Revision 1.8  2010/03/16 00:26:08  stiber
 % Minor clarification.
@@ -55,8 +58,8 @@ computer, or \emph{data acquisition}. There are three parts to this
 process:
 \begin{enumerate}
 \item transduction,
-\item sampling,
-\item and quantization.
+\item sampling, and
+\item quantization.
 \end{enumerate}
 
 \begin{figure}
@@ -69,15 +72,14 @@ representations of the signal.  This is an important point: the
 ``real'' signal is the physical one; what we seek to do is to produce
 a \emph{representation} of this signal within the computer. Our goal
 is that this representation will carry all the information of interest
-that the original had. In this chapter, I will concern myself primarily
+that the original had. In this chapter, we will concern ourselves primarily
 with two ways that information (fidelity) is destroyed: sampling and
 quantization.
 
 But, before either can be performed, the physical signal must be
 converted into an analog, electrical signal. This process, known as
 \emph{transduction}, involves a sensor that responds to the physical
-\index{transduction}
-signal and produces an electrical output. A
+\index{transduction} signal and produces an electrical output. A
 microphone is such a sensor: it might include a membrane that vibrates
 in response to air pressure changes which in turn moves a coil of wire
 around a magnet to produce an electric current in the coil. Image
@@ -88,9 +90,17 @@ shown), which amplifies its output to match the subsequent stages'
 inputs and may perform filtering operations (we'll discuss this
 filtering later in the chapter).  The result of transduction is truly
 an analog signal: it is an electrical waveform whose value is
-proportional to the physical signal. Herein lies out first source of \emph{noise}.
+proportional to the physical signal. Herein lies our first source of
+\emph{noise}.
 
-Transduction always results in noise. Temperature variations, humidity conditions, and a variety of other sources cause the sensor representation of a signal to be imperfect. In a microphone, the relationship between the sensor output and the actual sound may be non-linear, or there may static noise from other devices (i.e., a hum in the background). For cameras, low light conditions can cause graininess, a random fluctuation of the actual signal. However, noise can be introduced in many parts of the digitization process.
+Transduction always results in noise. Temperature variations, humidity
+conditions, and a variety of other sources cause the sensor
+representation of a signal to be imperfect. In a microphone, the
+relationship between the sensor output and the actual sound may be
+non-linear, or there may static noise from other devices (i.e., a hum
+in the background). For cameras, low light conditions can cause
+graininess, a random fluctuation of the actual signal. However, noise
+can be introduced in many parts of the digitization process.
 
 \index{analog-to-digital conversion|(}
 \index{digitization|see{analog-to-digital conversion}}
@@ -107,19 +117,50 @@ produces a binary output that approximates the voltage ---
 quantization. Each of these processes, together with transduction, will add noise to the signal in one form or another. It is important to know how to measure this noise and how to avoid it at each step. 
 
 \section{Measuring Noise}
-The fidelity of a signal is defined as the correspondence between and input signal and an output signal. A signal with high distortion has low fidelity. We will need to define three terms in order to measure the amount to which a signal is distorted: 
+The fidelity of a signal is defined as the correspondence between an
+input signal and an output signal. A signal with high distortion has
+low fidelity. We will need to define three terms in order to measure
+the amount to which a signal is distorted:
 \begin{enumerate}
-\item Root mean square (RMS) magnitude: this defines the ``power'' that a signal has. For a signal $f(t)$ with a period of $T$ we define the RMS magnitude as $f_{RMS}=\sqrt{\frac{1}{T}\int_{T}f(t)^2 dt}$. Where $\int_T$ denotes that the integral is taken over one period of $f(t)$. Intuitively a signal with large values will also have a large RMS magnitude.  
-\item  Signal-to-noise ratio (SNR): this compares the RMS magnitude of the signal, $x_{RMS}$, to the RMS magnitude of the noise, $n_{RMS}$. SNR is defined as $x_{RMS}/n_{RMS}$. The noise signal, $n(t)$, can be measured directly (taking the difference between the noisy signal and the reference signal, if available) or indirectly (such as using the expected noise magnitude for a given application or device). 
-\item The decibel (dB): we normally convert SNR into a dB scale using $\text{SNR}_{dB}=20\log_{10}(\text{SNR})$. There are historical and perceptual reasons for using the decibel scale, but, practically, it helps to compare large and small SNR values on the same graph. The log operation makes very small SNR values large negative numbers and simultaneously makes very large SNR values lesser in magnitude.
+\item Root mean square (RMS) magnitude: this defines the ``power''
+  that a signal has. For a signal $f(t)$ with a period of $T$ we
+  define the RMS magnitude as
+  $f_\mathrm{RMS}=\sqrt{\frac{1}{T}\int_{T}f(t)^2 dt}$. Where $\int_T$
+  denotes that the integral is taken over one period of
+  $f(t)$. Intuitively, a signal with large values will also have a
+  large RMS magnitude.
+\item Signal-to-noise ratio (SNR): this compares the RMS magnitude of
+  the signal, $x_\mathrm{RMS}$, to the RMS magnitude of the noise,
+  $n_\mathrm{RMS}$. SNR is defined as
+  $x_\mathrm{RMS}/n_\mathrm{RMS}$. The noise signal, $n(t)$, can be
+  measured directly (taking the difference between the noisy signal
+  and the reference signal, if available) or indirectly (such as using
+  the expected noise magnitude for a given application or device).
+\item The decibel (dB): we normally convert SNR into a dB scale using
+  $\text{SNR}_\mathrm{dB}=20\log_{10}(\text{SNR})$. There are
+  historical and perceptual reasons for using the decibel scale, but,
+  practically, it helps to compare large and small SNR values on the
+  same graph. The log operation makes very small SNR values large
+  negative numbers and simultaneously makes very large SNR values
+  lesser in magnitude.
 \end{enumerate}
 \index{signal-to-noise ratio (SNR)}
 \index{decibel}
 Mathematically, SNR becomes:
 \[
-\text{SNR}=20\log_{10}\left(\frac{x_{RMS}}{n_{RMS}}\right) \label{eq:SNR}
+\text{SNR}=20\log_{10}\left(\frac{x_\mathrm{RMS}}{n_\mathrm{RMS}}\right) \label{eq:SNR}
 \]
-We can quantify the amount of noise in a signal by using the SNR. The idea is that noise becomes more of a problem when it reaches the same magnitude as the signal. For example a slight hissing noise on a loudspeaker is not as troublesome as the same hissing noise in a telephone conversation because the signal from the loudspeaker ``overpowers'' the noise signal. At each stage of transduction and digitization, we can use SNR to tell us exactly how much distortion we have introduced into the signal. There are other measures of fidelity of a signal (actually it is an open research problem in many fields), however, we will concentrate on SNR because it is the most widely used measure and is not specific to any application.  
+We can quantify the amount of noise in a signal by using the SNR. The
+idea is that noise becomes more of a problem when it reaches the same
+magnitude as the signal. For example, a slight hissing noise on a
+loudspeaker is not as troublesome as the same hissing noise in a
+telephone conversation because the signal from the loudspeaker
+``overpowers'' the noise signal. At each stage of transduction and
+digitization, we can use SNR to tell us exactly how much distortion we
+have introduced into the signal. There are other measures of fidelity
+of a signal (actually it is an open research problem in many fields),
+however, we will concentrate on SNR because it is the most widely used
+measure and is not specific to any application.
 
 \section{Sampling}
 
@@ -130,24 +171,24 @@ output. Analog input signal (sinusoidal curve) is a 330Hz sine wave; sampling
 rate is 2000Hz (top) and 300 Hz (bottom). Output of S/H is red lines. Discrete value are shown as dark circles.\label{fg:sampled}}
 \end{figure}
 
-\index{analog-to-digital conversion!sampling|(}
-A sample and hold (S/H) device acts like a switch and an analog memory device. While I may
-talk of sampling a signal at a \emph{point} in time, a real device
+\index{analog-to-digital conversion!sampling|(} A sample and hold
+(S/H) device acts like a switch and an analog memory device. While we
+may talk of sampling a signal at a \emph{point} in time, a real device
 requires a \emph{period} of time to perform its function, and this
 includes sampling.  Over some short period of time, the S/H closes its
-``switch'' and the analog signal is presented to the memory
-device (which can be considered to be a capacitor, for example). The
-memory device's internal voltage takes a short time to reach
-equilibrium with the applied voltage --- called the \emph{aperture time}. After this aperture time,
-the ``switch'' is opened and the sampled signal stays
-stable while the ADC converts the signal to a digital value. However, the sampled signal 
-doesn't stay perfectly constant --- some of the stored electrical
-charge leaks away, and thus the sampled signal ``sags'' towards zero
-volts.  While these limitations of the physical device are
-important for sensor design and de-noising, we will focus on the basic idea of sampling at points in
-time and assume the S/H performs like an ideal
-device. Figure~\ref{fg:sampled} shows the input/output behavior of
-such an idealized device.
+``switch'' and the analog signal is presented to the memory device
+(which can be considered to be a capacitor, for example). The memory
+device's internal voltage takes a short time to reach equilibrium with
+the applied voltage --- called the \emph{aperture time}. After this
+aperture time, the ``switch'' is opened and the sampled signal stays
+stable while the ADC converts the signal to a digital value. However,
+the sampled signal doesn't stay perfectly constant --- some of the
+stored electrical charge leaks away, and thus the sampled signal
+``sags'' towards zero volts.  While these limitations of the physical
+device are important for sensor design and de-noising, we will focus
+on the basic idea of sampling at points in time and assume the S/H
+performs like an ideal device. Figure~\ref{fg:sampled} shows the
+input/output behavior of such an idealized device.
 
 %\begin{figure}
 %\centerline{\includegraphics[width=\textwidth]{ch-computer/sampled_300}}
@@ -216,13 +257,24 @@ Digital frequency, $\hat{\omega}$, \emph{must be} between $-\pi$ and $\pi$. This
  \[
  \hat{\omega}_0=\omega_0 \times  \frac{2\pi}{\omega_s}=\omega_0\times \frac{2\pi}{4\omega_0}=\frac{\pi}{2} \notag 
  \]
-which is less than $\pi$, so Nyquist is satisfied. Apparent frequency, $\omega'$, is the frequency at which we get by converting from digital frequency to continuous time frequency. To convert from digital frequency to apparent we use the following formula,
+which is less than $\pi$, so Nyquist is satisfied.
 
+Apparent frequency, $\omega'$, is the frequency which we get by
+converting from digital frequency back to continuous time
+frequency. To convert from digital frequency to apparent we use the
+following formula,
 \begin{equation}
 \omega' = \hat{\omega}\times \frac{\omega_s}{2\pi} \label{eq:conv-dig-app}
 \end{equation}
+which of course is just the inverse of the previously-used conversion
+from continuous to digital frequency.
 
-For our continuing example, when $\omega_s$ is equal to $4\omega_0$, this means the apparent frequency is $\omega'_0=\pi/2\times \frac{\omega_s}{2\pi}=\pi/2\times \frac{4\omega_0}{2\pi}=\omega_0$. Since the cosine was sampled greater than the Nyquist rate, the apparent frequency equals the actual frequency. 
+For our continuing example, when $\omega_s$ is equal to $4\omega_0$,
+this means the apparent frequency is $\omega'_0=\pi/2\times
+\frac{\omega_s}{2\pi}=\pi/2\times
+\frac{4\omega_0}{2\pi}=\omega_0$. Since the sinusoid was sampled at
+greater than the Nyquist rate, the apparent frequency equals the
+actual frequency.
 
 If we sample at a frequency less than Nyquist the apparent and actual frequencies are different. For example, if we instead sample at $\omega_s=4/3\omega_0$, then the digital frequency will be $\hat{\omega_0}=\omega_0 \frac{2\pi}{4/3\omega_0}=3\pi/2$, which is not on the interval  $-\pi$ to $\pi$. We convert the frequency down by using a clever identity, $e^{-j2\pi n}$, which is equal to 1 for all values of $n$,
 
@@ -233,7 +285,14 @@ x[n] & = e^{j \frac{3\pi}{2}n} \notag\\
   & = e^{-j \frac{\pi}{2}n} && (\text{equivalent digital frequency}) \notag
 \end{align}
 %
-Essentially, this identity allows us to subtract $2\pi$ from the digital frequency until it is on the correct interval. Digitally, we see that  $\frac{3\pi}{2}$ is the same as $-\frac{\pi}{2}$. When we convert to apparent frequency we get $\omega'_0=-\pi/2\times \frac{\omega_s}{2\pi}=-\pi/2\times \frac{4\omega_0}{6\pi}=-\omega_0/3$, which is lesser in magnitude than the actual frequency and negative (the phasor is spinning in the opposite direction).
+Essentially, this identity allows us to subtract $2\pi$ from the
+digital frequency until it is on the correct interval. Geometrically,
+we see that $\frac{3\pi}{2}$ is the same as $-\frac{\pi}{2}$. When we
+convert to apparent frequency we get $\omega'_0=-\pi/2\times
+\frac{\omega_s}{2\pi}=-\pi/2\times
+\frac{4\omega_0}{6\pi}=-\omega_0/3$, which is lesser in magnitude than
+the actual frequency and negative (the phasor is spinning in the
+opposite direction).
 
 Furthermore, from equation~\ref{eq:conv-dig-app} we can see that the sampling frequency, $\omega_s$, corresponds to the digital frequency $\hat{\omega}=2\pi$. In digital frequency, we have seen that all frequencies at multiples of $2\pi$ from each other have the same apparent frequency. This gives the following relationship between apparent and actual frequency:
  \begin{align}
@@ -293,12 +352,12 @@ e^{-j\omega_0t}$. So, for a completely real sinusoid we should really write,
 
 Let's consider the case where $\omega_s/2 < |\omega_0| < \omega_s$,
 that is, the sinusoid's frequency is just a bit greater than the
-Nyquist frequency (or, alternatively, you could think of it as the
+Nyquist frequency (or, equivalently, you could think of it as the
 sampling rate being just a bit too slow: $\omega_s <
 2|\omega_0|$). Call the amount that $|\omega_0|$ exceeds $\omega_s/2$
-by $\omega_a = |\omega_0| - \omega_s/2$.  Let's figure out what
+$\omega_a = |\omega_0| - \omega_s/2$.  Let's figure out what
 happens to the negative frequency component, $-\omega_0$. Using
-$\omega_a$, we can rewrite $-\omega_0$ as 
+$\omega_a$, we can rewrite $-\omega_0$ as
 \begin{equation}
 -\omega_0 = -\omega_a - \omega_s/2
 \label{eq:neg-freq}
@@ -312,7 +371,8 @@ $-\omega_0 + k\omega_s = -\omega_a - \omega_s/2 + k\omega_s$ to show
 \emph{all} of the ambiguous frequencies. To simplify matters, let's
 just look at the ``first'' ambiguous frequency at $k=1$:
 \begin{align*}
-\omega'_0 &= -\omega_a- \omega_s/2 + k\omega_s && (\text{substitute $k=1$}) \\
+\omega'_0 &= -\omega_0 + \omega_s = -\omega_a- \omega_s/2 + \omega_s
+            && (\text{substitute $k=1$}) \\ 
 \underbrace{\omega'_0}_{\stackrel{\text{apparent}}{_\text{ frequency}}} &= - \omega_a +
      \underbrace{\omega_s/2}_{\stackrel{\text{Nyquist}}{_\text{ frequency}}}
 \end{align*}
@@ -353,9 +413,9 @@ Another way of looking at sampling is to require that the input signal
 be \emph{band limited}: that it have a maximum frequency component,
 rather than an infinite spectrum. Given that the signal is band
 limited with maximum frequency $\omega_m$ (which we can achieve using
-\emph{filters}, as described in chapters~\ref{ch:filt-intro}
-and~\ref{ch:fb-filters}), then we can set our sampling rate so that it
-is at least $2\omega_m$.
+analog \emph{filters}, similar to those described in
+chapters~\ref{ch:filt-intro} and~\ref{ch:fb-filters}), then we can set
+our sampling rate so that it is at least $2\omega_m$.
 \index{analog-to-digital conversion!aliasing|)}
 
 \problemset{
@@ -403,25 +463,27 @@ quantized to 256 levels, each corresponding to 1/256 of the distance
 between -1 and +1. This result was then subtracted from the ideal S/H
 output and plotted as the error shown in the bottom plot in the
 figure. How much can this error be? The error can be as much as one
-part in $\pm 1/2$ of the least significant bit  (LSB). In other words, the S/H signal is within LSB/2 of the
-actual signal. What are the statistics of this noise? Assuming that Nature hasn't
-conspired against us, we would expect the mean of this error to be
-zero.  If all ADC input values have equal probability, then the errors
-should also, which means that it is uniformly distributed between
-minus and plus one-half.  Remembering our statistics, the standard
-deviation of a continuous random variable is the square root of its
-variance,
+part in $\pm 1/2$ of the least significant bit (LSB). This follows
+from the fact that, when we convert the analog value to digital, we
+round to the nearest digital number. In other words, the ADC number is
+within LSB/2 of the actual signal. What are the statistics of this
+noise? Assuming that Nature hasn't conspired against us, we would
+expect the mean of this error to be zero.  If all ADC input values
+have equal probability, then the errors should also, which means that
+it is uniformly distributed between minus and plus one-half.
+Remembering our statistics, the standard deviation of a continuous
+random variable is the square root of its variance,
 \begin{equation}
 \sigma^2 = \int_{-\infty}^{+\infty} (x-\mu)^2 \mathrm{d}x
 \label{eq:var}
 \end{equation}
 
-In this case, $\mu=0$ and the variable's range is [-1/2, +1/2]. The
-result is a standard deviation of $\sigma = 1/\sqrt{12} \,
-\mathrm{LSB} \approx 0.29
-\, \mathrm{LSB}$ (how [answer in~\ref{sc:ch2ex}
-\#\ref{it:ch2ex4}]?). In the case of an 8-bit ADC, this
-comes to 0.29/256 = 1/883 of the ADC's full range.
+In this case, $\mu=0$, the variable's range is [-1/2, +1/2], and the
+variable's value is constant within that range. The result is a
+standard deviation of $\sigma = 1/\sqrt{12} \, \mathrm{LSB} \approx
+0.29 \, \mathrm{LSB}$ (how [answer in~\ref{sc:ch2ex}
+\#\ref{it:ch2ex4}]?). In the case of an 8-bit ADC, this comes to
+0.29/256 = 1/883 of the ADC's full range.
 
 \index{analog-to-digital conversion!quantization!noise|(}
 Noise is ubiquitous in the physical world --- and this includes
@@ -430,7 +492,7 @@ effect on digital signals is different). Sometimes, this noise is
 truly random, or \emph{stochastic}, perhaps produced by thermal
 effects within the circuitry. Other times, the noise is merely
 unwanted signal, such as ``background noise'' in an audio recording.
-To quantify this noise we will use SNR (equation \ref{eq:SNR}). The standard deviation, $\sigma$, is an estimate of the noise power ($n_{RMS}=\sigma$). For simplicity we will assume that the signal uses the entire ADC range (256 levels, $x_{RMS}=256$).
+To quantify this noise we will use SNR (equation \ref{eq:SNR}). The standard deviation, $\sigma$, is an estimate of the noise power ($n_\mathrm{RMS}=\sigma$). For simplicity we will assume that the signal uses the entire ADC range (256 levels, $x_{RMS}=256$).
 %Noise is usually quantified as a ratio --- \emph{signal-to-noise
 %ratio}, or SNR --- and expressed in decibels (a logarithmic scale). To
 %convert a ratio of two magnitudes
@@ -444,11 +506,14 @@ present than that from quantization by an 8-bit ADC, the SNR would be
 $20 \log_{10} 256/0.29 \approx 59\mathrm{dB}$. For a 12-bit ADC, the SNR is
 83dB; for 16-bit, the SNR is 107dB.
 
-Let's suppose that the ADC input signal has a range of 5 volts (V),
-and that it includes noise (from whatever source) with a standard
-deviation of 1 millivolt (mV). If we use an 8-bit ADC, 5V corresponds
-to 255 and 1mV is then 0.051 LSB. (What is the SNR for the original
-signal (answer in~\ref{sc:ch2ex} \#\ref{it:ch2ex5}) ? 
+Another way we might consider the noise that results from quantization
+is to consider that amount of noise that it adds given a realistic
+signal that already includes other noise. For example, let's suppose
+that the ADC input signal has a range of 5 volts (V), and that it
+includes noise (from whatever source) with a standard deviation of 1
+millivolt (mV). If we use an 8-bit ADC, 5V corresponds to 255 and 1mV
+is then 0.051 LSB. (What is the SNR for the original signal (answer
+in~\ref{sc:ch2ex} \#\ref{it:ch2ex5}) ?
 
 When we add
 random variables, we add their variances, and so the standard
@@ -470,14 +535,14 @@ tolerate in the digital one.  \index{analog-to-digital
 \begin{sloppypar}
 \begin{itemize}
 \item A MATLAB .m file for demonstrating quantization using tones is available
-at \url{http://courses.washington.edu/css457/ebook/quantdemo1.m}.
+at \url{http://faculty.washington.edu/stiber/pubs/Signal-Computing/quantdemo1.m}.
 \index{MATLAB code!quantization}
 \item A MATLAB .m file for demonstrating quantization using a more
 interesting sound is available at
-\url{http://courses.washington.edu/css457/ebook/quantdemo2.m},
+\url{http://faculty.washington.edu/stiber/pubs/Signal-Computing/quantdemo2.m},
 \index{MATLAB code!quantization}
 along with a data file at
-\url{http://courses.washington.edu/css457/ebook/amoriole2.mat}.
+\url{http://faculty.washington.edu/stiber/pubs/Signal-Computing/amoriole2.mat}.
 \index{audio files!bird calls}
 \end{itemize}
 \end{sloppypar}}
@@ -510,7 +575,9 @@ ADC, only about 6 bits. The reason for this is that we've coded the
 signal \emph{linearly}, with the step between ADC outputs being the
 same for low and high amplitude signals. Logically, however, it would
 seem unlikely that our ears would be as sensitive to slight changes in
-loud passages as they would be to the same changes to quiet ones.
+loud passages as they would be to the same changes to quiet ones ---
+that at least some part of our perception would be based on relative
+comparisons, not just absolute differences.
 
 This intuition is correct, and so consideration of the
 \emph{psychophysics} of hearing (the intersection of the physics of
