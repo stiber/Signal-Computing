@@ -1,0 +1,190 @@
+%&LaTeX
+
+\section{Discrete Fourier Transform}
+
+\subsection{Lab Background}
+By the end of this lab you should have a firm understanding of how the
+Discrete Fourier Transform (DFT) can be implemented exactly using the
+Fast Fourier Transform (FFT). In addition you should be able to
+identify common problems using the DFT to analyze signals. You will
+also be familiar with a new tool, the spectrogram, that uses the DFT
+as a function of time.
+
+\subsection{Implementing the DFT}
+
+% TODO: have them work with this block for a good implementation of the J-DSP
+Recall that the DFT can be implemented directly from the analysis
+equation. For a length $N$ signal $x[n]$,
+\begin{align}
+X[k]=\sum_{n=0}^{N-1}x[n]e^{-j \frac{2\pi}{N} nk} && \text{for $k = 0, 1, 2, \cdots N-1$}
+\label{eq:dft}
+\end{align}
+The order of the implementation is $O(N)=N^2$. The following java code
+can be used to implement the DFT in J-DSP. It is implemented without
+any algorithmic speedup (i.e., it exactly mirrors equation
+\ref{eq:dft}).  Example of raw DFT implementation:
+	\begin{lstlisting}
+public class MyFunction1
+{
+ public void myCode(double[]x1,double[]x2,double[]y1,double[]y2,
+ 	double[]b1,double[]a1,double[]b2,double[]a2,
+ 	double para1, double para2, double para3)
+  {
+  // x1, x2 - input at pin 0 and pin1
+  // y1, y2 - output at pin 4 and pin5
+  // raw DFT implementation
+  double[] yImag;
+  double[] yReal;
+  yImag = new double[256];
+  yReal = new double[256];
+  double twoPiOverN = 2*Math.PI/256;
+  for( int k = 0 ; k < 256 ; k++)
+  {
+    yReal[k] = 0;
+    yImag[k] = 0;
+    for( int n = 0 ; n < 256 ; n++)
+    {
+      yReal[k] += x1[n]*Math.cos(n*k*twoPiOverN);
+      yImag[k] += -x1[n]*Math.sin(n*k*twoPiOverN);
+    }
+    y1[k] = Math.sqrt(yReal[k]*yReal[k]+yImag[k]*yImag[k]);
+  }
+ }
+}
+	\end{lstlisting}
+Note that there is not a native support in java for complex numbers so
+this arithmetic is written out explicitly in the code above. For
+example, the equation $y=x\times e^{a}$ (where x is a real number)
+must be explicitly written out using Euler's formula, and the real and
+imaginary portions saved in separate variables, $y_{real}=x\times
+\cos(a)$ and $y_{imag}=x\times \sin(a)$.
+
+The FFT algorithm, on the other hand, can be used to reduce the
+computation time of the DFT to $O(N)=N\log_2 N$ - a significant
+speedup for even modest length signals.
+
+\paragraph{Step 1.1}
+Write some example code to multiply \emph{two} complex numbers,
+$c=a\times b$. Remember to represent the variables by their real and
+imaginary parts and save the real and imaginary parts in separate
+variables.
+
+
+\paragraph{Step 1.2} 
+Use the \block{UserDefinedFun} block to implement the FFT using loops
+(i.e., do not use recursion). The first part of this code performs a
+bit reversal on the input array. Use the following code to perform the
+bit reversal:
+% make more explict, bit rev vrbl
+\begin{lstlisting}
+// bit reversal
+int  index;
+int  N = 256;
+double[] reversedX1 = new double[256];
+// need to shift 32 bit integer to make it an 8 bit reversal
+int shift = (32-(int)Math.round(Math.log(N)/Math.log(2))); 
+for( int n = 0 ; n < N ; n++){
+  index = (Integer.reverse(n))>>>shift; //reverse and then shift down to 8 bit
+  reversedX1[n] = x1[index]; 
+}
+\end{lstlisting}
+Then iterate over the array $\log_2 N$ times! Remember to explicitly
+carry out any complex arithmetic and take the magnitude of the output
+array once the FFT is computed. Include a copy of the java code in
+your report.
+
+\paragraph{Step 1.3} 
+Check your results in J-DSP using the \block{FFT} block. Your results
+should be identical. Take the FFT of a sinusoid with a frequency of
+$\pi/4$ radians per second using your FFT implementation and the
+\block{FFT} block provided in J-DSP. Include a screenshot of the
+output plots.
+
+
+
+\subsection{Using the DFT}
+% switch over to spectrogram example with DTMF - organize introduction
+% for ease of use over multiple steps
+\paragraph{Step 2.1} 
+Create a sum of two sinusoids in J-DSP. Use the \block{FFT} block to
+compute the FFT of the sum and then plot the FFT magnitude. Use a
+frequency of $0.13\pi$ and $0.19\pi$ for the two sinusoids. Make sure
+that the \option{pulsewidth} for each is set to 256. What does the
+result look like? Does this make sense?
+
+
+\paragraph{Step 2.2} At what index (or indices) is the FFT magnitude
+maximum? What frequency (or frequencies) does this correspond to?
+
+
+\paragraph{Step 2.3} Change the frequencies of the sinusoids to
+$0.13\pi$ and $0.14\pi$. Repeat steps 2.1 and 2.2. Do the results
+still make sense?
+
+
+\paragraph{Step 2.4} Replace the sum of two sinusoids in J-DSP with
+the \block{DTMF} block under the \menu{Audio Effects} function
+list. Press some of the keys in the \block{DTMF} block. Does the FFT
+block show separate frequencies for each button?
+
+
+
+\subsection{Spectrograms}
+Comparing FFT graphs (as in the step 2.4) can be difficult to do. But
+what if we could analyze the frequency content of a signal as a
+function of time? That would make it easier to see differences in
+frequency if a signal started changing (like a string of DTMF keys
+pressed in turn). To do this we will need a new tool called the
+\emph{Spectrogram}. The spectrogram is simply an algorithm for
+computing the FFT of a signal at different times and plotting them as
+a function of time. The spectrogram is computed in the following way:
+
+\begin{enumerate}
+\item A given signal is ``windowed.'' This means that we only take a
+  certain number of points from the signal (for this example assume we
+  are using a window of length 128 points). To start out, we take the
+  first 128 points of the signal (points 0 through 127 of the input
+  array).
+\item Take the FFT of the window and save the it in a separate array.
+\item Advance the window in time by a certain number of points. For
+  instance we can advance the window by 64 points so that we now have
+  a window of indices 64 through 191 from the input signal array.
+\item Repeat steps 1-3, saving the FFT of each window, until there are
+  no longer any points in the input array.
+\item Form a 2-D matrix whose columns are the FFT magnitudes of each
+  window (placed in chronological order). In this way, each row
+  represents a certain frequency, each column represents a given
+  instant in time, and the value of the matrix represents the
+  magnitude of the FFT.
+\end{enumerate}
+
+The result is called a Spectrogram and is usually displayed as an RGB
+image where blue represents small FFT magnitudes and red represents
+larger FFT magnitudes (the \emph{Jet} colormap if you are familiar
+with color visualizations). There is an art to choosing the correct
+parameters of the spectrogram (i.e., window size, FFT size, how many
+points to advance the FFT, etc.). Each parameter has tradeoffs for the
+time and frequency resolution of the resulting spectrogram. For our
+purposes here, we will not be concerned with these tradeoffs. Instead
+we will be more interested in getting familiar with analysis using
+spectrograms.
+
+\paragraph{Step 3.1} Use the DTMF setup from step 2.4. Instead of
+using the \block{FFT} block, use the \block{Spectrogram} block under
+the \menu{Statistical DSP} function stack. Keep all parameters in the
+\block{Spectrogram} set to the default. Set the \block{DTMF} block to
+play five frames per key press. Press the number ``1.'' What does the
+spectrogram look like? Are both frequencies present?
+
+
+\paragraph{Step 3.2} Now set the \block{DTMF} block to
+\option{Record}. Also set the \option{Resolution} parameter inside the
+\block{Spectrogram} block to 4 or 8 (otherwise you may notice a lag
+for updating the spectrogram - it can be considerably CPU intensive
+for large input signals). The \option{Resolution} parameter controls
+how many points the sliding window advances at each time step (larger
+steps mean we take fewer FFTs). Press each key in the \block{DTMF}
+block in turn. Does the spectrogram make it easier to judge the
+frequency content of the keys? Include a screenshot for your report.
+
+% LocalWords:  WebQ MATLAB DSP
