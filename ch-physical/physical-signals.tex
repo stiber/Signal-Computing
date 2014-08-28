@@ -1525,26 +1525,10 @@ See~\ref{sc:ch1ex} \#\ref{it:ch1ex10} for the answer.
 \item A complex number can be written in rectangular coordinates as $z
   = x + j y$. Write the relations to calculate the polar form, $z=(r,
   \theta)$ or $z = r e^{j\theta}$.
-%	\answer{$r = \sqrt{x^2+y^2}, \theta=\arctan(y/x)$\stepbystep{. This is readily seen using the Pythagorean theorem in the complex plane. For a right triangle the $\tan(\theta)=\frac{\text{opposite}}{\text{adjacent}}=\frac{\text{imaginary component}}{\text{real component}}$}}
+
 \item Using Euler's formula, express $\cos x$ and $\sin x$ as a
   combination of complex exponentials. Recall that Euler's Formula is given by: $e^{\pm j\omega t}=\cos(\omega t) \pm j \sin(\omega t)$.
-%	\answer{$\frac{1}{2}(e^{j\omega t}+e^{-j\omega t})$
-%	\stepbystep{ which we can derive using,
-%	\begin{align*} 
-%	e^{j\omega t}+e^{-j\omega t}=&\left[\cos(\omega t) + j \sin(\omega t)\right] + \left[\cos(\omega t) - j \sin(\omega t)\right] \\
-%	=&2\cos(\omega t) \\
-%	\therefore \cos(\omega t) =& \frac{1}{2}(e^{j\omega t}+e^{-j\omega t})
-%	\end{align*}
-%}
-%Similarly, $\sin(\omega t) = \frac{1}{2}(e^{j\omega t}-e^{-j\omega t})$
-%\stepbystep{
-%	\begin{align*} 
-%	e^{j\omega t}-e^{-j\omega t}=&\left[\cos(\omega t) + j \sin(\omega t)\right] - \left[\cos(\omega t) - j \sin(\omega t)\right] \\
-%	=&2j\sin(\omega t) \\
-%	\therefore \sin(\omega t) =& \frac{1}{2}(e^{j\omega t}-e^{-j\omega t})
-%	\end{align*}
-%}
-%}
+
 \item Find expressions for the following as complex exponentials:
 	\begin{enumerate}
 	\item1 
@@ -1552,54 +1536,17 @@ See~\ref{sc:ch1ex} \#\ref{it:ch1ex10} for the answer.
 	\item $1 + j$, $(1 + j\sqrt{3})/2$
 	\end{enumerate}
 
-%\answer{
-%	  \begin{align*}
-%	1 =& e^{j 2\pi n } \text{, } n \in \mathbb{Z} \\
-%	 j =& e^{j \pi/2 }  \\
-%	 (1+j) =& \sqrt{2} e^{j \pi /4} \\
-% 	 (1+j\sqrt{3})/2 =& e^{j \pi /3} 
-% 	 \end{align*}
-%  }
-  
 \item Compute $[(1+j\sqrt{3})/2]^2$ and $(1+j)^4$ directly using: 
   \begin{enumerate}
   \item Rectangular representations.
   \item Complex exponentials.
   \end{enumerate}
-%  \answer{
-%  \begin{align*}
-%  [(1+j\sqrt{3})/2]^2 &=(1+\sqrt{3}j-3)/4 \\
-%  &=-1/2+\sqrt{3}/4j \\ 
-%  \\
-%  (1+j)^4 &= (1+j)^2(1+j)^2 \\
-%  &= (1+2j-1)^2 \\
-%  &= 4j^2 = -4
-%  \end{align*}
-%  }
-%  
-%  \answer{
-%  	\begin{align*}
-%  	(1+j\sqrt{3})/2 =& e^{j \pi /3} \\
-%  	\therefore [(1+j\sqrt{3})/2]^2 =& e^{j 2\pi /3} \\ \\
-%  	(1+j) =& \sqrt{2} e^{j \pi /4} \\
-%  	\therefore (1+j) ^4=& (\sqrt{2})^4 e^{j \pi} =-4
-%  	\end{align*}
-%  }
+
 \item Show that $(z_xz_y)^* = z_x^* z_y^*$.
 
-%	\answer{
-%	\begin{align*}
-%	(z_xz_y)^*&=(R_xe^{j\omega_x}R_ye^{j\omega_y})^* \\
-%	&=R_xR_y (e^{j\omega_x+j\omega_y})^* \\
-%	&=R_xR_y e^{-j(\omega_x+\omega_y)} \\ \\
-%	z_x^*z_y^*&=(R_xe^{j\omega_x})^*(R_ye^{j\omega_y})^* \\
-%	&=R_xe^{-j\omega_x}R_ye^{-j\omega_y} \\
-%	&=R_xR_y e^{-j(\omega_x+\omega_y)}
-%	\end{align*} }
 
 \item Express $|z|^2$ as a function of $z$ and $z^*$.
-%
-%	\answer{$|z|^2=zz^*$}
+
 
 \item Given the following equations:
 \begin{align*}
@@ -1611,58 +1558,15 @@ x_4(t) &= 5 \sin(2\pi(200)t - 0.9\pi)
 
 \begin{enumerate}
 \item Using pencil and paper: Express   $x_1(t)$ through $x_4(t)$ as complex exponentials. 
-%  \answer{
-%  	\begin{align*}
-%	x_1(t) &= \frac{5}{2}(e^{j400\pi t}e^{j 0.5\pi}+e^{-j400\pi t}e^{-j 0.5\pi})  \\
-%	x_2(t) &= \frac{5}{2}(e^{j400\pi t}e^{-j 0.25\pi}+e^{-j400\pi t}e^{j 0.25\pi})  \\
-%	x_3(t) &= \frac{5}{2}(e^{j400\pi t}e^{j 0.4\pi}+e^{-j400\pi t}e^{-j 0.4\pi})  \\
-%	x_4(t) &= \frac{5}{2}(e^{j400\pi t}e^{-j 0.9\pi}+e^{-j400\pi t}e^{j 0.9\pi})  
-%	\end{align*}}
+
 \item Create the sum sinusoid, $x_5(t)=x_1(t)+x_2(t)+x_3(t)+x_4(t)$. Express   $x_5(t)$ as a sum of complex exponentials. 	
-%	\answer{
-%	It is easy to see that:
-%	\stepbystep{
-%	\begin{align*}
-%	x_5(t)=& x_1(t)+x_2(t)+x_3(t)+x_4(t)\\
-%	x_5(t)=& \frac{5}{2}(e^{j400\pi t}e^{j 0.5\pi}+e^{-j400\pi t}e^{-j 0.5\pi})  \\
-%	&+ \frac{5}{2}(e^{j400\pi t}e^{-j 0.25\pi}+e^{-j400\pi t}e^{j 0.25\pi})  \\
-%	&+ \frac{5}{2}(e^{j400\pi t}e^{j 0.4\pi}+e^{-j400\pi t}e^{-j 0.4\pi})  \\
-%	&+ \frac{5}{2}(e^{j400\pi t}e^{-j 0.9\pi}+e^{-j400\pi t}e^{j 0.9\pi}) \\
-%	&\text{factoring out the terms } 5/2 \text{ and }e^{\pm j400\pi t} \text{, }
-%	\end{align*}
-%	}
-%	\begin{align*}
-%	x_5(t)=& \frac{5}{2}\bigg(\left(e^{j 0.5\pi}+e^{-j 0.25\pi}+e^{j 0.4\pi}+e^{-j 0.9\pi}\right) e^{j400\pi t} + \\
-%	& \left(e^{-j 0.5\pi}+e^{j 0.25\pi}+e^{-j 0.4\pi}+e^{j 0.9\pi}\right) e^{-j400\pi t}\bigg) 
-%	\end{align*}
-%	}
+
  \item Using complex exponentials, express the amplitude and phase of $x_5(t)$ (use pencil and paper with the aide of a graphing calculator, spreadsheet, or MATLAB).
-%\answer{
-%\stepbystep{
-%Because we are dealing with sums, each of the complex exponentials can be converted to rectangular form and summed, yielding:
-%%exp(j*0.5*pi)+exp(-j*0.25*pi)+exp(j*0.4*pi)+exp(-j*0.9*pi) =   0.065067259266342 + 0.934932740733659j
-%\begin{align*}
-%x_5(t)=& \frac{5}{2} \bigg(\underbrace{\left(e^{j 0.5\pi}+e^{-j 0.25\pi}+e^{j 0.4\pi}+e^{-j 0.9\pi}\right) }_{(0.065 + 0.935 j)} e^{j400\pi t} + \\
-%	& \underbrace{\left(e^{-j 0.5\pi}+e^{j 0.25\pi}+e^{-j 0.4\pi}+e^{j 0.9\pi}\right)}_{(0.065 - 0.935 j)} e^{-j400\pi t}\bigg) \\
-%x_5(t)=& \frac{5}{2}\bigg((0.065 + 0.935 j) e^{j400\pi t} + 
-%(0.065 - 0.935 j)  e^{-j400\pi t}\bigg) \\
-%x_5(t)=& \frac{5}{2}\bigg( \underbrace{0.937e^{j1.5}}_{polar form} e^{j400\pi t} + 
-%\underbrace{0.937e^{-j1.5}}_{polar form}  e^{-j400\pi t}\bigg)\\
-%x_5(t)=& \frac{4.686}{2}\bigg( e^{j1.5} e^{j400\pi t}+ e^{-j1.5}  e^{-j400\pi t}\bigg) \\
-%x_5(t)=& \underbrace{\frac{4.686}{2}}_{amplitude/2} \underbrace{\bigg(  e^{j(400\pi t+1.5)}+ e^{-j(400\pi t+1.5)}\bigg)}_{cosine+ phase \text{ } shift} \\
-%=&4.686 \cos(2\pi(200)t +1.5) \\
-%\end{align*}}
-%\begin{align*}
-%\text{phase}=& 1.5 \text{ radians}\\
-%\text{amplitude}=& 4.686
-%\end{align*}
-%}
+
  \end{enumerate}
 	
 \item What is the period of $e^{-j\frac{\pi}{4}t}+e^{-j\frac{\pi}{2}t}$ ?
-%\answer{The frequencies are integer multiples of one another, so the period is governed by the smallest frequency, $\omega_0=\frac{pi}{4}$. The period is therefore $T_0=8$ seconds.}
 \item What is the period of $e^{-j \omega_0 t}+e^{-j 5\omega_0 t}$ ?
-%\answer{The frequencies are integer multiples of one another, so the period is governed by the smallest frequency, $\omega_0$. The period is therefore $T_0=\frac{2\pi}{\omega_0}$ seconds.}
 \item Implement a  \texttt{Complex} class for representing
   complex numbers in an object oriented programming language (C++, C\#, Java, python, etc.).  Your class should include at least the following
   methods:
