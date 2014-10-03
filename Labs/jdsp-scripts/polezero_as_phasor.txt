@@ -1,0 +1,43 @@
+
+<applet CODE="JDsp.class" width="400" height="250" CodeBase="http://jdsp.asu.edu/JDSP">
+
+<param name="numCommand" value="25">
+
+<!-- START PARTS -->
+<param name="0" value="B0-pzplace(0175,0140)">
+<param name="1" value="B1-plot(0575,0080)">
+<param name="2" value="B2-filter(0175,0080)">
+<param name="3" value="B3-siggen(0075,0080)">
+<param name="4" value="B4-usample(0275,0080)">
+<param name="5" value="B5-filter(0375,0080)">
+<param name="6" value="B6-FIR(0375,0140)">
+<param name="7" value="B7-gain(0475,0080)">
+<!-- END PARTS -->
+
+<!-- START CONNECTIONS -->
+<param name="8" value="C-0-3-2-2">
+<param name="9" value="C-3-4-2-0">
+<param name="10" value="C-2-4-4-0">
+<param name="11" value="C-4-4-5-0">
+<param name="12" value="C-5-4-7-0">
+<param name="13" value="C-6-3-5-2">
+<param name="14" value="C-7-4-1-0">
+<!-- END CONNECTIONS -->
+
+<!-- START OPEN DIALOGS -->
+<param name="15" value="O-0">
+<param name="16" value="O-1">
+<!-- END OPEN DIALOGS -->
+
+<!-- START PART PARAMATERS. * DO NOT MODIFY! * -->
+<param name="17" value="P0~1,3,1,0,0,1,3,1,0,0,1,3,1,0,0,1,3,1,0,0,1,3,1,0,0,~0.0,-1.0,0.0,0.0,0.7071067811865476,0.7071067811865475,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,~a,~~">
+<param name="18" value="P1~~~b,cont.,Amplitude,linear,~true,~">
+<param name="19" value="P2~0,~~c,~~">
+<param name="20" value="P3~50,10,0,~1.0,0.9,0.0,0.2,~d,Delta,No,null,~~">
+<param name="21" value="P4~10,~~10,~~">
+<param name="22" value="P5~0,~~f,~~">
+<param name="23" value="P6~64,0,~0.0,0.1,3.0,~g,Hamming,~~">
+<param name="24" value="P7~1,~10.0,~1,Linear,~~">
+<!-- END PART PARAMATERS -->
+
+</applet>
