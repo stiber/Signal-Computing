@@ -69,27 +69,34 @@ digitized, computer signal.
 
 \subsection{Sampling}
 
-	The first step in digitization is \emph{sample and hold}, in which the
-	continuous analog signal is converted to a \textit{discrete-time} analog signal
-	(an analog signal that only changes its value at particular points in
-	time). You will use the \block{Sample-Hold} block in J-DSP to simulate this.
-	
-	% Block diagram, step 2
-	\begin{figure}[h]
-	  \begin{center}
-	    \includegraphics[height=1.5in]{lab3/block_diagram_step2}
-	  \end{center}
-	\caption{ A J-DSP diagram for investigating sampling rate. \label{fg:step2}}
-	\end{figure}
+The first step in digitization is \emph{sample and hold}, in which the
+continuous analog signal is converted to a \textit{discrete-time}
+analog signal (an analog signal that only changes its value at
+particular points in time). You will use the \block{Sample-Hold} block
+in J-DSP to simulate this.
+
+% Block diagram, step 2
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[height=1.5in]{lab3/block_diagram_step2}
+  \end{center}
+  \caption{ A J-DSP diagram for investigating sampling rate. \label{fg:step2}}
+\end{figure}
 
 \paragraph{Step 2.1} Create an \block{Cont Sig} sine waveform ranging
-	from -5 to 5V with a frequency of 200Hz (Figure \ref{fg:step2}, leftmost block).
+from -5 to 5V with a frequency of 200Hz (Figure \ref{fg:step2},
+leftmost block).
 
 \paragraph{Step 2.2} Use four \block{Sample-Hold} blocks to sample
-	this signal at 300Hz, 500Hz, 1000Hz and 2000Hz. Plot the original and all four sampled signals 
-	separately (Figure \ref{fg:step2}). Does it appear that all sampled versions are equally useful in 
-	representing the original? If not, explain why.
-	
+this signal at 300Hz, 500Hz, 1000Hz and 2000Hz. Plot the original and
+all four sampled signals separately (Figure \ref{fg:step2}). Clearly,
+the results are not the same, and none look identical to the original
+sine wave. What are the two essential pieces of information about a
+sine wave that need to be preserved when sampling it?  Does it appear
+that all sampled versions are equally useful in achieving this? Why or
+why not (in other words, your answer to this question should not be
+just ``yes'' or ``no'')?
+
 
 \subsection{Analog to Digital Conversion}
 

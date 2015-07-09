@@ -260,7 +260,7 @@ The idea of \emph{run-length encoding} (RLE) is simple: replace long
 \index{compression!run-length}
 sequences (\emph{runs}) of identical samples with a special code that
 indicates the value to be repeated and the number of times to repeat
-it. For 8 bits/sample data, we mught reserve one symbol (say, zero) as
+it. For 8 bits/sample data, we might reserve one symbol (say, zero) as
 a ``flag'' to indicate the start of a run length code. A run would
 then be replaced with a zero, a byte containing the symbol to repeat
 (1--255), and one or more bytes as the repetition count (how many
@@ -317,11 +317,11 @@ prefix property can be assured using binary trees.
 \begin{center}
 \begin{tabular}{|c|l|l|l|}\hline
 \bf Symbol & \bf Probability & \bf Code 1 & \bf Code 2 \\ \hline\hline
-1 & 0.12 & 000 & 000 \\
-2 & 0.35 & 001 & 11 \\
-3 & 0.20 & 010 & 01 \\
-4 & 0.08 & 011 & 001 \\
-5 & 0.25 & 100 & 10 \\ \hline
+a & 0.12 & 000 & 000 \\
+b & 0.35 & 001 & 10 \\
+c & 0.20 & 010 & 01 \\
+d & 0.08 & 011 & 001 \\
+e & 0.25 & 100 & 11 \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
@@ -436,13 +436,13 @@ them is the information contained in the second. Ideally, then we
 should just transmit this difference.
 
 This is the idea behind \emph{differential pulse code modulation}
-(DPCM): we use the $i^\mathrm{th}$ sample of a signal $x_i$ as the
+(DPCM): we use the $n^\mathrm{th}$ sample of a signal $x[n]$ as the
 \index{compression!pulse code modulation (PCM)}
 \index{pulse code modulation (PCM)}
 \index{differential pulse code modulation}
-prediction for the next, $x_{i+1}$, and just transmit the difference,
-$\Delta x_{i+1} = x_{i+1} - x_i$. Of course, we start our encoding by
-sending a complete sample, $x_0$, and then continue with just the
+prediction for the next, $x[n+1]$, and just transmit the difference,
+$\Delta x[n+1] = x[n+1] - x[n]3$. Of course, we start our encoding by
+sending a complete sample, $x[0]$, and then continue with just the
 differences.
 
 In what way is this lossy? It quite possibly isn't, depending on the
@@ -488,15 +488,14 @@ differences more than $\pm$1 will be rare, and loss will be minimal.
 
 A more general approach to DPCM would be to use something other than
 just the value of one sample to predict the next. Thus, the
-differences to be sent would be $\Delta_{i+1} = \mathcal{F}(x_{i-j},
-\ldots, x_i)$.  This is the approach that \emph{adaptive differential
-pulse code modulation} (ADPCM) uses.  It \emph{adapts} to the signal,
-\index{ADPCM}
-using past experience to select the quantization levels that will be
-used to encode differences.  This means that loud sections and quiet
-sections can have different steps between quantization levels.  The
-international videoconferencing standards ITU G.726 use ADPCM to
-encode audio.
+differences to be sent (if $m$ values were used) would be $\Delta[n+1]
+= \mathcal{F}(x[n-m+1], \ldots, x[n])$.  This is the approach that
+\emph{adaptive differential pulse code modulation} (ADPCM) uses.  It
+\emph{adapts} to the signal, \index{ADPCM} using past experience to
+select the quantization levels that will be used to encode
+differences.  This means that loud sections and quiet sections can
+have different steps between quantization levels.  The international
+videoconferencing standards ITU G.726 use ADPCM to encode audio.
 
 \subsection{Transform Compression}
 
