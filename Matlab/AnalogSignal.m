@@ -158,44 +158,26 @@ classdef AnalogSignal
             plot(sig.timeBase, sig.signal, varargin{:})
         end
         
-        function oSig = samplehold(iSig, h)
+        function x = samplehold(iSig, h)
             % SAMPLEHOLD Perform a sample and hold function on an AnalogSignal
             % Usage:
-            %  [t,y] = obj.samplehold(h)
+            %  x = obj.samplehold(h)
             % where  aSig = AnalogSignal
             %        h = hold time in sec
+            %        x = vector of samples (x[n], with the time axis n
+            %        being sample count, rather than seconds. One can
+            %        compute actual sample times as (n-1) * h
             
             % Make sure we're working with an AnalogSignal
             if ~isa(iSig, 'AnalogSignal')
                 error('First input to samplehold must be an AnalogSignal')
             end
             
-            oSig = iSig;
-            nn = length(iSig.timeBase);
-            T = iSig.timeBase(nn);
+            T = iSig.timeBase(end);
             % Create sample values by interpolating input values at the
             % sample times.
-            t_sample = [0:h:T];
-            y_sample = interp1(oSig.timeBase, oSig.signal, ...
-                t_sample, 'linear');
-            mm = length(t_sample);
-            curOutputNum = 1;
-            for m = 1:mm-1     % For each sample value
-                % Figure out which values in the output signal should be
-                % set to the current sampled value
-                outputIndices = find(oSig.timeBase(curOutputNum:end) < t_sample(m+1));
-                outputIndices = outputIndices + curOutputNum - 1;
-                oSig.signal(outputIndices) = y_sample(m);
-                curOutputNum = outputIndices(end) + 1;
-            end
-            % If the final sample in the sampled signal does not extend beyond
-            % the end of the output signal, then set those values in the output
-            % signal
-            outputIndices = find(oSig.timeBase(curOutputNum:end) <= t_sample(end));
-            if ~isempty(outputIndices)
-                outputIndices = outputIndices + curOutputNum - 1;
-                oSig.signal(outputIndices) = y_sample(m);
-            end
+            sampleTimes = [0:h:T];
+            x = interp1(iSig.timeBase, iSig.signal, sampleTimes, 'linear');
         end
     end
 
@@ -237,5 +219,55 @@ classdef AnalogSignal
         y = rem(t,1/f)*f;
         end
     end
+    
+    methods (Access = private)
+        
+        function oSig = analogSamplehold(iSig, h)
+            % SAMPLEHOLD Perform a sample and hold function on an AnalogSignal
+            % Usage:
+            %  oSig = obj.samplehold(h)
+            % where  aSig = AnalogSignal
+            %        h = hold time in sec
+            %
+            % This is a function that implements a sample and hold with an
+            % output as an analog signal. Made private because, currently,
+            % I've decided that the sample and hold should just output a
+            % vector of floating point samples as the output signal (which
+            % really corresponds more closely to the idea of what a sample
+            % and hold does).
+            
+            % Make sure we're working with an AnalogSignal
+            if ~isa(iSig, 'AnalogSignal')
+                error('First input to samplehold must be an AnalogSignal')
+            end
+            
+            oSig = iSig;
+            T = iSig.timeBase(end);
+            % Create sample values by interpolating input values at the
+            % sample times.
+            t_sample = [0:h:T];
+            y_sample = interp1(oSig.timeBase, oSig.signal, ...
+                t_sample, 'linear');
+            mm = length(t_sample);
+            curOutputNum = 1;
+            for m = 1:mm-1     % For each sample value
+                % Figure out which values in the output signal should be
+                % set to the current sampled value
+                outputIndices = find(oSig.timeBase(curOutputNum:end) < t_sample(m+1));
+                outputIndices = outputIndices + curOutputNum - 1;
+                oSig.signal(outputIndices) = y_sample(m);
+                curOutputNum = outputIndices(end) + 1;
+            end
+            % If the final sample in the sampled signal does not extend beyond
+            % the end of the output signal, then set those values in the output
+            % signal
+            outputIndices = find(oSig.timeBase(curOutputNum:end) <= t_sample(end));
+            if ~isempty(outputIndices)
+                outputIndices = outputIndices + curOutputNum - 1;
+                oSig.signal(outputIndices) = y_sample(m);
+            end
+        end
+    end
+    
 end
 
