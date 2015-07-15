@@ -1,0 +1,31 @@
+
+<applet CODE="JDsp.class" width="400" height="250" CodeBase="http://jdsp.asu.edu/JDSP">
+
+<param name="numCommand" value="13">
+
+<!-- START PARTS -->
+<param name="0" value="B0-pzplace(0175,0140)">
+<param name="1" value="B1-plot(0275,0080)">
+<param name="2" value="B2-filter(0175,0080)">
+<param name="3" value="B3-siggen(0075,0080)">
+<!-- END PARTS -->
+
+<!-- START CONNECTIONS -->
+<param name="4" value="C-3-4-2-0">
+<param name="5" value="C-0-3-2-2">
+<param name="6" value="C-2-4-1-0">
+<!-- END CONNECTIONS -->
+
+<!-- START OPEN DIALOGS -->
+<param name="7" value="O-0">
+<param name="8" value="O-1">
+<!-- END OPEN DIALOGS -->
+
+<!-- START PART PARAMATERS. * DO NOT MODIFY! * -->
+<param name="9" value="P0~3,1,0,1,0,3,1,0,1,0,3,1,0,1,0,3,1,0,1,0,3,1,0,1,0,~0.0,0.0,0.5000000000000001,0.8660254037844386,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,~a,~~">
+<param name="10" value="P1~~~b,disc.,Amplitude,linear,~true,~">
+<param name="11" value="P2~0,~~c,~~">
+<param name="12" value="P3~20,10,0,~1.0,0.9,0.0,0.2,~d,Delta,No,null,~~">
+<!-- END PART PARAMATERS -->
+
+</applet>

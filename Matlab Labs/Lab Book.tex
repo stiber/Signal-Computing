@@ -1,0 +1,160 @@
+% -*-LaTeX-*-
+
+\documentclass[12pt]{article}
+
+\newif\ifHtml
+\Htmlfalse
+
+\newif\ifPDF
+\PDFtrue
+
+\ifHtml
+  \PDFfalse
+  \usepackage[tex4ht,colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,pdftitle={Signal Computing: Digital Signals in the Software Domain}]{hyperref}
+  \hyperlinkfileprefix{}
+\else
+  \ifPDF
+    \usepackage[pdftex,pdftitle={Signal Computing: Digital Signals in the Software Domain},colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,bookmarks,bookmarksopen]{hyperref}
+    \usepackage{fullpage}
+  \else
+    \usepackage{hyperref}
+    \usepackage{mathptmx,helvet,courier,fullpage}
+  \fi
+\fi
+
+
+\usepackage{fullpage,graphicx,algorithmic,multirow,rotating}
+\usepackage{listings}
+\lstset{language=C,basicstyle=\small}
+
+%\usepackage{html}
+%\usepackage{algorithm}
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage}
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
+
+% Superscripts outside math mode
+\newcommand{\spscript}[2]{\mbox{#1}$^\mathrm{#2}$}
+
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.9}
+\newcommand{\block}[1]{\textbf{\itshape #1}}
+\newcommand{\menu}[1]{\textbf{#1}}
+\newcommand{\button}[1]{[#1]}
+\newcommand{\option}[1]{``#1''}
+
+% XMP include for Creative Commons
+\usepackage{xmpincl}
+\includexmp{metadata}
+
+% Fancy page headings
+\usepackage{fancyhdr}
+\setlength{\headheight}{15pt}
+
+\fancyhf{} % clear all header and footer fields
+\fancyfoot[L]{Signal Computing}
+\fancyfoot[R]{Laboratory Manual}
+\fancyhead[L]{\slshape\leftmark}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancypagestyle{plain}{%
+\fancyhf{} % clear all header and footer fields
+\fancyfoot[L]{Signal Computing}
+\fancyfoot[R]{Laboratory Manual}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}}
+
+\pagestyle{fancy}
+
+% Math and logic
+\usepackage{amsmath}
+\usepackage{mathtools}
+\newcommand{\pred}[1]{\ensuremath{\textit{#1}}}
+\newcommand{\const}[1]{\ensuremath{\textsf{#1}}}
+\newcommand{\deriv}[2]{\ensuremath{\frac{\mathrm{d} #1}{\mathrm{d} #2}}}
+\newcommand{\derivin}[2]{\ensuremath{{\mathrm{d} #1}/{\mathrm{d} #2}}}
+\newcommand{\sderiv}[2]{\ensuremath{\frac{\mathrm{d}^{2} #1}{\mathrm{d} #2^{2}}}}
+\newcommand{\nderiv}[3]{\ensuremath{\frac{d^{#3} #1}{d #2^{#3}}}}
+\newcommand{\pderiv}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
+\newcommand{\spderiv}[2]{\ensuremath{\frac{\partial^2 #1}{\partial #2^{2}}}}
+\newcommand{\pderivin}[2]{\ensuremath{{\partial #1}/{\partial #2}}}
+\newcommand{\spderivin}[2]{\ensuremath{{\partial^2 #1}/{\partial #2^{2}}}}
+\newcommand{\transpose}{\ensuremath{^{\mathsf{T}}}}
+\DeclareMathOperator{\Real}{Re}
+\DeclareMathOperator{\Imag}{Im}
+\DeclareMathOperator{\sinc}{sinc}
+
+\newcommand{\commentedout}[1]{}
+
+\title{Signal Computing: Digital Signals in the Software
+  Domain\\[2\parskip]
+Laboratory Manual}
+
+\author{Michael Stiber \and Bilin Stiber \and Eric C. Larson}
+
+% \date{August 2014}
+
+\begin{document}
+
+\begin{titlepage}
+
+\mbox{}\\[0.5in]
+\begin{center}
+\mbox{}\hrulefill\mbox{}\\[0.25in]
+{\Huge Signal Computing:}\\[0.25in]
+{\LARGE Digital Signals in the Software Domain}\\[0.25in]
+\mbox{}\hrulefill\mbox{}\\[0.5in]
+{\Huge Laboratory Manual}\\[2.5in]
+
+\mbox{}\hfill
+\parbox{1.5in}{\mbox{}}
+\parbox{3in}{Fall 2014}\\[0.25in]
+\mbox{}\hfill
+\parbox{3in}{\raggedright
+Michael Stiber\\
+Bilin Zhang Stiber\\
+University of Washington Bothell\\
+18115 Campus Way NE\\
+Bothell, Washington 98011\\[0.25in]
+Eric C. Larson\\
+Southern Methodist University\\
+Lyle School of Engineering\\
+3145 Dyer Street\\
+Dallas, TX 75205}
+\end{center}
+
+\newpage
+\mbox{}\vspace{4in}
+\begin{flushright}
+Copyright \copyright\ 2002--2014 by Michael and Bilin Stiber and Eric
+C. Larson\\[2in]
+This work is licensed under the Creative Commons
+Attribution-ShareAlike 4.0 International License. To view a copy of
+this license, visit
+\url{http://creativecommons.org/licenses/by-sa/4.0/}.\\
+\includegraphics[height=1.5in]{by-sa}
+\end{flushright}
+
+\thispagestyle{empty}
+
+\end{titlepage}
+
+\tableofcontents
+
+\include{lab1/lab1}
+\include{lab2/lab2}
+\include{lab3/lab3}
+\include{lab4/lab4}
+\include{lab5/lab5}
+\include{lab6/lab6}
+\include{lab7/lab7}
+\include{lab8/lab8}
+\include{lab9/lab9}
+
+
+\end{document}
+% LocalWords:  MATLAB
