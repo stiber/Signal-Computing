@@ -1,6 +1,6 @@
 %&LaTeX
 
-\section{The Matlab Lab, or How Not to Teach a Programming Language}
+\section{The Matlab Lab, or How to Not Teach a Programming Language}
 
 Labs in this class will make liberal use of the Matlab numerical
 programming environment. Because this class assumes that you are an
@@ -15,7 +15,7 @@ include a very brief overview of Matlab below, and then more detailed
 information about the code developed specifically for this class that
 you will be using.
 
-\section{Matlab in a (Very Small) Nutshell}
+\subsection{Matlab in a (Very Small) Nutshell}
 \label{sc:basic-matlab}
 
 The Matlab GUI environment is very similar to IDEs that you are
@@ -130,17 +130,6 @@ Now write a statement that will replace the odd-indexed elements of
 \texttt{x} with the constant -77 (i.e., \texttt{x(1)},
 \texttt{x(3)}, etc). Use vector indexing and vector replacement.
 
-\ifanswers
-\textit{Answer:} \texttt{xx(1:2:length(xx)) = -77}. MATLAB allows
-assignment of a scalar to a vector; each element of the vector gets
-the same value. Note that you can write this more simply as:
-\begin{verbatim}
-   xx(1:2:end) = -77
-\end{verbatim}
-  The keyword \texttt{end}, in this context, indicates the final
-  index. It has some other meanings in other contexts; type
-  \texttt{help end} to find out about them.
-\fi
 
 \paragraph{Step 1.3} Vectorization is an essential programming
 skill in Matlab. Loops can be done in Matlab, but they are not the
@@ -201,14 +190,6 @@ command as a JPEG file named \texttt{step14.jpg} by typing:
 You should include all plots in your lab report, following the
 instructions in the report rubric.
 
-\ifanswers
-\textit{Answer:} The three lines of code should be something like:
-\begin{verbatim}
-   hold on;           % so that the new plot goes on top of the old
-   y = 0.5*cos(2*pi*f*t);
-   plot(t, y, 'r');   % Should add a new plot
-\end{verbatim}
-\fi
 
 \paragraph{Step 1.5} Now generate a tone (i.e., a sinusoid) in MATLAB
 and listen to it with the \texttt{sound} command. The frequency of
@@ -256,16 +237,84 @@ are summarized via \texttt{help relop}.
    end
 \end{verbatim}
 
-\ifanswers
-\textit{Answer:} Here's an example without the \texttt{for} loops (comments
-  eliminated for brevity's sake):
+
+\subsection{Trigonometric Functions and Complex Mathematics in Matlab}
+
+
+\paragraph{Step 2.1} In this step, you are asked to complete a MATLAB
+function to synthesize a waveform in the form of:
+\begin{equation*}
+x(t) = \sum_{k=1}^N \cos(2\pi f t + \phi_k)
+\end{equation*}
+This is a sum of cosines, all at the same frequency but with different
+phases.  Use the following function prototype to start you off:
 \begin{verbatim}
-   function Z = replacez(A)
-   Z = A;
-   Z(Z<0) = 77;
-   % Note: Z = (A .* (A>=0) + 77 .* (A<0)); would also work
+   function x = sumcos(f, phi, fs, dur)
+   %SUMCOS Function to synthesize a sum of cosine waves
+   % usage:
+   % x = sumcos(f, phi, fs, dur)
+   %     Returns the sum of cosines at a single frequency f, sampling
+   %     rate fs, and duration dur, each with a phase phi.
+   % f = frequency
+   % phi = vector of phases
+   % fs = the sampling rate in Hz
+   % dur = total time duration of signal
 \end{verbatim}
-\fi
+
+Include your code in your writeup. Additionally, include a plot of
+\texttt{x = sumcos(20, [0 pi/4 pi/2 3*pi/2], 200, 0.25);} versus
+time.
+
+Hint: the MATLAB \texttt{length} function is useful in determining the
+number of elements in a vector.
+
+
+\paragraph{Step 2.2} Now, let's see how complex exponentials can
+simplify things. Re-implement your \texttt{sumcos} function using
+complex exponentials. Take advantage of the fact that multiplying a
+complex sinusoid $e^{j2\pi f t}$ by $e^{j\phi}$ will shift its
+phase. Thus, you should be able to create a \emph{single} complex
+sinusoid at the given frequency \texttt{f} and then multiply it by
+\texttt{exp(j * phi)} to get multiple phase shifted cosines. Remember
+that we want a real value to plot; the cosine is the real part of a
+complex sinusoid. Include your code in your writeup.
+
+
+\paragraph{Step 2.3} Generate four sinusoids with the following
+amplitudes and phases:
+\begin{align}
+x_1(t) &= 5 \cos(2\pi(15)t +0.5\pi) \\
+x_2(t) &= 5 \cos(2\pi(15)t - 0.25\pi) \\
+x_3(t) &= 5 \cos(2\pi(15)t +0.4\pi) \\
+x_4(t) &= 5 \cos(2\pi(15)t - 0.9\pi) 
+\end{align}
+
+\begin{enumerate}\renewcommand{\theenumi}{\alph{enumi}}
+\item Make a single plot of all four signals together over a range of
+  $t$ that will exhibit approximately 3 cycles. Make sure the plot
+  includes negative time so that the phase at $t = 0$ can be
+  measured. In order to get a smooth plot make sure that your have at
+  least 20 samples per period of the wave. Include your plot in your
+  writeup.
+
+\item Verify that the phase of all four signals is correct at $t = 0$,
+  and also verify that each one has the correct maximum amplitude. Use
+  \texttt{subplot(3,2,i)} to make a six-panel subplot that puts all of
+  these plots on the same page, with space for two additional plots at
+  the bottom.
+
+\item Create the sum sinusoid,
+  $x_5(t)=x_1(t)+x_2(t)+x_3(t)+x_4(t)$. Make a plot of $x_5(t)$ over
+  the same range of time as used in the last plot. Include this as the
+  lower left panel in the plot by using
+  \texttt{subplot(3,2,5)}. Include your plot in your writeup (yes, one
+  panel of the figure isn't used).
+
+\item Now do some complex arithmetic; create the complex amplitudes
+  corresponding to the sinusoids $x_i(t)$: $z_i = A_ie^{j\phi_i}$,
+  $i=1,2,3,4,5$. Print out the $z_i$ in polar and rectangular form,
+  showing $A_i$, $\phi_i$, $\Real\{z_i\}$, and $\Imag\{z_i\}$.
+\end{enumerate}
 
 
 \subsection{Representing Analog, Discrete, and Digital Signals}
@@ -305,5 +354,4 @@ operations on these analog signals are:
 
 You will get a lot more experience working with analog signals shortly
 in this class, so for the time being just play with this a bit.
-
 
