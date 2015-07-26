@@ -111,50 +111,49 @@ Your code is now a function. MATLAB functions can take variable
 numbers of arguments and even return variable numbers of return
 values, but that's getting beyond what we need right now.
 
-\paragraph{Step 1.1} Extracting and/or inserting numbers in a
-vector is very easy to do. Consider the following definition:
+\paragraph{Step 1.1} It's easy to create, concatenate, extract, and modify
+vectors or parts of vectors. Execute the following lines of Matlab
+code and explain what each echoes out: 
 \begin{verbatim}
-   x = [ ones(1,4), [2:2:11], zeros(1,3) ]
-   x(3:7)
+   a = ones(1,3)
+   b = zeros(1,5)
+   x = [b, a, [1:2:12]]
+   x(7:end)
    length(x)
-   x(2:2:length(x))
+   x(1:2:12)
 \end{verbatim}
-Explain the result echoed from the last three lines of the above code.
+Also, explain the difference between the square bracket notation
+\verb|[1:2:12]| and the parenthetical notation \verb|(1:2:12)|.
 
-\paragraph{Step 1.2} In the previous step, the vector \texttt{x}
-contained 12 elements. Observe the result of the following assignment:
+\paragraph{Step 1.2} Consider the result of the following assignment:
 \begin{verbatim}
-   x(3:7) = pi*(1:5)
+   x(7:11) = pi*(1:5)
 \end{verbatim}
-Now write a statement that will replace the odd-indexed elements of
-\texttt{x} with the constant -77 (i.e., \texttt{x(1)},
-\texttt{x(3)}, etc). Use vector indexing and vector replacement.
+Write a \emph{single} statement that will replace the odd-indexed
+elements of \texttt{x} with the constant -10 (i.e., \texttt{x(1)},
+\texttt{x(3)}, etc).
 
 
-\paragraph{Step 1.3} Vectorization is an essential programming
-skill in Matlab. Loops can be done in Matlab, but they are not the
-most efficient way to get things done. It's better to avoid loops and
-use the vector notation instead. For example, the code below uses a
-loop to compute values of the sine function. Rewrite this computation
-without using the loop (as in list item~\ref{it:simple-plots} in
-this section).
+\paragraph{Step 1.3} One of the side benefits of learning Matlab is
+that it trains you to think in terms of parallel operations --- an
+increasingly important skill in a profession becoming dominated by
+multi-core, GPU, and distributed computing. That doesn't mean you
+can't write loops in Matlab; it's just that your code will be more
+concise and efficient if you can avoid that. The efficiency arises
+from the fact that the vectorized Matlab commands are mostly compiled;
+while the loops you write are interpreted. Consider the following loop:
 \begin{verbatim}
-   x = [ ];                  % initialize the x vector to a null
    for k=0:7,
-      x(k+1) = sin( k*pi/4 ) % x(0) would fail
+      x(k+1) = cos(k*pi/4);
    end
 x
 \end{verbatim}
-
-While thinking this way isn't essential in this course (the loop will
-still get the job done), it's probably a valuable skill to learn, as
-software moves more and more towards taking advantage of multiple
-processors. In this case, \texttt{[0:7]} creates a vector of the
-values we want, the scalar multiplication \texttt{*pi/4} generates the
-vector of inputs for the \texttt{sin()} function, and the function
-itself is vectorized (can take a vector as an input argument) and
-returns an equal-sized vector of its results, which are in turn
-assigned to \texttt{x}.}
+Why is \verb|x| indexed by \verb|k+1| rather than \verb|k|? What
+happens to the length of \verb|x| for each iteration of the loop?
+Rewrite this computation without using the loop (as in list
+item~\ref{it:simple-plots}). Besides the increase in efficiency from
+avoiding an interpreted loop, what other major efficiency results from
+this change?
 
 \paragraph{Step 1.4} Consider the following code that plots a
 sinusoid:
@@ -174,64 +173,60 @@ prompt. Note that you can also do:
    type firstsin   % prints out contents of the script
    which firstsin  % shows directory (useful when your code shadows built-ins)
 \end{verbatim}
+If you included documentation for this script (comments at the
+beginning), the command \verb|help firstsin| would also produce useful
+output.
 
 Add three lines of code to your script, so that it will plot a cosine
 on top of the sine in a different color. Use the \texttt{hold}
 function to add a plot of
 \begin{verbatim}
-   0.5*cos(2*pi*f*t)
+   0.75*cos(2*pi*f*t)
 \end{verbatim}
-to the plot. See \texttt{help hold} in MATLAB. Enter the three lines
-of code you added below. Save the plot using the MATLAB \texttt{print}
-command as a JPEG file named \texttt{step14.jpg} by typing:
+to the plot. Save the plot using the MATLAB \texttt{print} command as
+a JPEG file named \texttt{step14.jpg} by typing:
 \begin{verbatim}
-   print -djpeg step14
+   print -dpng step14
 \end{verbatim}
-You should include all plots in your lab report, following the
-instructions in the report rubric.
+You should include all plots and code snippets in your lab report,
+following the instructions in the report rubric.
 
 
-\paragraph{Step 1.5} Now generate a tone (i.e., a sinusoid) in MATLAB
-and listen to it with the \texttt{sound} command. The frequency of
-your tone should be 2 kHz and the duration should be 1 sec. The
-following lines of code should be saved in a file called
-\texttt{mysound.m} and run from the command line:
+\paragraph{Step 1.5} You can also use Matlab to generate sounds. A
+pure tone is merely a sinusoid, which you already know how to
+generate. Let's generate one with a frequency of 3 kHz and a duration
+of 1 second:
 \begin{verbatim}
-   dur = 1.0;
-   f = 2000;
+   T = 1.0;
+   f = 3000;
    fs = 8000;
-   t = [0 : (1/fs) : dur];
+   t = [0 : (1/fs) : T];
    x = sin(2*pi*f*t);
    sound(x, fs)
 \end{verbatim}
-The sound hardware will convert the vector of numbers \texttt{x} into
-a sound waveform at a certain rate, called the sampling rate (we will
+The vector of numbers \texttt{x} are converted into a sound waveform
+at a certain rate, \verb|fs|, called the \emph{sampling rate} (we will
 learn a lot more about this in this class). In this case, the sampling
-rate is 8000 samples/second, but other values might be used depending
-on the capability of sound hardware. What is the length of the vector
-\texttt{x}?
+rate was set to 8000 samples/second. What is the length of
+the vector \texttt{x}?
 
 \paragraph{Step 1.6} Write a new function that performs the same task
-as the following function without using a \texttt{for} loop. Use the
-idea in step~1.3 and also consult the section on vector logicals in
-the MATLAB documentation. In addition, the MATLAB logical operators
-are summarized via \texttt{help relop}.
+as the following function without using any loops. Use the idea in
+step~1.3 and also consult the section on the \verb|find| function,
+relational operators, and vector logicals in the MATLAB documentation.
 \begin{verbatim}
-   function Z = replacez(A)
-   %REPLACEZ Function that replaces the negative elements
-   % of a matrix with the number 77
-   % usage:
-   % Z = replacez(A)
-   % A = input matrix whose negative elements are to
-   % be replaced with 77
+   function B = denegify(A)
+   % DENEGIFY Replace negative elements of matrix with zeros
+   % Usage:
+   %    B = denegify(A)
    %
-   [M,N] = size(A);
-   for i=1:M
-      for j=1:N
+   [W,H] = size(A);
+   for i=1:W
+      for j=1:H
          if A(i,j) < 0
-            Z(i,j) = 77;
+            B(i,j) = 0;
          else
-            Z(i,j) = A(i,j);
+            B(i,j) = A(i,j);
          end
       end
    end
@@ -241,7 +236,7 @@ are summarized via \texttt{help relop}.
 \subsection{Trigonometric Functions and Complex Mathematics in Matlab}
 
 
-\paragraph{Step 2.1} In this step, you are asked to complete a MATLAB
+\paragraph{Step 2.1} In this step, you are asked to complete a Matlab
 function to synthesize a waveform in the form of:
 \begin{equation*}
 x(t) = \sum_{k=1}^N \cos(2\pi f t + \phi_k)
@@ -250,22 +245,22 @@ This is a sum of cosines, all at the same frequency but with different
 phases.  Use the following function prototype to start you off:
 \begin{verbatim}
    function x = sumcos(f, phi, fs, dur)
-   %SUMCOS Function to synthesize a sum of cosine waves
-   % usage:
-   % x = sumcos(f, phi, fs, dur)
-   %     Returns the sum of cosines at a single frequency f, sampling
-   %     rate fs, and duration dur, each with a phase phi.
-   % f = frequency
-   % phi = vector of phases
-   % fs = the sampling rate in Hz
-   % dur = total time duration of signal
+   % SUMCOS Synthesize a sum of cosine waves
+   % Usage:
+   %    x = sumcos(f, phi, fs, dur)
+   %        Returns sum of cosines at a single frequency f, sampling
+   %        rate fs, and duration dur, each with a phase phi.
+   %    f = frequency (scalar)
+   %    phi = vector of phases
+   %    fs = the sampling rate in Hz (scalar)
+   %    dur = total time duration of signal (scalar)
 \end{verbatim}
 
 Include your code in your writeup. Additionally, include a plot of
 \texttt{x = sumcos(20, [0 pi/4 pi/2 3*pi/2], 200, 0.25);} versus
 time.
 
-Hint: the MATLAB \texttt{length} function is useful in determining the
+Hint: the MATLAB \verb|length| function is useful in determining the
 number of elements in a vector.
 
 
@@ -277,21 +272,23 @@ phase. Thus, you should be able to create a \emph{single} complex
 sinusoid at the given frequency \texttt{f} and then multiply it by
 \texttt{exp(j * phi)} to get multiple phase shifted cosines. Remember
 that we want a real value to plot; the cosine is the real part of a
-complex sinusoid. Include your code in your writeup.
+complex sinusoid. Include your code in your writeup and provide a plot
+that demonstrates that this function produces the same result as the
+original implementation.
 
 
 \paragraph{Step 2.3} Generate four sinusoids with the following
 amplitudes and phases:
 \begin{align}
-x_1(t) &= 5 \cos(2\pi(15)t +0.5\pi) \\
-x_2(t) &= 5 \cos(2\pi(15)t - 0.25\pi) \\
-x_3(t) &= 5 \cos(2\pi(15)t +0.4\pi) \\
-x_4(t) &= 5 \cos(2\pi(15)t - 0.9\pi) 
+x_1(t) &= 6 \cos(2\pi(10)t - 0.5\pi) \\
+x_2(t) &= 3 \cos(2\pi(10)t + 0.25\pi) \\
+x_3(t) &= 2 \cos(2\pi(10)t - 0.3\pi) \\
+x_4(t) &= 8 \cos(2\pi(10)t + 0.9\pi) 
 \end{align}
 
 \begin{enumerate}\renewcommand{\theenumi}{\alph{enumi}}
 \item Make a single plot of all four signals together over a range of
-  $t$ that will exhibit approximately 3 cycles. Make sure the plot
+  $t$ that will generate approximately 3 cycles. Make sure the plot
   includes negative time so that the phase at $t = 0$ can be
   measured. In order to get a smooth plot make sure that your have at
   least 20 samples per period of the wave. Include your plot in your
@@ -299,21 +296,24 @@ x_4(t) &= 5 \cos(2\pi(15)t - 0.9\pi)
 
 \item Verify that the phase of all four signals is correct at $t = 0$,
   and also verify that each one has the correct maximum amplitude. Use
-  \texttt{subplot(3,2,i)} to make a six-panel subplot that puts all of
-  these plots on the same page, with space for two additional plots at
-  the bottom.
+  \verb|subplot(3,2,i)| to make a six-panel subplot that puts all of
+  these plots in the same figure, with space for two additional plots
+  at the bottom. Use the \verb|xlabel|, \verb|ylabel|, and
+  \verb|title| functions so that the reader can figure out what the
+  plots mean; reinforce this with your report's figure caption. (You
+  should include the final figure, with all subplots, that results
+  from finishing all of the parts of this step.)
 
 \item Create the sum sinusoid,
-  $x_5(t)=x_1(t)+x_2(t)+x_3(t)+x_4(t)$. Make a plot of $x_5(t)$ over
-  the same range of time as used in the last plot. Include this as the
-  lower left panel in the plot by using
-  \texttt{subplot(3,2,5)}. Include your plot in your writeup (yes, one
-  panel of the figure isn't used).
+  $x_5(t)=x_1(t)+x_2(t)+x_3(t)+x_4(t)$. Plot $x_5(t)$ over the same
+  range of time as used in the last plot. Include this as the lower
+  left panel in the plot by using \verb|subplot(3,2,5)|.
 
 \item Now do some complex arithmetic; create the complex amplitudes
   corresponding to the sinusoids $x_i(t)$: $z_i = A_ie^{j\phi_i}$,
-  $i=1,2,3,4,5$. Print out the $z_i$ in polar and rectangular form,
-  showing $A_i$, $\phi_i$, $\Real\{z_i\}$, and $\Imag\{z_i\}$.
+  $i=1,2,3,4,5$. Include a table in your report of the $z_i$ in polar
+  and rectangular form, showing $A_i$, $\phi_i$, $\Real\{z_i\}$, and
+  $\Imag\{z_i\}$.
 \end{enumerate}
 
 
@@ -338,10 +338,11 @@ hiding and make-believe.
 
 Information hiding is used in our implementation of analog signals. We
 make use of the object-oriented programming aspects of Matlab to
-create an \texttt{AnalogSignal} class. If you look up the documentation
-for \texttt{AnalogSignal} (using \texttt{doc AnalogSignal}), you'll
-see something like figure~\ref{fg:analogsignal-help}. The key
-operations on these analog signals are:
+create an \texttt{AnalogSignal} class. If you look up the
+documentation for \texttt{AnalogSignal} (using \verb|doc
+AnalogSignal|), you'll see something like
+figure~\ref{fg:analogsignal-help}. The key operations on these analog
+signals are:
 \begin{itemize}
 \item Creating an analog signal (ex: \texttt{a =
     AnalogSignal('sawtooth', 2.0, 1.0, 10.0)}).
