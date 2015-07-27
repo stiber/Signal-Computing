@@ -5,7 +5,7 @@ function discreteplot(x)
 % where:
 %   x = discrete or digital signal
 %
-% This function produces a 1D line plot of the provided descrete or digital
+% This function produces a 1D line plot of the provided discrete or digital
 % signal in a "stairstep" fashion. In other words, each value in x (which
 % is a y coordinate of the plotted point (n, x)) is connected by a straight
 % line to the same y value at the next sample number (n+1, x), and then by

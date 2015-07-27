@@ -184,7 +184,7 @@ function to add a plot of
    0.75*cos(2*pi*f*t)
 \end{verbatim}
 to the plot. Save the plot using the MATLAB \texttt{print} command as
-a JPEG file named \texttt{step14.jpg} by typing:
+a PNG file named \texttt{step14.png} by typing:
 \begin{verbatim}
    print -dpng step14
 \end{verbatim}
@@ -239,19 +239,21 @@ relational operators, and vector logicals in the MATLAB documentation.
 \paragraph{Step 2.1} In this step, you are asked to complete a Matlab
 function to synthesize a waveform in the form of:
 \begin{equation*}
-x(t) = \sum_{k=1}^N \cos(2\pi f t + \phi_k)
+x(t) = \sum_{k=1}^N a_i\cos(2\pi f t + \phi_k)
 \end{equation*}
 This is a sum of cosines, all at the same frequency but with different
-phases.  Use the following function prototype to start you off:
+phases and amplitudes.  Use the following function prototype to start you off:
 \begin{verbatim}
-   function x = sumcos(f, phi, fs, dur)
+   function x = sumcos(f, phi, a, fs, dur)
    % SUMCOS Synthesize a sum of cosine waves
    % Usage:
-   %    x = sumcos(f, phi, fs, dur)
+   %    x = sumcos(f, phi, a, fs, dur)
    %        Returns sum of cosines at a single frequency f, sampling
-   %        rate fs, and duration dur, each with a phase phi.
+   %        rate fs, and duration dur, each with a phase phi and
+   %        amplitude a.
    %    f = frequency (scalar)
    %    phi = vector of phases
+   %    a = vector of amplitudes
    %    fs = the sampling rate in Hz (scalar)
    %    dur = total time duration of signal (scalar)
 \end{verbatim}
@@ -261,19 +263,21 @@ Include your code in your writeup. Additionally, include a plot of
 time.
 
 Hint: the MATLAB \verb|length| function is useful in determining the
-number of elements in a vector.
+number of elements in a vector; the \verb|size| function returns both
+dimensions of a vector or an array.
 
 
 \paragraph{Step 2.2} Now, let's see how complex exponentials can
 simplify things. Re-implement your \texttt{sumcos} function using
 complex exponentials. Take advantage of the fact that multiplying a
-complex sinusoid $e^{j2\pi f t}$ by $e^{j\phi}$ will shift its
-phase. Thus, you should be able to create a \emph{single} complex
-sinusoid at the given frequency \texttt{f} and then multiply it by
-\texttt{exp(j * phi)} to get multiple phase shifted cosines. Remember
-that we want a real value to plot; the cosine is the real part of a
-complex sinusoid. Include your code in your writeup and provide a plot
-that demonstrates that this function produces the same result as the
+complex sinusoid $e^{j2\pi f t}$ by the complex amplitude
+$a_ie^{j\phi}$ will shift its phase and change its amplitude. Thus,
+you should be able to create a \emph{single} complex sinusoid at the
+given frequency \texttt{f} and then multiply it by different \texttt{a
+  * exp(j * phi)} to get multiple phase shifted cosines. Remember that
+we want a real value to plot; the cosine is the real part of a complex
+sinusoid. Include your code in your writeup and provide a plot that
+demonstrates that this function produces the same result as the
 original implementation.
 
 

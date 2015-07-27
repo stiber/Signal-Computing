@@ -100,42 +100,64 @@ classdef AnalogSignal
     
         % Operations on analog signals
         function oSig = plus(iSig1, iSig2)
-            % PLUS operator to add two analog signals
+            % PLUS operator to add two analog signals or an analog signal
+            %      and a scalar
             %   C = A + B
+            %   C = A + n
                         
-            if ~isa(iSig1, 'AnalogSignal') || ~isa(iSig2, 'AnalogSignal')
-                error('Both inputs to sum must be AnalogSignals')
+            if ~isa(iSig1, 'AnalogSignal')
+                error('First input to sum must be an AnalogSignal')
+            end
+            if ~isa(iSig2, 'AnalogSignal') && ~isscalar(iSig2)
+                error('Second input to sum must either be an AnalogSignal or a scalar')
             end
             oSig = iSig1;
             
-            % If inputs are not of same length, pad shorter with zeros
-            if iSig2.duration > oSig.duration
-                oSig.timeBase = iSig2.timeBase;
-                oSig.signal = [oSig.signal, zeros(1, ...
-                    length(iSig2.signal) - length(oSig.signal))];
+            % Two different implementations, depending on type of second
+            % argument.
+            if isa(iSig2, 'AnalogSignal')
+                % If inputs are not of same length, pad shorter with zeros
+                if iSig2.duration > oSig.duration
+                    oSig.timeBase = iSig2.timeBase;
+                    oSig.signal = [oSig.signal, zeros(1, ...
+                        length(iSig2.signal) - length(oSig.signal))];
+                end
+                oSig.signal(1 : length(iSig2.signal)) = ...
+                    oSig.signal(1 : length(iSig2.signal)) + iSig2.signal;
+            else
+                oSig.signal = [oSig.signal] + iSig2;
             end
-            oSig.signal(1 : length(iSig2.signal)) = ...
-                oSig.signal(1 : length(iSig2.signal)) + iSig2.signal;
         end
         
         function oSig = minus(iSig1, iSig2)
-            % MINUS operator to subtract two analog signals
+            % MINUS operator to subtract two analog signals or an analog signal
+            %       and a scalar
             %   C = A - B
-                        
-            if ~isa(iSig1, 'AnalogSignal') || ~isa(iSig2, 'AnalogSignal')
-                error('Both inputs to difference must be AnalogSignals')
+            %   C = A - n
+            
+            if ~isa(iSig1, 'AnalogSignal')
+                error('First input to sum must be an AnalogSignal')
+            end
+            if ~isa(iSig2, 'AnalogSignal') && ~isscalar(iSig2)
+                error('Second input to sum must either be an AnalogSignal or a scalar')
             end
             oSig = iSig1;
             
-            % If inputs are not of same length, pad shorter with zeros
-            if iSig2.duration > oSig.duration
-                oSig.timeBase = iSig2.timeBase;
-                oSig.signal = [oSig.signal, zeros(1, ...
-                    length(iSig2.signal) - length(oSig.signal))];
+            % Two different implementations, depending on type of second
+            % argument.
+            if isa(iSig2, 'AnalogSignal')
+                % If inputs are not of same length, pad shorter with zeros
+                if iSig2.duration > oSig.duration
+                    oSig.timeBase = iSig2.timeBase;
+                    oSig.signal = [oSig.signal, zeros(1, ...
+                        length(iSig2.signal) - length(oSig.signal))];
+                end
+                oSig.signal(1 : length(iSig2.signal)) = ...
+                    oSig.signal(1 : length(iSig2.signal)) - iSig2.signal;
+            else
+                oSig.signal = [oSig.signal] - iSig2;
             end
-            oSig.signal(1 : length(iSig2.signal)) = ...
-                oSig.signal(1 : length(iSig2.signal)) - iSig2.signal;
-        end     
+        end
         
         function oSig = mtimes(iSig, n)
             % MTIMES operator to multiply analog signal by a scalar
@@ -162,11 +184,9 @@ classdef AnalogSignal
             % SAMPLEHOLD Perform a sample and hold function on an AnalogSignal
             % Usage:
             %  x = obj.samplehold(h)
-            % where  aSig = AnalogSignal
+            % where  obj = AnalogSignal
             %        h = hold time in sec
-            %        x = vector of samples (x[n], with the time axis n
-            %        being sample count, rather than seconds. One can
-            %        compute actual sample times as (n-1) * h
+            %        x = resultant sampled AnalogSignal
             
             % Make sure we're working with an AnalogSignal
             if ~isa(iSig, 'AnalogSignal')
@@ -225,8 +245,8 @@ classdef AnalogSignal
         function oSig = analogSamplehold(iSig, h)
             % SAMPLEHOLD Perform a sample and hold function on an AnalogSignal
             % Usage:
-            %  oSig = obj.samplehold(h)
-            % where  aSig = AnalogSignal
+            %  oSig = obj.analogSamplehold(h)
+            % where  obj = AnalogSignal
             %        h = hold time in sec
             %
             % This is a function that implements a sample and hold with an
