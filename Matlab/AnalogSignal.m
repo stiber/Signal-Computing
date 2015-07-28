@@ -180,6 +180,15 @@ classdef AnalogSignal
             plot(sig.timeBase, sig.signal, varargin{:})
         end
         
+        function soundsc(sig)
+            % SOUNDSC Autoscale and play AnalogSignal as sound.
+            %     sig.soundsc() is the same as SOUNDSC(Y,...) except that
+            %     the source data is within the AnalogSignal object and the
+            %     sampling rate is automatically set based on the
+            %     AnalogSignal time step
+            soundsc(sig.signal, 1/sig.analogTimeStep);
+        end
+        
         function x = samplehold(iSig, h)
             % SAMPLEHOLD Perform a sample and hold function on an AnalogSignal
             % Usage:

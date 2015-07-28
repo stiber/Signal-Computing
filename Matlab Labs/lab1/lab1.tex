@@ -337,14 +337,17 @@ hiding and make-believe.
 \begin{center}
 \includegraphics[width=0.75\textwidth]{lab1/AnalogSignal-help}
 \end{center}
-\caption{.\label{fg:analogsignal-help}}
+\caption{Example help screen for the \texttt{AnalogSignal}
+  class. This example may be out-of-date; use the Matlab
+  \texttt{doc AnalogSignal} command to get current
+  documentation.\label{fg:analogsignal-help}}
 \end{figure}
 
 Information hiding is used in our implementation of analog signals. We
 make use of the object-oriented programming aspects of Matlab to
 create an \texttt{AnalogSignal} class. If you look up the
-documentation for \texttt{AnalogSignal} (using \verb|doc
-AnalogSignal|), you'll see something like
+documentation for \texttt{AnalogSignal} (using
+\verb|doc AnalogSignal|), you'll see something like
 figure~\ref{fg:analogsignal-help}. The key operations on these analog
 signals are:
 \begin{itemize}
@@ -354,7 +357,7 @@ signals are:
 \item Adding two analog signals (ex: \texttt{c = a + b})
 \item Subtracting two analog signals (ex: \texttt{d = c - a})
 \item Plotting an analog signal (ex: \texttt{plot(d)})
-\item Sampling an analog signal (ex: texttt{x = d.samplehold(0.1)})
+\item Sampling an analog signal (ex: \texttt{x = d.samplehold(0.1)})
 \end{itemize}
 
 You will get a lot more experience working with analog signals shortly

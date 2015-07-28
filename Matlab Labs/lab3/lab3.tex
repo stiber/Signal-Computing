@@ -1,13 +1,97 @@
 %&LaTeX
 
-\section{Lab Title}
-
-Introduction text.
+\section{Hello, Digital!}
 
 
-\subsection{Part of Lab}
+\subsection{Sampling}
+
+The first step in digitization is \emph{sample and hold}, in which the
+continuous analog signal is converted to a discrete-time analog signal
+(an analog signal that only changes its value at particular points in
+time). You will use the \texttt{samplehold} method to do this:
+\begin{verbatim}
+% samplehold Perform a sample and hold function on an AnalogSignal
+% Usage:
+%  x = obj.samplehold(h)
+% where  obj = AnalogSignal
+%        h = hold time in sec (sampling interval)
+%        x = resultant sampled AnalogSignal
+\end{verbatim}
+
+\paragraph{Step 2.1} Create an analog sine waveform ranging from -5 to
+5V with a frequency of 200Hz and a duration of 2 seconds. Produce a
+plot with X-axis limits set to make the waveform visible (i.e., don't
+just make a 2s plot that tries (and fails) to show 400 cycles of the
+sinusoid.
+
+\paragraph{Step 2.2} Use the \texttt{samplehold} method to produce
+sampled versions of this signal at 300Hz, 500Hz, 1000Hz, and
+2000Hz. Use the Matlab \texttt{subplot} command, and the
+\texttt{discreteplot} function provided with this class's Matlab code,
+to plot the original and all four sampled signals together. Clearly,
+the results are not the same, and none look identical to the original
+sine wave. What are the two essential pieces of information about a
+sine wave that need to be preserved when sampling it? Does it appear
+that all sampled versions are equally useful in achieving this? Why or
+why not (in other words, your answer to this question should not be
+just ``yes'' or ``no'')?
 
 
-\paragraph{Step 1.1} Step are numbered (part.step number).
+\subsection{Analog to Digital Conversion}
+
+The last step of digitization is called ``analog to digital
+conversion,'' or \emph{quantization}. In this step, the sampled analog
+signal is converted to a discrete signal, with values represented by
+$b$ bit integers. We will use the \texttt{quant} function provided
+with this class's Matlab code to perform this conversion:
+\begin{verbatim}
+% QUANT Quantize a sampled (discrete) signal using a prescribed
+%       number of bits per point.
+% Usage:
+%  y = quant(x,nb,out)
+% where y = digital signal quantized to 2^(nb) bits resolution
+%       x = vertical points of sampled signal
+%       nb = number of bits to use per point
+%      out = 'raw' means output binary values: 0,...,2^(nb-1)
+%      otherwise, set ouput value range = input value range
+\end{verbatim}
+
+\paragraph{Step 3.1} Write a Matlab function that compares two signals
+by computing the \emph{signal to noise ratio} (SNR) that results from
+changing one into the other (by quantization). Your function should do
+this by first computing \emph{root mean squared} (RMS) error between
+the two. In this case, you will be comparing a sampled signal with a
+quantized version of it.  To do this, you should subtract the
+quantized signal from the sampled signal to produce a vector of
+differences (errors), then square each difference value using the
+MATLAB \verb|.^| operator (to get squared errors), then take the mean
+of these squared values using the MATLAB \verb|mean| function (mean
+squared error --- a scalar value), and finally take the square root of
+that scalar result (root mean squared error). We can compute the RMS
+signal in a similar way, by squaring the signal values, getting the
+mean of those squared values, and then taking the square root. The
+final result should be a single value --- the signal-to-noise ratio
+(SNR) in \emph{decibels}. What is in the numerator and what is in the
+denominator of this ratio? Note that this is different than what we
+did in the textbook, because we are now doing the computation for a
+\emph{specific} signal, not just figuring SNR for a possible
+\emph{range} of signal values.
 
 
+
+  \paragraph{Step 3.2} Use your code to compute the SNR for a
+  quantized sinusoid. Generate an analog signal with with a range of 0
+  to 5, frequency of 10Hz, and duration 2sec. Sample it at 25Hz. Use
+  2, 4, 8, 12, and 16 bits quantization, and plot SNR on the Y-axis
+  versus number of quantization bits on the X-axis.
+
+  \paragraph{Step 3.3} Repeat Step 3.2 using a square waveform with
+  the same parameters.
+
+  \paragraph{Step 3.4} Repeat Step 3.2 using a triangle waveform with
+  the same parameters.
+
+  \paragraph{Step 3.5} As you double the number of bits used in
+  quantization, how does the SNR change? How does this compare to what
+  your learned from the textbook? Refer to specific features of your
+  plots from Steps~3.2--3.4 to justify your answer.
