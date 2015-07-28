@@ -1,0 +1,103 @@
+%&LaTeX
+
+\section{Let's Get Physical}
+
+In this lab, you will use Matlab to explore how a physical signal can
+be considered to be composed of a sum of sinusoids --- its
+\emph{Fourier series}. You will then investigate how capturing this
+signal for computer use --- sampling and quantization --- modifies the
+signal. Finally, you will see how the choices you make in the
+parameters for sampling and quantization affect the quality of the
+digitized, computer signal. You will be using the Matlab
+\texttt{AnalogSignal} class and functions at
+\url{http://faculty.washington.edu/stiber/pubs/Signal-Computing/}.
+
+\subsection{Beating}
+
+In this section, you will use the Matlab \texttt{AnalogSignal} class
+to simulate an analog signal generator. The constructor takes the
+following arguments:
+\begin{verbatim}
+% AnalogSignal(type, amplitude, frequency, dur)
+%    Where:
+%    type = 'sine', 'cosine', 'square', 'sawtooth', or 'triangle'
+%    amplitude = signal amplitude
+%    frequency = signal frequency
+%    dur = signal duration
+\end{verbatim}
+
+Remember that, though an \texttt{AnalogSignal} is simulating an analog
+signal, in Matlab all functions are sampled at discrete points in
+time. The crufty details of this are hidden away in the class's
+implementation. Remember also that you can always plot an
+\texttt{AnalogSignal} to see what you have; include such figures in
+your report 
+
+\paragraph{Step 1.1} Verify that you can get a triangle wave. What is
+the code to generate and plot a triangle wave ranging from -1 to 1
+Volts with a frequency of 10Hz and a duration of 1sec?
+
+\paragraph{Step 1.2} Next, verify that you can generate a sine wave of
+1 second duration at a frequency of 440Hz, ranging from -1 to +1. Use
+the \texttt{AnalogSignal} \texttt{soundsc} method to play this as a
+sound. This pitch corresponds to ``standard A'' on a musical scale ---
+A above middle C. Use the Matlab \texttt{set(gca, 'XLim',
+  [\itshape{Xmin}, \itshape{Xmax}])} function call to set the X axis
+limits so that the waveform is apparent (i.e., you're not just
+plotting a solid blob).
+
+\paragraph{Step 1.3} Generate sine waves of identical range and
+duration, but with frequencies of 442, 444, and 448 Hz. Now, generate
+the sums of 440Hz and each of these new signals to generate beating
+akin to tuning an instrument against the 440Hz standard. Play each sum
+signal; can you hear the beating? Plot each sum signal for its full 1s
+duration. The beating ``envelope'' should be obvious. What is the beat
+frequency in each case? . How does this relate to the textbook
+discussion of beating?
+
+
+\subsection{Fourier series representation of a physical signal}
+
+
+\paragraph{Step 2.1} Recall that any periodic signal can be
+represented as a sum of harmonic sinusoids.  The amplitude of each
+harmonic is known as the Fourier Series. It may at first seem like
+sums of sinusoids would be poor approximations of real periodic
+signals, but this is not the case. We can illustrate this using a
+triangle wave. The formula for synthesis of a triangle wave with
+frequency $\omega_0$ is a sum of harmonically related sine waves (its
+Fourier series):
+  \[
+  x(t) = \sum_{k=0}^{\infty}
+  \left( 
+    \underbrace{ \frac{8}{\pi^2} \frac{(-1)^k}{(2k+ 1)^2} }_{ \text{amplitude} } 
+    \underbrace{ \sin((2k+1)\omega_0 t) }_{ (2k+1)^{th}\text{ harmonic} } 
+  \right)
+  \]
+  In this case, in the analog domain, we are dealing with frequencies
+  in Hz, and so $\omega_0 = 2\pi f_0$. Notice that the Fourier Series
+  of the triangle wave only uses odd harmonics (i.e., the only
+  non-zero frequencies are $(2k+1)\omega_0=\omega_0, 3\omega_0,
+  5\omega_0 \cdots$). Also notice that resulting wave will have zero
+  mean because there is no ``DC'' term (i.e., $2k+1 \neq 0$ for any
+  integer k).
+
+  Write a Matlab script that approximates a triangle wave by summing
+  together the first 7 harmonics of its Fourier series; plot the
+  resultant signal (i.e., use $f_0$, $2f_0$, $3f_0$, $\cdots 7f_0$,
+  where $f_0=$10 Hz). How does this signal compare to the triangle
+  wave computed directly in the previous step?
+
+
+
+\paragraph{Step 2.2} Another way to view a signal is in the
+\emph{frequency domain}. For a signal expressed in terms of its
+Fourier series, the frequency representation is merely the
+coefficients of the harmonics. Write a Matlab function or script to
+compute and plot the spectrum of a triangle wave. You may find the
+MATLAB function \texttt{stem} useful.  Note that you are \emph{not}
+being asked to plot the triangle wave as a function of time; you
+should plot the amplitudes of the component sinusoids as a function of
+those sinusoids' frequencies (like the vertical lines in textbook
+figure~1.12).  Use your code to plot the spectrum of the triangle wave
+from the previous step (first 7 harmonics).
