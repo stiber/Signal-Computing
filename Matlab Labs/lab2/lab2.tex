@@ -2,14 +2,11 @@
 
 \section{Let's Get Physical}
 
-In this lab, you will use Matlab to explore how a physical signal can
-be considered to be composed of a sum of sinusoids --- its
-\emph{Fourier series}. You will then investigate how capturing this
-signal for computer use --- sampling and quantization --- modifies the
-signal. Finally, you will see how the choices you make in the
-parameters for sampling and quantization affect the quality of the
-digitized, computer signal. You will be using the Matlab
-\texttt{AnalogSignal} class and functions at
+In this lab, you will use Matlab to explore the effects of summing
+sinusoids. You will then investigate how a physical signal can be
+considered to be composed of a sum of sinusoids --- its \emph{Fourier
+  series}. You will be using the Matlab \texttt{AnalogSignal} class
+and functions at
 \url{http://faculty.washington.edu/stiber/pubs/Signal-Computing/}.
 
 \subsection{Beating}
@@ -38,13 +35,13 @@ the code to generate and plot a triangle wave ranging from -1 to 1
 Volts with a frequency of 10Hz and a duration of 1sec?
 
 \paragraph{Step 1.2} Next, verify that you can generate a sine wave of
-1 second duration at a frequency of 440Hz, ranging from -1 to +1. Use
-the \texttt{AnalogSignal} \texttt{soundsc} method to play this as a
-sound. This pitch corresponds to ``standard A'' on a musical scale ---
-A above middle C. Use the Matlab \texttt{set(gca, 'XLim',
-  [\itshape{Xmin}, \itshape{Xmax}])} function call to set the X axis
-limits so that the waveform is apparent (i.e., you're not just
-plotting a solid blob).
+1 second duration at a frequency of 440Hz, ranging from -1 to +1. What
+is the Matlab code to do this? Use the \texttt{AnalogSignal}
+\texttt{soundsc} method to play this as a sound. This pitch
+corresponds to ``standard A'' on a musical scale --- A above middle
+C. Use the Matlab \texttt{set(gca, 'XLim', [\itshape{Xmin},
+  \itshape{Xmax}])} function call to set the X axis limits so that the
+waveform is apparent (i.e., you're not just plotting a solid blob).
 
 \paragraph{Step 1.3} Generate sine waves of identical range and
 duration, but with frequencies of 442, 444, and 448 Hz. Now, generate
@@ -52,8 +49,8 @@ the sums of 440Hz and each of these new signals to generate beating
 akin to tuning an instrument against the 440Hz standard. Play each sum
 signal; can you hear the beating? Plot each sum signal for its full 1s
 duration. The beating ``envelope'' should be obvious. What is the beat
-frequency in each case? . How does this relate to the textbook
-discussion of beating?
+frequency in each case? How does the beat frequency and amplitude
+relate to the textbook discussion of beating?
 
 
 \subsection{Fourier series representation of a physical signal}

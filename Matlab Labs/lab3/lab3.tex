@@ -2,6 +2,10 @@
 
 \section{Hello, Digital!}
 
+In this lab, you will investigate how capturing an analog signal for
+computer use --- sampling and quantization --- modifies the signal,
+seeing how the choices you make in the parameters for sampling and
+quantization affect the quality of the digitized, computer signal.
 
 \subsection{Sampling}
 
@@ -16,6 +20,12 @@ time). You will use the \texttt{samplehold} method to do this:
 % where  obj = AnalogSignal
 %        h = hold time in sec (sampling interval)
 %        x = resultant sampled AnalogSignal
+%
+% This function produces a 1D line plot of the provided discrete or digital
+% signal in a "stairstep" fashion. In other words, each value in x (which
+% is a y coordinate of the plotted point (n, x)) is connected by a straight
+% line to the same y value at the next sample number (n+1, x), and then by
+% a vertical line to the next sample value, (n+1, x+1).
 \end{verbatim}
 
 \paragraph{Step 2.1} Create an analog sine waveform ranging from -5 to
@@ -35,6 +45,38 @@ sine wave that need to be preserved when sampling it? Does it appear
 that all sampled versions are equally useful in achieving this? Why or
 why not (in other words, your answer to this question should not be
 just ``yes'' or ``no'')?
+
+\paragraph{Step 2.3} Let's look at aliasing in a little more detail
+and with a lot more numerical precision. You'll recall from the text
+that, once we sample a signal, we have limited the range of
+frequencies that we can represent in our discrete signal to the range
+$0 \leq \hat{\omega} \leq \pi/2$, corresponding to a range of apparent
+frequencies in the physical world of $0 \leq \omega' \leq \omega_s/2$
+(or $0 \leq f' \leq f_s/2$). Any frequency in the original signal
+above $f_s/2$ will be \emph{aliased} into the range of possible
+apparent frequencies. To keep things simple, we'll stick with a
+sinusoid; this time, make it 10Hz with an amplitude of -1 to +1 and a
+duration of 1s. This will make it easy to count cycles when
+plotted. Set up a figure that can hold three plots and plot this
+analog signal in the top plot.
+
+\paragraph{Step 2.4} Sample this signal at 25Hz and use the
+\texttt{discreteplot} function to plot the sampled signal in the
+middle. Sample it at 15Hz and similarly plot that sampled signal at
+the bottom.
+
+\paragraph{Step 2.5} Before examining the plots in detail, answer the
+following questions: For each of the two sampling frequencies, what is
+the range of apparent frequencies that can be represented? For each,
+will a sinusoid with $f = 10$Hz be aliased? If so, what will be the
+digital frequency and the apparent frequency of a 10Hz sinusoid?
+
+\paragraph{Step 2.6} Examine the plots and count the number of
+up-and-down cycles in each. Don't worry that each cycle doesn't look
+the same, or that every other cycle seems different; just count
+each. You should see 10 cycles in the top graph; how many do you see
+in the middle and bottom? How does this compare to the theory you
+discussed in the previous step? If there is any discrepancy, explain it.
 
 
 \subsection{Analog to Digital Conversion}

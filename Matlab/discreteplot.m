@@ -1,4 +1,4 @@
-function discreteplot(x)
+function discreteplot(y)
 % DISCRETEPLOT Plot a discrete/digital signal
 % Usage:
 %   discreteplot(x)
@@ -11,9 +11,13 @@ function discreteplot(x)
 % line to the same y value at the next sample number (n+1, x), and then by
 % a vertical line to the next sample value, (n+1, x+1).
 
-px = zeros(1, 2*length(x)-1);
-px(1:2:end) = x;
-px(2:2:end) = x(1:end-1);
-plot(px)
-
+py = zeros(1, 2*length(y)-1);
+py(1:2:end) = y;
+py(2:2:end) = y(1:end-1);
+px = zeros(size(py));
+px(1) = 1;
+px(2:2:end) = [2:length(y)];   % Arriving at a "new" point; increment x
+px(3:2:end) = [2:length(y)]; % Repeated point; don't increment (vertical)
+plot(px, py)
+set(gca, 'Xlim', [1 length(y)])
 end
