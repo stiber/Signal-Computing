@@ -13,7 +13,7 @@ The first step in digitization is \emph{sample and hold}, in which the
 continuous analog signal is converted to a discrete-time analog signal
 (an analog signal that only changes its value at particular points in
 time). You will use the \texttt{samplehold} method to do this:
-\begin{verbatim}
+\begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
 % samplehold Perform a sample and hold function on an AnalogSignal
 % Usage:
 %  x = obj.samplehold(h)
@@ -26,7 +26,7 @@ time). You will use the \texttt{samplehold} method to do this:
 % is a y coordinate of the plotted point (n, x)) is connected by a straight
 % line to the same y value at the next sample number (n+1, x), and then by
 % a vertical line to the next sample value, (n+1, x+1).
-\end{verbatim}
+\end{lstlisting}
 
 \paragraph{Step 2.1} Create an analog sine waveform ranging from -5 to
 5V with a frequency of 200Hz and a duration of 2 seconds. Produce a
@@ -86,7 +86,7 @@ conversion,'' or \emph{quantization}. In this step, the sampled analog
 signal is converted to a discrete signal, with values represented by
 $b$ bit integers. We will use the \texttt{quant} function provided
 with this class's Matlab code to perform this conversion:
-\begin{verbatim}
+\begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
 % QUANT Quantize a sampled (discrete) signal using a prescribed
 %       number of bits per point.
 % Usage:
@@ -96,7 +96,7 @@ with this class's Matlab code to perform this conversion:
 %       nb = number of bits to use per point
 %      out = 'raw' means output binary values: 0,...,2^(nb-1)
 %      otherwise, set ouput value range = input value range
-\end{verbatim}
+\end{lstlisting}
 
 \paragraph{Step 3.1} Write a Matlab function that compares two signals
 by computing the \emph{signal to noise ratio} (SNR) that results from

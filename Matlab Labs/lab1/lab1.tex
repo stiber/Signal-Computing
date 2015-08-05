@@ -50,51 +50,55 @@ compiled code.
 Here are some things to try:
 \begin{enumerate}
 \item Immediate calculations and variables:
-\begin{verbatim}
-   radius = 5    % Comments start with "%"
-   circumference = 2 * pi * radius
-   area = pi * radius^2
-\end{verbatim}
+\begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
+radius = 5    % Comments start with "%"
+circumference = 2 * pi * radius
+area = pi * radius^2
+\end{lstlisting}
 \item Complex numbers:
-\begin{verbatim}
-   sqrt(-1)
-   x = 7 + 14j
-   conj(x)       % complex conjugate
-   abs(x)        % magnitude (e.g., for polar representation)
-   angle(x)      % and angle for polar rep
-   real(x)
-   imag(x)
-\end{verbatim}
+\begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
+sqrt(-1)
+x = 7 + 14j
+conj(x)       % complex conjugate
+abs(x)        % magnitude (e.g., for polar representation)
+angle(x)      % and angle for polar rep
+real(x)
+imag(x)
+\end{lstlisting}
+
 \item Complex exponentials:
-\begin{verbatim}
-   exp(j * pi)
-   exp(j * pi/2)
-   exp(j * pi/4)
-\end{verbatim}
+\begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
+exp(j * pi)
+exp(j * pi/2)
+exp(j * pi/4)
+\end{lstlisting}
+
 \item Vectors:
-\begin{verbatim}
-   v1 = [0 1 2 3]    % Four elements
-   v2 = [0 : 2 : 10] % like a loop (start value : increment : end value)
-   v3 = pi * [-0.5 -0.25 0 0.25 0.5] % All operations are vectorized
-   exp(j * v3)
-   mistake = v1 * v1     % a mistake; vector mult doesn't work this way
-   dotproduct = v1 * v1' % transposing will work, if you want to do this
-   arrayprod = v1 .* v1  % element-by-element ops include: .+, .-, .*, ./
-\end{verbatim}
+\begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
+v1 = [0 1 2 3]    % Four elements
+v2 = [0 : 2 : 10] % like a loop (start value : increment : end value)
+v3 = pi * [-0.5 -0.25 0 0.25 0.5] % All operations are vectorized
+exp(j * v3)
+mistake = v1 * v1     % a mistake; vector mult doesn't work this way
+dotproduct = v1 * v1' % transposing will work, if you want to do this
+arrayprod = v1 .* v1  % element-by-element ops include: .+, .-, .*, ./
+\end{lstlisting}
+
 \item Simple plots (note that ``;'' suppresses outputting results to
   the command window --- useful if that would generate massive amounts
   of text, or just if you want things neat):
 \label{it:simple-plots}
-\begin{verbatim}
-   t = [0 : 0.01 : 2*pi];
-   x = sin(t);
-   plot(t, x);       % default plots points connected by lines in blue
-   plot(t, x, 'r');  % change the line color
-   plot(t, x, 'r.'); % change the plot style; zoom in to see individual points
-   xlabel('t, ms');  % X axis label (all of your plots should have this)
-   ylabel('Mag');    % Y axis label (all of your plots should have this)
-   title('Triangle');% Graph title (all of your plots should have this)
-\end{verbatim}
+\begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
+t = [0 : 0.01 : 2*pi];
+x = sin(t);
+plot(t, x);       % default plots points connected by lines in blue
+plot(t, x, 'r');  % change the line color
+plot(t, x, 'r.'); % change the plot style; zoom in to see individual points
+xlabel('t, ms');  % X axis label (all of your plots should have this)
+ylabel('Mag');    % Y axis label (all of your plots should have this)
+title('Triangle');% Graph title (all of your plots should have this)
+\end{lstlisting}
+
 \end{enumerate}
 
 If you take a sequence of commands and save them in a file with an
@@ -104,9 +108,10 @@ execute the script by just typing its name (without the \texttt{.m}),
 just as if it were a command. If you want your code to take
 parameters, return a return value, and have local variables, start
 your code with a line like:
-\begin{verbatim}
-   function retval = funcname(parm1, parm2)
-\end{verbatim}
+\begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
+function retval = funcname(parm1, parm2)
+\end{lstlisting}
+
 Your code is now a function. MATLAB functions can take variable
 numbers of arguments and even return variable numbers of return
 values, but that's getting beyond what we need right now.
@@ -114,21 +119,23 @@ values, but that's getting beyond what we need right now.
 \paragraph{Step 1.1} It's easy to create, concatenate, extract, and modify
 vectors or parts of vectors. Execute the following lines of Matlab
 code and explain what each echoes out: 
-\begin{verbatim}
-   a = ones(1,3)
-   b = zeros(1,5)
-   x = [b, a, [1:2:12]]
-   x(7:end)
-   length(x)
-   x(1:2:12)
-\end{verbatim}
+\begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
+a = ones(1,3)
+b = zeros(1,5)
+x = [b, a, [1:2:12]]
+x(7:end)
+length(x)
+x(1:2:12)
+\end{lstlisting}
+
 Also, explain the difference between the square bracket notation
 \verb|[1:2:12]| and the parenthetical notation \verb|(1:2:12)|.
 
 \paragraph{Step 1.2} Consider the result of the following assignment:
-\begin{verbatim}
-   x(7:11) = pi*(1:5)
-\end{verbatim}
+\begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
+x(7:11) = pi*(1:5)
+\end{lstlisting}
+
 Write a \emph{single} statement that will replace the odd-indexed
 elements of \texttt{x} with the constant -10 (i.e., \texttt{x(1)},
 \texttt{x(3)}, etc).
@@ -142,12 +149,13 @@ can't write loops in Matlab; it's just that your code will be more
 concise and efficient if you can avoid that. The efficiency arises
 from the fact that the vectorized Matlab commands are mostly compiled;
 while the loops you write are interpreted. Consider the following loop:
-\begin{verbatim}
-   for k=0:7,
-      x(k+1) = cos(k*pi/4);
-   end
+\begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
+for k=0:7,
+   x(k+1) = cos(k*pi/4);
+end
 x
-\end{verbatim}
+\end{lstlisting}
+
 Why is \verb|x| indexed by \verb|k+1| rather than \verb|k|? What
 happens to the length of \verb|x| for each iteration of the loop?
 Rewrite this computation without using the loop (as in list
@@ -157,22 +165,24 @@ this change?
 
 \paragraph{Step 1.4} Consider the following code that plots a
 sinusoid:
-\begin{verbatim}
-   t = [0 : 0.01 : 1]; % time in seconds
-   f = 5;              % freq in Hertz
-   x = sin(2*pi*f*t);
-   plot(t, x);
-   xlabel('Time (sec)');
-\end{verbatim}
+\begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
+t = [0 : 0.01 : 1]; % time in seconds
+f = 5;              % freq in Hertz
+x = sin(2*pi*f*t);
+plot(t, x);
+xlabel('Time (sec)');
+\end{lstlisting}
+
 Use the MATLAB editor to create a script file called
 \texttt{firstsin.m}, verify that you've saved it in a directory in the
 MATLAB path (or add that directory to the path), and test its
 execution by typing \texttt{firstsin} at the MATLAB command
 prompt. Note that you can also do:
-\begin{verbatim}
-   type firstsin   % prints out contents of the script
-   which firstsin  % shows directory (useful when your code shadows built-ins)
-\end{verbatim}
+\begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
+type firstsin   % prints out contents of the script
+which firstsin  % shows directory (useful when your code shadows built-ins)
+\end{lstlisting}
+
 If you included documentation for this script (comments at the
 beginning), the command \verb|help firstsin| would also produce useful
 output.
@@ -180,14 +190,16 @@ output.
 Add three lines of code to your script, so that it will plot a cosine
 on top of the sine in a different color. Use the \texttt{hold}
 function to add a plot of
-\begin{verbatim}
-   0.75*cos(2*pi*f*t)
-\end{verbatim}
+\begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
+0.75*cos(2*pi*f*t)
+\end{lstlisting}
+
 to the plot. Save the plot using the MATLAB \texttt{print} command as
 a PNG file named \texttt{step14.png} by typing:
-\begin{verbatim}
-   print -dpng step14
-\end{verbatim}
+\begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
+print -dpng step14
+\end{lstlisting}
+
 You should include all plots and code snippets in your lab report,
 following the instructions in the report rubric.
 
@@ -196,14 +208,15 @@ following the instructions in the report rubric.
 pure tone is merely a sinusoid, which you already know how to
 generate. Let's generate one with a frequency of 3 kHz and a duration
 of 1 second:
-\begin{verbatim}
-   T = 1.0;
-   f = 3000;
-   fs = 8000;
-   t = [0 : (1/fs) : T];
-   x = sin(2*pi*f*t);
-   sound(x, fs)
-\end{verbatim}
+\begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
+T = 1.0;
+f = 3000;
+fs = 8000;
+t = [0 : (1/fs) : T];
+x = sin(2*pi*f*t);
+soundsc(x, fs)
+\end{lstlisting}
+
 The vector of numbers \texttt{x} are converted into a sound waveform
 at a certain rate, \verb|fs|, called the \emph{sampling rate} (we will
 learn a lot more about this in this class). In this case, the sampling
@@ -214,23 +227,24 @@ the vector \texttt{x}?
 as the following function without using any loops. Use the idea in
 step~1.3 and also consult the section on the \verb|find| function,
 relational operators, and vector logicals in the MATLAB documentation.
-\begin{verbatim}
-   function B = denegify(A)
-   % DENEGIFY Replace negative elements of matrix with zeros
-   % Usage:
-   %    B = denegify(A)
-   %
-   [W,H] = size(A);
-   for i=1:W
-      for j=1:H
-         if A(i,j) < 0
-            B(i,j) = 0;
-         else
-            B(i,j) = A(i,j);
-         end
+\begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
+function B = denegify(A)
+% DENEGIFY Replace negative elements of matrix with zeros
+% Usage:
+%    B = denegify(A)
+%
+[W,H] = size(A);
+for i=1:W
+   for j=1:H
+      if A(i,j) < 0
+         B(i,j) = 0;
+      else
+         B(i,j) = A(i,j);
       end
    end
-\end{verbatim}
+end
+\end{lstlisting}
+
 
 
 \subsection{Trigonometric Functions and Complex Mathematics in Matlab}
@@ -243,7 +257,7 @@ x(t) = \sum_{k=1}^N a_i\cos(2\pi f t + \phi_k)
 \end{equation*}
 This is a sum of cosines, all at the same frequency but with different
 phases and amplitudes.  Use the following function prototype to start you off:
-\begin{verbatim}
+\begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
    function x = sumcos(f, phi, a, fs, dur)
    % SUMCOS Synthesize a sum of cosine waves
    % Usage:
@@ -256,7 +270,8 @@ phases and amplitudes.  Use the following function prototype to start you off:
    %    a = vector of amplitudes
    %    fs = the sampling rate in Hz (scalar)
    %    dur = total time duration of signal (scalar)
-\end{verbatim}
+\end{lstlisting}
+
 
 Include your code in your writeup. Additionally, include a plot of
 \texttt{x = sumcos(20, [0 pi/4 pi/2 3*pi/2], 200, 0.25);} versus
