@@ -29,12 +29,12 @@
 
 \section{Introduction}
 
-In this chapter, I will continue to introduce filters, this chapter
+In this chapter, we will continue to introduce filters, this chapter
 focusing on \emph{feedback filters}, in which previous outputs are
-combined with new inputs to produce new outputs. I will talk about
+combined with new inputs to produce new outputs. We will learn about
 their structure, function, and the differences between feedforward and
 feedback filters.  We will see that sometimes it is better to combine
-these two kinds of filters. I will also talk a bit about digital
+these two kinds of filters. We will also briefly examine digital
 filter design. After this chapter, you should understand important
 concepts like the \emph{poles} (as compared to \emph{zeros}) of a
 transfer function, \emph{impulse response}, and \emph{bandwidth}. You
@@ -304,7 +304,7 @@ figure~\ref{fig:fb-exp1ph90r2}. The pole is at frequency
 $\hat{\omega}=\pi/2$, which is the peak of the magnitude response. The
 magnitude is small when away from the pole.
 
-One other thing I have mentioned before is that the peak becomes steep
+One other thing mentioned before is that the peak becomes steep
 when $r$ nears one. The steepness is measured by the filter's
 \emph{bandwidth}.
 \index{bandwidth}
@@ -636,7 +636,7 @@ limited to ten decimal places).  The second column's error is
 for $x'[10]$ is within $7 \times 10^{-10}$ of the actual value. The
 third column's error is \emph{unstable}: it increases exponentially.
 
-Couple this with the need for precise pole placement, and I think you
+Couple this with the need for precise pole placement, and you
 can see that we need to be careful about our implementations. We saw
 in this chapter's section on combining feedforward and feedback
 filters the general transfer function for a filter~(\ref{eq:gen-xfer})

@@ -19,13 +19,13 @@
 
 This chapter investigates how we might reduce the data processing,
 transmission, and storage requirements for a multimedia system by
-reducing the number of bits needed for signal representation. I
-introduce the concept of \emph{information} to quantify the
+reducing the number of bits needed for signal representation. The
+concept of \emph{information} is introduced to quantify the
 \emph{content} of multimedia data, and show how this is distinct from
-the \emph{representation} of multimedia data. I show how the choice of
+the \emph{representation} of multimedia data. We see how the choice of
 representation affects the number of bits required to represent
 multimedia information --- that multimedia data can be
-\emph{compressed} without \emph{loss}.  I also show how additional
+\emph{compressed} without \emph{loss}.  We also examine how additional
 compression can be achieve by sacrificing information content:
 \emph{lossy} compression.
 
@@ -59,7 +59,7 @@ Clearly, multimedia systems require not only high processing power
 and storage capacity and speed, and fast networks. However, you should
 be familiar by now with the idea that a bit of thought can often lead
 to significant savings in algorithm run time or memory
-requirements. In this chapter, I will focus on the latter: how we can
+requirements. This chapter focuses on the latter: how we can
 \emph{encode} digital multimedia information to reduce its volume.
 
 \begin{figure}
@@ -125,8 +125,8 @@ To accomplish this, we need first to quantify the \emph{information
 content} of a signal: its \emph{entropy}. The basis for a mathematical
 \index{entropy}
 description of information is a common-sense one: information is
-something you don't already know. If I tell you something you don't
-already know, I've given you information; if I tell you something you
+something you don't already know. If you are told something you don't
+already know, you've been given information; if you are told something you
 already know, then you've received none.
 
 In multimedia terms, we are talking about the information content in a
@@ -158,8 +158,8 @@ considers the use to which the data will be put, and selectively
 eliminates unneeded or unimportant information --- \emph{lossy
 compression}. These two coding schemes and their subcategories are
 \index{compression!lossy|emph}
-presented in figure~\ref{fg:taxonomy}.  I will discuss many of these
-in the rest of this chapter. In each case, I will be concerned with the
+presented in figure~\ref{fg:taxonomy}.  The rest of this chapter will
+discuss many of these. In each case, we are concerned with the
 following algorithm characteristics:
 \begin{itemize}
 \item the degree of information loss,
@@ -167,7 +167,7 @@ following algorithm characteristics:
 \item and the decoding complexity.
 \end{itemize}
 
-Why do I separate out encoding and decoding complexity? Isn't decoding
+Why do we separate out encoding and decoding complexity? Isn't decoding
 just the opposite of encoding? While that may be true conceptually,
 there is no guarantee that, for any particular coding scheme, encoding
 and decoding algorithms will have the same run time. Schemes for which
@@ -375,7 +375,7 @@ allows us to generate a code for each symbol (or decode the symbol at
 decompression time). We need to send this table with the compressed
 signal (or store it in the compressed file).
 
-As I said at the beginning of this section, Huffman coding is only
+As indicated at the beginning of this section, Huffman coding is only
 optimal if the symbol probabilities are integral multiples of 1/2. For
 the more general case, \emph{arithmetic coding} can be used.
 \index{compression!arithmetic}
@@ -528,7 +528,7 @@ chapter~\ref{ch:audio-video}. For the time being, let's think of
 images as being one-dimensional, like sound, so we can talk about 1D
 Fourier transforms.
 
-I previously said that pixels tend to be similar to those nearby.
+Previously, it was indicated that pixels tend to be similar to those nearby.
 This is another way of saying that the change in intensity as a
 function of space is low --- that low-frequency processes are
 involved.  Repetition coding assumes that there is no change, while
@@ -562,7 +562,7 @@ We throw away absolute phase information and assume that the signal
 has even symmetry, but since we don't care what happens beyond the
 bounds of the signal, this is fine.  Loss of relative phase
 information is another matter, but after all, this \emph{is} a lossy
-compression technique. In chapter~\ref{ch:audio-video}, I will place
+compression technique. In chapter~\ref{ch:audio-video}, we will place
 these losses in the context of human perception.
 \index{compression!lossy|)}
 

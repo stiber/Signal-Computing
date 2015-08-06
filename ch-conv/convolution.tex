@@ -197,8 +197,8 @@ that we compute the spectrum for values of $z$ on the unit circle),
 |\mathcal{D}(\hat{\omega})|=|\Delta(e^{j\hat{\omega}})|=|e^{-jn_0\hat{\omega}}|=1
 \end{equation}
 This is not surprising at all, because it is, after all, just a
-time-shifted version of $\delta[n]$. I leave $\delta[n+n_0]$ as a
-self-test exercise.
+time-shifted version of $\delta[n]$. The signal $\delta[n+n_0]$ is
+left as a self-test exercise.
 
 \problemset{
 \subsubsection{Self-Test Exercises}
@@ -601,11 +601,11 @@ void convolve(int x[], unsigned nx, int h[], unsigned nh, int y[])
 $n_h=2$.\label{fg:convex}}
 \end{figure}
 
-You'll notice I did something nasty here: I reversed the identity of
-$x$ and $h$! Of course, this is perfectly OK, given the commutative
-property of convolution. I did this because I am assuming that $h$
+You'll notice something nasty was done here: the identities of
+$x$ and $h$ were reversed! Of course, this is perfectly OK, given the commutative
+property of convolution. This was done because we generally assume that $h$
 (the shorter vector) is a property of the filter (we will see about
-this later) and, in my opinion, it is easier to think about reversing
+this later) and it is easier to think about reversing
 it than reversing the signal $x$. If for no other reason, this makes
 sense because $h$ has a shorter length.
 
@@ -689,7 +689,8 @@ Convolution   & $x[n] \ast y[n]$       & $X(z)Y(z)$ \\ \hline
 \end{table}
 
 The z-transform is a very powerful signal processing tool because it
-has some very important properties. I list some of these properties in
+has some very important properties. Some of these properties are
+listed in
 table~\ref{tb:zt-property}, where the time-domain signals $x[k]$
 and $y[k]$ have z-transforms of $X(z)$ and $Y(z)$.
 
@@ -735,8 +736,8 @@ examples of using these properties.
 \subsection{Example: Time Shifting}
 
 \index{z-transform!of a time-shifted impulse}
-Remember that I discussed that the z-transform of the unit impulse
-$\delta[n]$
+Remember that the z-transform of the unit impulse
+$\delta[n]$ was previously discussed
 \begin{equation}
 \delta[n] = \left\{\begin{array}{ll}
                         1 & n=0 \\
@@ -797,7 +798,7 @@ y[n] &= \sum_{k=0}^{n} x[k] h[n-k] \notag\\
      &= x[0] h[n] + x[1] h[n-1] + x[2] h[n-2] + x[3] h[n-3]
 \end{align}
 Changing $n$ gives the sequence of the convolution output as a
-function of time. In the following computation, I use $h[n-k]=0$,
+function of time. In the following computation, $h[n-k]=0$ is used,
 if $n-k<0$ and $x[k]=0$ and $h[k]=0$ if $k>3$:
 \begin{align*}
 y[0] &= x[0] h[0] = 1\\
@@ -836,7 +837,7 @@ you'll see again in chapter~\ref{ch:fb-filters}). Let's denote the
 input signal as $x[n]$ and output as $y[n]$ in the time domain. You
 learned that the the transfer function in the z domain is $H(z)$. What
 is its time domain representation? We will answer this shortly; first
-I would like to give a name to the time domain transfer function,
+let's give a name to the time domain transfer function,
 $h[n]$: the filter's
 \emph{impulse response}. The filter's input/output relationship can be
 \index{filter!impulse response}

@@ -26,16 +26,16 @@ lossless and lossy compression. You will also understand how the
 nature of the multimedia application influences compression algorithm
 design.
 
-Each coding algorithm or standard that I will discuss in this chapter
+Each coding algorithm or standard discussed in this chapter
 shows clearly the tradeoffs inherent in lossy versus lossless
 compression, the need for symmetric coding and decoding versus the
 ability to asymmetrically place more processing power in the encoder,
 storage versus transmission, and human perception versus machine
-processing. I will begin with audio coding schemes, move on to those
+processing. We begin with audio coding schemes, move on to those
 for still images, and conclude with video.
 
 More specifically, each coding scheme makes implicit or explicit
-decisions about each of the following issues; I ask you to consider
+decisions about each of the following issues; you should consider
 what those decisions are when you read about each standard.
 
 \subsection{Issues in Coding Method Selection}
@@ -269,8 +269,8 @@ confine myself to discussing JPEG (Joint Photographic Experts Group).
 
 \subsection{JPEG}
 
-Actually, I was being a bit misleading in dismissing formats such as
-TIFF and GIF. Those are \emph{file formats}, while JPEG is an
+Actually, dismissing formats such as
+TIFF and GIF was a bit misleading. Those are \emph{file formats}, while JPEG is an
 \emph{encoding scheme}. In fact, JPEG-encoded images can be stored in
 their ``own'' format (JFIF, for JPEG file interchange format) or
 stored within a TIFF format file (which, counterintuitively, provides
@@ -439,7 +439,7 @@ deal of redundancy in the sequence of images, because the change from
 one frame of video to another is usually quite small. So, moving image
 compression involves both spatial \emph{and temporal} redundancy
 reduction.  There are a number of ITU standards for videoconferencing,
-including H.261 and H.263. However, I will concentrate on the MPEG
+including H.261 and H.263. However, let's concentrate on the MPEG
 standards, as they follow most directly from JPEG.
 
 \subsection{MPEG Coding}
@@ -467,7 +467,7 @@ compression, and then the result is Huffman coded.\label{fg:mpeg}}
 A block diagram of the MPEG coding process is presented in
 figure~\ref{fg:mpeg}. Except for the ``prediction'' block and the
 destination being a multiplexor, this is essentially the same as JPEG
-coding.  Though I probably implied in the discussion of JPEG that the
+coding.  Though it was probably implied in the discussion of JPEG that the
 input could have RGB color planes, in reality MPEG color input has the
 three components (Y, Cb, Cr), with the first being
 \emph{luminance} (brightness) and the second and third

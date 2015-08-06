@@ -107,7 +107,7 @@ X(\omega) &= \int_{-\infty}^{\infty}x(t)e^{-j\omega t}dt
 \label{fig:ft-pulse-x}}
 \end{figure}
 
-Let's look at the rectangular pulse I wrote about before, but here
+Let's look at the rectangular pulse written about before; but here
 the pulse is aperiodic --- there is just a single pulse instead of a
 train of them. The signal is defined as
 \begin{equation}
@@ -163,10 +163,10 @@ pulse is expanded (compressed) in time, its transform is compressed
 
 \section{The Discrete Fourier Transform}
 
-So far, I have talked about the Fourier series (which is for a
+So far, we have examined the Fourier series (which is for a
 periodic, continuous signal) and its discrete spectrum and the Fourier
 transform (which is for an aperiodic, continuous signal) and its
-continuous spectrum. Now, I will talk about periodic, \emph{discrete}
+continuous spectrum. Now, we will investigate periodic, \emph{discrete}
 signals and their spectra, which are discrete.
 
 Let's consider a finite digital signal $\{x[n]\}$ ($n=0,1,2,\ldots,
@@ -203,8 +203,8 @@ First, notice that the DFT uses a summation within $[0, N-1]$ and the
 series uses an integral within one period T.  This difference arises
 because here the signal is discrete and finite (and so we write $x[n]$
 instead of $f(t)$). The factor of $1/T$ in~(\ref{eq:fs-ckrepeat}) is
-equivalent to that of $1/N$ in~(\ref{eq:idft}), where I have
-arbitrarily included that factor in the IDFT instead of the DFT.
+equivalent to that of $1/N$ in~(\ref{eq:idft}), where 
+that factor has been arbitrarily included in the IDFT instead of the DFT.
 
 Now let's compare the basis (the complex exponential). The frequency
 here is also discretized.  Remember that a sampled signal has a
@@ -301,7 +301,7 @@ IDFT (but for that pesky factor of $1/N$):
   &= Nx[n']
 \end{align}
 
-To simplify the notation, I will use a vector notation for the
+To simplify the notation, let's use a vector notation for the
 discrete signal $\mathbf{x}=\{x[n]\}$ and its spectrum
 $\mathbf{X}=\{X[k]\}$.  The DFT and IDFT operations become $N\times N$
 matrices $\mathbf{F}$ and $\mathbf{F^{-1}}$, respectively. An element
@@ -322,7 +322,7 @@ or
 
 \subsection{Finite vs. Infinite Signals}
 
-In this book, I have used (and will continue to use) the terms
+In this book, we have used (and will continue to use) the terms
 ``periodic'' and ``finite'' interchangeably (and, similarly,
 ``aperiodic'' and ``infinite''). When we compute the Fourier series or
 the DFT of a finite signal of duration $T$, we do so only within that
@@ -477,7 +477,7 @@ figure~\ref{fig:dft-exp-X2}
 \subsection{Computing the DFT Directly}
 
 \index{Discrete Fourier Transform (DFT)!direct computation}
-Later on, I will introduce a method for computing the DFT efficiently.
+Later on, a method for computing the DFT efficiently will be introduced.
 In view of the importance of the DFT in various digital signal
 processing applications, such as linear filtering, correlation
 analysis, and spectrum analysis, its efficient computation is a topic
@@ -596,7 +596,7 @@ so this reduces to,
   X_2[1] &= x[\mathit{even}] + e^{-j(1)2\pi/2}x[\mathit{odd}] \notag \\
          &= x[\mathit{even}] - x[\mathit{odd}] \label{eq:2fft-odd}
 \end{align}
-where I have used the subscript ``2'' to indicate that this is a
+where the subscript ``2'' has been used to indicate that this is a
 2-point DFT.
 
 \begin{algorithm}
@@ -1254,7 +1254,7 @@ between time and frequency resolution.
 
 \section{Windowing [\textsc{Optional}]}
 
-In the discussion of power leakage, I mentioned that turning a signal
+The discussion of power leakage has mentioned that turning a signal
 on and off suddenly, abruptly truncating it (which is what a
 rectangular window does) will cause power leakage from the central
 lobe to side lobes. To reduce leakage when we select a segment of a
@@ -1262,8 +1262,9 @@ signal, instead of using an abrupt truncation --- like a rectangular
 window produces --- we could select a data window function $w[n]$ that
 has lower side lobes in the frequency domain. Examples of some popular
 window functions include Hamming, Hann, Bartlett, Blackman, Gaussian,
-etc. Each of these has its own characteristics. I will give some
-examples of what these windows look like and what their effects are.
+etc. Each of these has its own characteristics. Some
+examples of what these windows look like and what their effects are
+presented next.
 
 \subsubsection{Hamming Window}
 
@@ -1273,8 +1274,7 @@ examples of what these windows look like and what their effects are.
 \end{figure}
 
 \index{FFT!Hamming window and}
-The text book has some detail about the Hann window in example~9.5;
-here I introduce the Hamming window, which is very similar. The
+The
 coefficients of an $L$-point Hamming window are computed from the
 equation,
 \begin{equation}
@@ -1329,9 +1329,9 @@ original sequence is
 y[n] = x[n] w[n]
 \label{eq:ufft-gw}
 \end{equation}
-where $w[n]$ is a window function in time domain. Previously, I
-discussed the special case of a rectangular window; now I will
-consider $w[n]$ as a general function.
+where $w[n]$ is a window function in time domain. The special case of
+a rectangular window was previously discussed; now we will consider
+$w[n]$ as a general function.
 
 \subsubsection{Example: Windowed Sinusoid}
 
@@ -1383,7 +1383,7 @@ is a difference between the two windows, as you can see in
 figure~\ref{fig:ufft-hnba-cosx}, which is a comparison between the
 Hann and Bartlett windows for the cosine wave. Though it appears that
 the Hann window is superior, there are a number of issues (beyond the
-scope of this course) that I haven't discussed; the choice of window
+scope of this book) that we won't discuss; the choice of window
 function involves a number of tradeoffs and depends on the signals
 being processed and the goal of the processing.
 
@@ -1405,11 +1405,11 @@ window is used.\label{fig:ufft-birdspg-c3}}
 \end{figure}
 
 \index{spectrogram!of a bird call}
-Here, I will once again examine the bird call spectrogram I introduced
-earlier. When I computed that spectrogram, I cheated: I used a Hann
+Here, let's once again examine the bird call spectrogram I introduced
+earlier. When that spectrogram was presented, a cheat was used: a Hann
 window, instead of a rectangular one. Now, instead of using a Hann
-window in figure~\ref{fig:ufft-birdspg-c2}, if I use rectangular one,
-I get figure~\ref{fig:ufft-birdspg-c3}. The increased power leakage
+window in figure~\ref{fig:ufft-birdspg-c2}, if a rectangular one is used,
+we get figure~\ref{fig:ufft-birdspg-c3}. The increased power leakage
 into the side lobes of the two main frequency components is readily
 apparent. This leakage messes up the spectral appearance and affects
 how accurately we can estimate the shape of the frequency components.
