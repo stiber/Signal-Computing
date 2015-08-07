@@ -1,70 +1,167 @@
 %&LaTeX
 
-\section{More Feedforward Filters}
+\section{Let's Catch Some Z's}
 
-This lab discusses the different ways in which to express a discrete
-feedforward filter. When completed you should feel comfortable
-representing a filter in any of its equivalent forms and know the
-different advantages of expressing a filter in these forms.  When you
-get down to it, feedforward filters can be expressed in the following
-equivalent ways:
-\begin{enumerate}
-\item Defining equation, $y[n]$ as a (linear) function of $x[n],
-  x[n-1], \ldots$, or equivalently as this equation's coefficients.
-  % \item Impulse response, $h[n]$.
-\item Transfer function, $H(z)$.
-\item Frequency response (i.e., the expression for $\mathcal{H}(\hat{\omega})$). 
-\item Zero locations, $z_i$, often plotted in the complex plane.
-\item Amplitude $|\mathcal{H}(\hat{\omega})| = |H(e^{j\hat{\omega}})|$ (and phase
-  $\theta(\hat{\omega})$) of the frequency response, often plotted as
-  functions of $\hat{\omega}$.
-\item Block diagram.
-\end{enumerate}
+This lab covers the z-transform, used to convert arbitrary digital
+signals to the frequency domain. It also exercises the relationship
+between a filter's transfer function and impulse response and how the
+operations of multiplication and convolution, respectively, can be
+used to compute a filter's output.
 
-In this lab, you will be given a number of filters, each expressed in
-one of the above ways, for each, you are asked to generate the other
-representations using pencil and paper. For our purposes here, it will
-only be necessary to sketch the amplitude of the filter's frequency
-response (for item 5 above).  For items 4 and 5, please use J-DSP to
-check your answers. If there is disagreement between your answers and
-what you get in J-DSP, please spend some time out of class discussing
-the discrepancy with your classmates or with me to determine its
-source.
+\subsection{The z-transform, Transfer Function, \& Impulse Response}
 
-\paragraph{Step 1: Three-point averager} Yes, we've done some of this already,
-	so it's a good, familiar place to start. The defining equation is
-	$y[n] = \frac{1}{3}x[n] + \frac{1}{3}x[n-1] + \frac{1}{3}x[n-2]$;
-	determine the other representations.
+A discrete signal $x[n]$ has a z-transform $X(z)$ defined by the
+following equation:
+\[
+X(z)=\sum_{n=0}^{\infty}x[n]z^{-n}
+\]
+With this definition lets investigate a feed forward filter with ten
+coefficients, $\{b_0, b_1,\cdots, b_9\}$.  Recall that the Matlab
+\verb|filter| function allows us to specify a filter in terms of its
+\emph{coefficients}, but we can also think of it as being defined in
+terms of its \emph{transfer function}. Considering the $b_k$
+coefficients of the above feed forward filter, the \verb|filter|
+function implements the transfer function:
+\begin{equation}
+  H(z) = \sum_{k=0}^{9} b_k z^{-k}
+\end{equation}
+In previous labs we have computed the transfer function using the
+delays of the \emph{defining function}.  Mathematically, we were
+actually taking the z-transform of the \emph{impulse response}!  In
+this example, the impulse response is:
+\begin{equation}
+  h[n] = \sum_{k=0}^{9} b_k \delta[n-k]
+\end{equation}
+where $\delta[k]$ is the unit impulse and only has a non-zero value at
+$k=n$. $H(z)$ and $h[n]$ form a z-transform pair,
+$h[n]\xleftrightarrow{z} H(z)$. It should now be obvious why
+feedforward filters are also known as finite impulse response filters
+--- their impulse response only has a \emph{finite} number of
+values. To compute the output, $y[n]$, using the impulse response we
+use \emph{convolution}. Namely, we \emph{convolve} the input, $x[n]$,
+by the impulse response, $h[n]$,
+\begin{equation}
+  y[n] = x[n] \ast h[n]  = \sum_{k=0}^{9}x[k]h[n-k]
+\end{equation}
+And, indeed, Matlab has a \verb|conv| function to do this convolution.
+Alternatively, we can compute a filter's output by multiplying the
+transfer function by the z-transform of the input to yield the
+z-transform of the output:
+\begin{equation}
+  Y(z) = H(z) X(z)
+\end{equation}
+From a practical point of view, of course, it makes more sense to
+implement a filter in terms of its impulse response. However, for
+filters with long impulse responses, it is sometimes more convenient
+to represent them mathematically using the transfer function (which we
+now know is just the z-transform of the impulse response!).
+
+\subsection{Z-Transforms}
+
+\paragraph{Step 1.1} On paper, compute the z-transform, $X(z)$, of
+	\begin{equation}
+		x[n] = \left\{
+		\begin{array}{ll}
+			(-1)^n & n \ge 0 \\
+			0 & n < 0
+		\end{array}\right.
+	\end{equation}
+	Note that this is an infinite geometric series.  What are the
+        locations of any pole(s) (roots of the denominator polynomial)
+        or zero(s) (roots of the numerator polynomial)?
+
+
+\paragraph{Step 1.2} Evaluate the frequency response of $X(z)$
+        from step~1.1, $X(z)\big{|}_{z=e^{j\hat{\omega}}}$, by
+        sketching it by hand.  What kind of filter is this?
+
+
+\paragraph{Step 1.3} Consider the z-transform:
+	\begin{equation}
+	  X(z) = 1 - 2z^{-1} + 3z^{-3} - z^{-5}  
+	\end{equation}
+	Write the inverse z-transform, $x[n]$, as a table of values for
+	corresponding $n$ values.
+
+
+\subsection{Impulse Response}
+
+\paragraph{Step 2.1} Consider a filter with a transfer function
+	\begin{equation}
+	H(z) = 1 + 5z^{-1} - 3z^{-2} + 2.5z^{-3} + 4z^{-8}  
+	\end{equation}
+	What is the defining equation for this filter, $y[n] = F(x[n])$?
+
+
+\paragraph{Step 2.2} What is the output sequence of the filter of
+	Step~2.1 when the input is $x[n] = \delta[n]$? Verify this
+        using Matlab.
+
+
+\paragraph{Step 2.3} The impulse response of a filter is $h[n]
+        = x[n] + 2x[n-1] + x[n-2] - x[n-3]$, or equivalently,
+        $h[n]=\{1,2,1,-1\}$, $n=\{0, 1, 2, 3\}$. Determine the
+        response of the system to the input signal $x[n]=\{1,2,3,1\}$,
+        $n=\{0, 1,2,3\}$ by hand. Use Matlab to check your
+        results. Include a figure that shows both the input and output
+        signals; make sure the reader can clearly see what the signal
+        values are (the \verb|stem| plot function should help to
+        ensure this is the case).
+
+\paragraph{Step 2.4} Change the input to the filter of
+        Step~2.3 to be $\delta[n]$. What are the output values? How do
+        they compare to the impulse response? Include plots of the
+        filter input and output values in your report.
+
+
+\paragraph{Step 2.5} Use Matlab to determine the output of the
+        filter \{1/3,1/3,1/3\}, $n=\{0,1,2\}$ for the input:
+	\begin{equation}
+	  x[n] = 4 + \sin[0.25\pi(n-1)] - 3 \sin[(2\pi/3)n]  
+	\end{equation}
+        You will need to start with multiple AnalogSignals and sample
+        them. Include a listing of your Matlab code and a figure with
+        plots of the filter input and output in your report. Is the
+        result expected? Why or why not?
+	
 	
 
-\paragraph{Step 2: First-difference filter} A \emph{first-difference} filter is an
-	approximation to a discrete derivative operation. Its transfer
-	function is $H(z) = 1 - z^{-1}$. Determine the other representations.
+\paragraph{Step 2.6} Create your own Matlab \emph{function},
+        \verb|convolution|, to implement a convolution function.  To
+        test your function, make sure it works exactly like the Matlab
+        \verb|conv| and \verb|filter| functions by providing the same
+        input to each and subtracting their outputs. Use the filter
+        $\{1/3,1/3,1/3\}$, $n=\{0,1,2\}$ from step 2.5.
+	
 
-	
-\paragraph{Step 3: Second-difference filter} Just as we can compute a discrete
-	first derivative with a first-difference filter, we can compute a
-	discrete second derivative with a \emph{second difference filter}. Its
-	block diagram (in a little trickier format) is:
-	
-	\centerline{\includegraphics[width=2.5in]{lab5/second-difference-bdiag}}
-	
-	After you've developed the alternative representations, show that
-	this filter can also be implemented as a cascade of two
-	first-difference filters.
-	
-\paragraph{Step 4: Complex conjugate zeros} Feedforward filters with real
-	coefficients in their defining equations have either real or complex
-	conjugate zeros. Re-represent the filter with zeros $z_{1,2} = 0.5 \pm
-	j 0.5$ and $z_3 = 0.75$.
+\subsection{Canceling Sinusoidal Components}
 
-\paragraph{Step 5: Symmetric filters} Feedforward filters with
-        symmetric coefficients have interesting properties, such as
-        linear phase terms. Even symmetric filters have a midpoint
-        around which they mirror their coefficients. Re-represent the
-        filter with a coefficients given by $\{1,2,2,1\}$ (i.e.,
-        $y[n]=x[n]+2x[n-1]+2x[n-2]+x[n-3]$). In this filter, the
-        coefficients \{1,2\} are mirrored.
+Filters can be designed to cancel sinusoids.  Implement a filter in
+Matlab with the following impulse response:
+\begin{equation}
+h[n] = \delta[n] - 2\cos(\pi/4) \delta[n-1] + \delta[n-2]
+\end{equation}
+
+\paragraph{Step 3.1} Plot the frequency response for this filter. What
+	are the zero locations?
+
+
+\paragraph{Step 3.2} Use as an input to this filter the signal
+        $x[n] = \sin\hat{\omega}n$, using the two frequencies
+        $\hat{\omega} = \pi/2$ and $\hat{\omega} = \pi/4$. You will
+        need to choose appropriate analog signals, with convenient
+        frequencies and durations, and then sample them appropriately
+        so they have the correct digital frequencies. Make sure to
+        verify that you get the correct digital frequencies and that
+        plots you make are convenient for the reader (for example,
+        neither too many nor too few cycles)! Compute the filter in
+        Matlab for each of these two inputs, plotting the input and
+        output of each. When do you get cancellation?
+
+\paragraph{Step 3.3} Can you modify the filter coefficients to cancel
+	the other sinusoid? If so, show your work.
+
+
 
 
 %%% Local Variables: 
