@@ -1,0 +1,286 @@
+%&LaTeX
+
+\section{I'm So Compressed}
+
+\subsection{Sound and images in MATLAB}
+
+MATLAB has a number of functions that can be used to read and write
+sound and image files as well as manipulate and display them. See the
+\verb|help| for each function for details. Ones that you'll likely
+find useful are:
+\begin{description}
+\item[audiorecorder] Perform real-time audio capture. This may or may
+  not work on your system; it is critically dependent on your hardware
+  and MATLAB's support thereof. You may find it simpler to record and
+  edit audio files with other software and then save it to a file
+  later read into Matlab; this might give you greater control over the
+  recording.
+\item[audioinfo] Get information about an audio file, including number
+  of channels, how compressed, sampling rate, bits per sample, etc.
+\item[audioread] Read part or all of an audio file, returning sampled
+  data and sampling rate.
+\item[audiowrite] Write an audio file; the format is indicated by the
+  filename provided. All platforms support \verb|wav|, \verb|.ogg|,
+  and \verb|.flac|; Windows and OS X support \verb|.m4a| and
+  \verb|.mp4|, too.
+\item[sound] Play vector as a sound. This allows you to create
+  arbitrary waveforms mathematically (e.g., individual sinusoids, sums
+  of sinusoids) and then play them through your speakers. This is the
+  function to use if you're values are scaled within the range of -1
+  to +1.
+\item[soundsc] This function works like \verb|sound|, but first it
+  scales the vector values to fall within the range of -1 to +1. Much
+  of the time, you won't have your waveforms pre-scaled, and you'll
+  use this function.
+\item[imfinfo] Provides information about an image file, including
+  dimensions, bit depth, etc.
+\item[imread] Read image from graphics file. This function (and
+  \verb|imwrite|) supports many file types.
+\item[imwrite] Write image to graphics file.
+\item[image] Display image. The image is displayed within normal
+  Matlab axes, which you can label or otherwise modify as usual. Any
+  2D array can be displayed as an image (for example, this is what's
+  done with the output of \verb|myspecgram|). You can alter the
+  colormap used for this display, if you like. There are other
+  functions that plot 2D data as wire meshes and surfaces.
+\item[imagesc] Like image, but scales the image values first so that
+  they span the full range of the current colormap.
+\end{description}
+There are a number of other functions available; \emph{read the Matlab
+  documentation to get the full scoop on what is available and how it
+  works}.
+
+Within MATLAB, audio is a 1-D vector (stereo is $n \times 2$, but we
+won't deal with stereo) and grey-scale images are 2D arrays (color
+images are 3-D arrays). For simplicity's sake, make sure any sound
+files you use are mono.
+
+\subsubsection{Data Types}
+
+MATLAB supports a number of data types, and the type that the file I/O
+functions return often depends on the kind of file read. Regardless,
+almost all of the MATLAB functions you'll use to process data return
+doubles. For example, consider the following commands that read a
+color image, convert it to grey-scale, and display it:
+\begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
+>> A = imread('/tmp/ariel.jpg');
+>> B = mean(A,3);
+>> imagesc(B)
+>> colormap(grey)
+>> axis equal
+>> whos
+  Name      Size                           Bytes  Class
+
+  A       100x55x3                         16500  uint8 array
+  B       100x55                           44000  double array
+\end{lstlisting}
+The (color) image is read into \verb|A|, which, as you can see from
+the output of the \verb|whos| command, is a 100x55x3 unsigned, 8-bit
+integer array (the third dimension for the red, green, and blue image
+color components). I convert the image to grey-scale by taking the
+mean of the three colors at each pixel (the overall brightness),
+producing a \verb|B| array that is \verb|double|. The
+\verb|imagesc| function displays the image, the \verb|colormap|
+function determines how the array values translate into screen colors,
+and the \verb|axis equal| command ensures that the pixels will be
+square on the screen.
+
+Much of the time, we will just perform our calculations using
+\verb|double| data types. However, we can use functions like
+\verb|uint8| to convert our data.
+
+At the very least, you can get real audio files from
+\url{http://faculty.washington.edu/stiber/pubs/Signal-Computing/}; I assume that
+you'll have no trouble locating interesting images (please keep your
+work G-rated). Don't use ones that are too big, to avoid issues with
+Canvas uploads of large lab report files.
+
+\subsection{Lossless image coding}
+
+The simplest way to compress images is \emph{run-length coding} (RLE),
+a form of repetitive sequence compression in which multiple pixels
+with the same values are converted into a count and a value. To
+implement this, we need to reserve a special image value --- one that
+will never be used as a pixel value --- as a flag to indicate that the
+next two numbers are a (count, value) pair, rather than just a couple
+pixels. Let's apply RLE to three different kinds of images: color
+photographs, color drawings, and black-and-white images (e.g., a scan
+of text). You can choose images you like, or get these from the book
+web site:
+\url{http://faculty.washington.edu/stiber/pubs/Signal-Computing/ariel.jpg}
+(color photo),
+\url{http://faculty.washington.edu/stiber/pubs/Signal-Computing/cartoon.png}
+(color drawing), and
+\url{http://faculty.washington.edu/stiber/pubs/Signal-Computing/text.png}
+(black-and-white).
+
+\paragraph{Step 1.1} Write a MATLAB script to read an image in,
+convert it to grey-scale if the image array is 3-D, and scale the
+image values so they are in the range [1, 255] (note the absence of
+zero).  Verify that this has worked by using the \verb|min| and
+\verb|max| functions. Convert the results to \verb|uint8| and
+display each using \verb|imagesc|.
+
+\paragraph{Step 1.2} At this point, you should have in each case a 2-D
+array with values in the range [1, 255] inclusive. To simplify
+matters, we will treat each array as though it were
+one-dimensional. This is easy in MATLAB, as we can index a 2-D array
+with a single index ranging from 1 to $N \times M$ (the array
+size). Write a RLE function that takes in a 2-D array and scans it for
+runs of pixels with the same value, producing a RLE vector on its
+output. When fewer than four pixels in a row have the same value, they
+should just appear in the vector. When four or more (up to 255) pixels
+in a row have the same value, they should be replaced with three
+vector elements: a zero (indicating that the next two elements are a
+run code, rather than ordinary pixel values), a count (should contain
+4 to 255), and the pixel value for the run. Verify that your RLE
+function works by implementing a RLD function (RLE decoder) that takes
+in a RLE vector, $N$, and $M$ and outputs a 2-D $N \times M$
+array. The RLD output should be identical to the RLE input
+(subtracting them should produce an array of zeros); verify that this
+is the case. For each image type, compute the compression factor by
+dividing the number of elements in the RLE vector by the number of
+elements in the original array. What compression factors do you get
+for each image?
+
+\subsection{Lossy audio coding: DPCM}
+
+In \emph{differential pulse-code modulation} (DPCM), we encode the
+differences between signal samples in a limited number of bits. In
+this section, you'll take an audio signal, apply DPCM with differing
+numbers of bits, see how much space is saved, and hear if and how the
+sound is modified. A slight complicating factor is that all of the
+data will be represented using \verb|double|, however, we will limit
+the values that are stored in each double to integers in the range
+$[0, 2^{\mathrm{bits}}-1]$ (where ``bits'' is the number of bits we're
+using).
+
+\paragraph{Step 2.1} Find a sound to work with; you can use
+\url{http://faculty.washington.edu/stiber/pubs/Signal-Computing/amoriole2.mat}
+if you like. Likely, it will have values that are not integers;
+convert the values to 16-bit integer values by scaling (to $[0,
+2^{16}-1]$) and rounding (reminder: the vector's type will still be
+\verb|double|; we're just changing the \emph{values} in each element
+to be integers in that range). Verify that this conversion produces no
+audible change in the sound. What is the MATLAB code to do this
+initial quantization?
+
+\paragraph{Step 2.2} Now write a DPCM function, \verb|DPCM|, that
+takes the sound vector and the number of bits for each difference and
+outputs a DPCM-coded vector. Note that the MATLAB \verb|diff|
+function will compute the differences between sequential elements of a
+vector. Your DPCM function should:
+\begin{enumerate}
+\item compute the differences between the samples,
+\item limit each difference value to be in the range
+  $[-2^{\mathrm{bits}-1}-1, 2^{\mathrm{bits}-1}-1]$, producing a
+  quantized vector and a vector of ``residues'' (you will generate two
+  vectors). For each quantized difference, the ``residues'' vector
+  will be zero if the difference, $\Delta x_i$, is within the above
+  range. Otherwise, it will contain the amount that $\Delta x_i$
+  exceeds that range (i.e., the difference between $\Delta x_i$ and
+  its quantized value, either $-2^{\mathrm{bits}-1}-1$ or
+  $2^{\mathrm{bits}-1}-1$).
+\item ``make up for'' each nonzero value in the ``residues''
+  vector. For each such value, scan the quantized difference vector
+  from that index onward, and modify its entries, up to the
+  quantization limits above, until all of the residue has been ``used
+  up''.
+\item The final result is a single coded vector that your function
+  should return.
+\end{enumerate}
+
+For example, let's say that we're using 4 bit DPCM and that some
+sequence of differences is $(\Delta x_1=10, \Delta x_2=5, \Delta
+x_3=-3)$. The range of quantized differences is $[-7, +7]$, and so the
+quantized differences are $(7, 5, -3)$ and the residues are $(3, 0,
+0)$. Since the first residue is nonzero, we proceed to modify quantized
+differences starting with the second one, until we've added three to
+them. The resulting final quantized differences are $(7, 7, -2)$.
+
+\paragraph{Step 2.3} Implement an inverse DPCM function \verb|IDPCM|
+that takes the first value from the original sound vector and the DPCM
+vector and returns a decoded sound vector. There's no way for us to
+know where the losses in the encoding occurred, so we just use the
+DPCM values as differences. Note that the MATLAB \verb|cumsum|
+function computes a vector with elements being the cumulative sum of
+the elements of its input vector, and that you can add a constant to
+all of the elements of a vector using the normal addition operator.
+
+\paragraph{Step 2.4} Test your DPCM and IDPCM functions by coding your
+sound using 15, 14, 12, and 10 bit differences. At what point does the
+coding process produce noticeable degradation? To investigate further,
+see how few bits you can use to encode the sound and still detect some
+aspect of the original sound. Is this surprising to you?
+
+\subsection{Lossy image coding: JPEG}
+
+\paragraph{Step 3.1} In this sequence of steps, we will use
+frequency-dependent quantization, similar to that used in JPEG, to
+compress an image. Start with your grey-scale, continuous-tone image
+from step 1.1 (if you used a color image, convert it to grey-scale as
+you did in step 1.1). The MATLAB image processing or signal processing
+toolboxes are needed to have access to DCT functions, so we'll use the
+\verb|fft2()| and \verb|ifft2()| functions instead. To do a basic test
+of these functions, write a script that loads your image, converting
+it to grey-scale if necessary, and then computes its 2D FFT using
+\verb|fft2()|. The resulting matrix has complex values, which we will
+need to preserve. Display the magnitude of the FFT (remember to use
+the \verb|abs| function to get the magnitude of a complex number)
+using \verb|imagesc()|. Do this for each image type.  Can you relate
+any features in the FFT to characteristics in the original image?
+
+\paragraph{Step 3.2} Use \verb|ifft2()| to convert the FFT back and
+plot the result versus the original greyscale image (use
+\verb|imagesc()|) to check that everything is working fine. Analyze
+the difference between the two images (i.e., actually subtract them)
+to satisfy yourself that any changes are merely small errors
+attributable to finite machine precision). Repeat this process for the
+other images.
+
+\paragraph{Step 3.3} Let's quantize the image's spectral
+content. First, find the number of zero elements in the FFT, using
+something like \verb|origZero=length(find(abs(a)==0));|, where
+\verb|a| is the FFT. \emph{Remember to exclude the DC value in the
+  \texttt{fft2} output in figuring out this range.} Then, zero out
+additional frequency components by zeroing out all with magnitudes
+below some threshold. You'll want to set the threshold somewhere
+between the min and max magnitudes of \verb|a|, which you can get as
+\verb|mn=min(min(abs(a)));| and \verb|mx=max(max(abs(a)));|. Let's
+make four tests, with thresholds 5\%, 10\%, 20\%, and 50\% of the way
+between the min and max, i.e., \verb|th=0.05*(mx-mn)+mn;|. Zero out
+all FFT values below the threshold using something like:
+\begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
+b = a;
+b(abs(a)<th) = 0;   % Uses logical array indexing
+\end{lstlisting}
+You can count the number of elements thresholded by finding the number
+of zero elements in \verb|b| at this point and subtracting the number
+that were originally zero (i.e., \verb|origZero|). This is an estimate
+of the amount the image could be compressed with an entropy
+coder. Express the number of thresholded elements as a fraction of the
+total number of pixels in the original image and make a table or plot
+of this value versus threshold level.
+
+\textit{Optional.} Note that the FFT may have very high values for
+just a few elements, and low values for others. You might plot a
+histogram to verify this. Not including the DC value likely will
+eliminate the highest value in the FFT. However, some of the other
+values may still be large enough to produce too large of a range. Can
+you suggest an approach that will take this into account? How does the
+JPEG algorithm deal with or avoid this problem?
+
+\paragraph{Step 3.4} Now we will see the effect of this thresholding
+on image quality. Convert the thresholded FFT back to an image using
+something like \verb|c = abs(ifft2(b));|. For each type of image and
+each threshold value, plot the original image and the final processed
+image. Compute the mean squared error (MSE) between the original and
+reconstructed image (mean squared error for matrices can be computed
+as \verb|mean(mean((a-c).^2))|).  What can you say about the effects
+on the image and MSE?  Collect your code together as a script to
+automate the thresholding and reconstruction, so you can easily
+compute MSE for a number of thresholds. Plot MSE vs. threshold
+percentage (just as you plotted fraction of pixels thresholded
+vs. threshold in step 3.3).
+
+% LocalWords:  WebQ MATLAB DSP
