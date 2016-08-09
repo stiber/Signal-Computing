@@ -185,9 +185,9 @@ n=0,1,2,\ldots, N-1
 \label{eq:idft}
 \end{equation}
 
-Obviously, the DFT converts a finite (periodic), discrete signal in
-the time domain into a finite, discrete spectrum in the frequency
-domain.
+The DFT converts a finite (periodic), discrete signal in
+the time domain ($x[n]$) into a finite, discrete spectrum in the frequency
+domain ($X[k]$).
 
 We can derive the DFT informally from the Fourier series of a periodic
 signal. Let's compare equation~(\ref{eq:dft}) and that for the
@@ -381,7 +381,7 @@ This can be represented diagrammatically as
     \overbrace{2 \quad \underbrace{3 \quad 4 \quad 5} \quad 6} \quad 7}
 \label{eq:dft8-freqs}
 \end{equation}
-Obviously, it is symmetric about $k=4$. When $N$ is an even number,
+This is clearly symmetric about $k=4$. When $N$ is an even number,
 the spectrum has $N/2$ at the center; when $N$ is an odd number, the
 center is between $\lfloor N/2 \rfloor$ and $\lceil N/2 \rceil$. So,
 for $N=7$,
@@ -1283,7 +1283,7 @@ equation,
           \quad n=0,1,\ldots,L-1
 \label{eq:ufft-hnw}
 \end{equation}
-It consists of a cycle of a cosine, droping to 0.08 at the end-points
+It consists of a cycle of a cosine, dropping to 0.08 at the end-points
 and with a peak value of one. A plot of a Hamming window is shown in
 figure~\ref{fig:ufft-hmw}
 

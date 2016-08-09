@@ -138,7 +138,7 @@ In chapter~\ref{ch:physical-signals}, we learned the term
 \emph{phasor}, a complex sinusoid expressed as $e^{j\omega t}$.  We
 also saw that this representation makes the math simpler for adding
 sinusoids, at least.  A phasor's magnitude is one, its frequency is
-$\omega$, and it angle is $\omega t$, where $t$ is time. It moves
+$\omega$, and its angle is $\omega t$, where $t$ is time. It moves
 around the unit circle counter-clockwise along time.  If we delay it
 by $\tau$ sec, then the delayed time is $t-\tau$, and we can write
 this as:
@@ -609,7 +609,7 @@ represent digital filtering as just multiplication by a polynomial
 See~\ref{sc:ch3ex} \#\ref{it:ch3ex3}--\ref{it:ch3ex5} for answers.
 
 \begin{enumerate}
-\item Write equation~(\ref{eq:ff-manyk}) for $k=0, 1, 2, 3$, then
+\item Write equation~(\ref{eq:ff-manyk}) for $M=0, 1, 2, 3$, then
   write the transfer function for each.
 \item Given the signal $x(t) = \sin t$ and the derivative operator
   $D=\derivin{}{t}$, what is $Dx(t)$?
@@ -650,7 +650,7 @@ function $H(z)$, this becomes:
 \begin{equation}
 Y = [1-b_1z^{-1}]X = H(z)X
 \end{equation}
-Obviously,
+We can express the transfer function as
 \begin{equation}
 H(z) = 1-b_1z^{-1} = (1-b_1z^{-1}) \frac{z}{z} = \frac{z-b_1}{z}
 \end{equation}
@@ -688,7 +688,7 @@ makes the magnitude of the frequency response reach its
 minimum.
 \index{zero}
 \index{frequency response!zero}
-Obviously, when the zero ($b_1$) is near $\hat{\omega}=0$ $(z=1)$,
+When the zero ($b_1$) is near $\hat{\omega}=0$ $(z=1)$,
 this results in a high pass filter because it doesn't pass frequencies
 near zero (low frequencies). Similarly, when the zero ($b_1$) is near
 $\hat{\omega}=\pi$ $(z=-1)$ we obtain a low pass filter: high frequency
@@ -797,7 +797,7 @@ those two sets of zeros are also presented.
 \index{filter!phase response|(emph}
 So far we have been talking about the magnitude response of
 $\mathcal{H}(\hat{\omega})$.  In the last topic of this chapter, let's
-talk about is its phase response. We already know that
+talk about its phase response. We already know that
 $\mathcal{H}(\hat{\omega})$ can be expressed in polar form, with its
 magnitude and angle
 \begin{equation}
@@ -889,9 +889,10 @@ We can see that the effect of the filter on the input signal is to
 delay it by one sampling interval (from the $(n-1)$ term in the
 exponential) and to multiply it by $2\cos\hat{\omega}$. Notice that
 the delay is independent of its frequency. When all the frequency
-components of a signal are delayed by an equal amount, say the filter
-has \emph{no phase distortion} or \emph{linear phase}. The magnitude response and phase response are
-shown in figure~\ref{fig:ff-exp2zh90-r1}.
+components of a signal are delayed by an equal amount, we say the
+filter has \emph{no phase distortion} or \emph{linear phase}. The
+magnitude response and phase response are shown in
+figure~\ref{fig:ff-exp2zh90-r1}.
 
 \begin{figure}
 \centerline{\includegraphics[width=6in]{ch-fir/ffexp_2tdelay_h90}}

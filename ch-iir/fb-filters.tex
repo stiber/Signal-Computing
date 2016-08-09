@@ -71,7 +71,8 @@ is
   y[n] = b_0 x[n] + b_1 x[n-1] + a_1 y[n-1]
   \label{eq:fb-ff}
 \end{equation}
-but for the moment we will concentrate on just the feedback.
+but for the moment we will concentrate on just the feedback part of
+the filter, from equation~(\ref{eq:fb-1p}).
 
 From equation~(\ref{eq:fb-1p}), the z-transforms of the input and
 output signals, and the delay operator $z^{-1}$, we can get the
@@ -289,7 +290,8 @@ one-pole feedback filter's impulse response is the signal with samples
 \begin{equation}
 1, p_i, p_i^2, p_i^3, \ldots
 \end{equation}
-Obviously, the impulse response is stable only when the pole's $|p_i|<1$
+This impulse response is stable only when the pole's $|p_i|<1$, so
+that the sequence is decreasing in magnitude.
 
 \item \textbf{An impulse response is neither stable nor unstable if
 $|p|=1$.}

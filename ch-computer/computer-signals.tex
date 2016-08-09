@@ -108,7 +108,7 @@ Figure~\ref{fg:adc} also presents the basic process of digitization
 --- converting an analog electrical signal into a sequence of binary
 numbers.  Digitization involves two processes: \emph{sampling} and
 \emph{quantization}.  In the former process, the value of the analog
-signal is measures at regular intervals of time (the \emph{sampling
+signal is measured at regular intervals of time (the \emph{sampling
 interval}). The output of a sample and hold (S/H) device will
 maintain a fixed level in between sampling times. This makes the
 quantization process easier: the analog-to-digital converter (ADC)
@@ -147,9 +147,9 @@ the amount to which a signal is distorted:
 \index{signal-to-noise ratio (SNR)}
 \index{decibel}
 Mathematically, SNR becomes:
-\[
+\begin{equation}
 \text{SNR}=20\log_{10}\left(\frac{x_\mathrm{RMS}}{n_\mathrm{RMS}}\right) \label{eq:SNR}
-\]
+\end{equation}
 We can quantify the amount of noise in a signal by using the SNR. The
 idea is that noise becomes more of a problem when it reaches the same
 magnitude as the signal. For example, a slight hissing noise on a
@@ -201,7 +201,7 @@ input/output behavior of such an idealized device.
 \index{analog-to-digital conversion!aliasing|(}
 We've already stated that we'd like the digitization process to retain
 all the information in the original physical signal (or, at least,
-that not being possible, to retain all information can be practically obtained).
+that not being possible, to retain all information as far as is practical).
 However, sampling alone can destroy information. In the case of
 figure~\ref{fg:sampled} (top), no information is lost (the original
 waveform could in principle be reconstructed) because the sampling
@@ -237,7 +237,7 @@ In equation~(\ref{eq:samp-phasor}), $x[n]$ gives the value of the signal at the
 sample times: the phasor represented as a sequence of measurements,
 each taken at a time that is a multiple of the sampling interval
 $T_s$. This was done by replacing $t$ by $nT_s$, the sampling times
-($\{0, T_s, 2T_s, 3T_s, \ldots$). $x[n]$ is a \emph{discrete} signal
+$\{0, T_s, 2T_s, 3T_s, \ldots\}$. $x[n]$ is a \emph{discrete} signal
 (a function of discrete time). For example, $x[n]$ could be the black circles in
 figure~\ref{fg:sampled}. The value of $x[n]$ is undefined when $n$ is not an integer. 
 
