@@ -189,7 +189,7 @@ y[n] = \frac{1}{3} \sum_{k=0}^2 x[n-k]
 \item Find and sketch the zero locations using pencil and paper, then
   use Matlab to verify this.
 
-\item From the plot of pole locations, sketch the magnitude of the
+\item From the plot of zero locations, sketch the magnitude of the
   frequency response as a function of $\hat{\omega}$ by hand and
   verify this using Matlab. How does the minimum of the magnitude of
   the frequency response relate to the polar representation of the
@@ -303,20 +303,21 @@ conjugate zeros at $z_{1,2} = -0.5 \pm j 0.5$.
 \paragraph{Step 2.1} A system is called \emph{linear} if a sum of
 different inputs produces an output that is the sum of the outputs for
 the inputs taken individually.  Perform a simple test of the linearity
-of this filter by doubling the input amplitude in Matlab ($X' = 2X = X
-+ X$). How does the new output amplitude compare to the old one?
+of the filter from step 1.2 by doubling the input amplitude in Matlab
+($X' = 2X = X + X$). How does the new output amplitude compare to the
+old one?
 
 
-\paragraph{Step 2.2} In one of the self-test exercises in the class
-notes, two filters with transfer functions $H_1(z) = b_0 + b_1z^{-1}$
-and $H_2(z) = b'_0 + b'_1z^{-1}$ were connected in series, and it was
-shown that they could be connected in either order to produce the same
-composite effect (the same overall transfer function). Redo this
-exercise using the \emph{defining equations} for the two filters,
-i.e., $y_1[n] = F_1(x[n])$ for the filter with transfer function
-$H_1(z)$ and $y_2[n] = F_2(x[n])$ for the filter with transfer
-function $H_2(z)$. In other words, show that $F_2(F_1(x[n])) =
-F_1(F_2(x[n]))$.
+\paragraph{Step 2.2} In one of the self-test exercises in the
+textbook, two filters with transfer functions $H_1(z) = b_0 +
+b_1z^{-1}$ and $H_2(z) = b'_0 + b'_1z^{-1}$ were connected in series,
+and it was shown that they could be connected in either order to
+produce the same composite effect (the same overall transfer
+function). Redo this exercise using the \emph{defining equations} for
+the two filters, i.e., $y_1[n] = F_1(x[n])$ for the filter with
+transfer function $H_1(z)$ and $y_2[n] = F_2(x[n])$ for the filter
+with transfer function $H_2(z)$. In other words, show that
+$F_2(F_1(x[n])) = F_1(F_2(x[n]))$.
 
 
 \paragraph{Step 2.3} Use Matlab to implement a 50\% duty cycle square

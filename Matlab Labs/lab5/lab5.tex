@@ -99,7 +99,7 @@ now know is just the z-transform of the impulse response!).
 
 
 \paragraph{Step 2.3} The impulse response of a filter is $h[n]
-        = x[n] + 2x[n-1] + x[n-2] - x[n-3]$, or equivalently,
+        = \delta[n] + 2\delta[n-1] + \delta[n-2] - \delta[n-3]$, or equivalently,
         $h[n]=\{1,2,1,-1\}$, $n=\{0, 1, 2, 3\}$. Determine the
         response of the system to the input signal $x[n]=\{1,2,3,1\}$,
         $n=\{0, 1,2,3\}$ by hand. Use Matlab to check your
@@ -119,8 +119,7 @@ now know is just the z-transform of the impulse response!).
 	\begin{equation}
 	  x[n] = 4 + \sin[0.25\pi(n-1)] - 3 \sin[(2\pi/3)n]  
 	\end{equation}
-        You will need to start with multiple AnalogSignals and sample
-        them. Include a listing of your Matlab code and a figure with
+        Include a listing of your Matlab code and a figure with
         plots of the filter input and output in your report. Is the
         result expected? Why or why not?
 	

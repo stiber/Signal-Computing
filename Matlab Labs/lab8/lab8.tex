@@ -51,7 +51,7 @@ There are a number of other functions available; \emph{read the Matlab
   works}.
 
 Within MATLAB, audio is a 1-D vector (stereo is $n \times 2$, but we
-won't deal with stereo) and grey-scale images are 2D arrays (color
+won't deal with stereo) and gray-scale images are 2D arrays (color
 images are 3-D arrays). For simplicity's sake, make sure any sound
 files you use are mono.
 
@@ -61,12 +61,12 @@ MATLAB supports a number of data types, and the type that the file I/O
 functions return often depends on the kind of file read. Regardless,
 almost all of the MATLAB functions you'll use to process data return
 doubles. For example, consider the following commands that read a
-color image, convert it to grey-scale, and display it:
+color image, convert it to gray-scale, and display it:
 \begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
 >> A = imread('/tmp/ariel.jpg');
 >> B = mean(A,3);
 >> imagesc(B)
->> colormap(grey)
+>> colormap(gray)
 >> axis equal
 >> whos
   Name      Size                           Bytes  Class
@@ -77,7 +77,7 @@ color image, convert it to grey-scale, and display it:
 The (color) image is read into \verb|A|, which, as you can see from
 the output of the \verb|whos| command, is a 100x55x3 unsigned, 8-bit
 integer array (the third dimension for the red, green, and blue image
-color components). I convert the image to grey-scale by taking the
+color components). I convert the image to gray-scale by taking the
 mean of the three colors at each pixel (the overall brightness),
 producing a \verb|B| array that is \verb|double|. The
 \verb|imagesc| function displays the image, the \verb|colormap|
@@ -115,7 +115,7 @@ web site:
 (black-and-white).
 
 \paragraph{Step 1.1} Write a MATLAB script to read an image in,
-convert it to grey-scale if the image array is 3-D, and scale the
+convert it to gray-scale if the image array is 3-D, and scale the
 image values so they are in the range [1, 255] (note the absence of
 zero).  Verify that this has worked by using the \verb|min| and
 \verb|max| functions. Convert the results to \verb|uint8| and
@@ -217,13 +217,13 @@ aspect of the original sound. Is this surprising to you?
 
 \paragraph{Step 3.1} In this sequence of steps, we will use
 frequency-dependent quantization, similar to that used in JPEG, to
-compress an image. Start with your grey-scale, continuous-tone image
-from step 1.1 (if you used a color image, convert it to grey-scale as
+compress an image. Start with your gray-scale, continuous-tone image
+from step 1.1 (if you used a color image, convert it to gray-scale as
 you did in step 1.1). The MATLAB image processing or signal processing
 toolboxes are needed to have access to DCT functions, so we'll use the
 \verb|fft2()| and \verb|ifft2()| functions instead. To do a basic test
 of these functions, write a script that loads your image, converting
-it to grey-scale if necessary, and then computes its 2D FFT using
+it to gray-scale if necessary, and then computes its 2D FFT using
 \verb|fft2()|. The resulting matrix has complex values, which we will
 need to preserve. Display the magnitude of the FFT (remember to use
 the \verb|abs| function to get the magnitude of a complex number)
@@ -231,7 +231,7 @@ using \verb|imagesc()|. Do this for each image type.  Can you relate
 any features in the FFT to characteristics in the original image?
 
 \paragraph{Step 3.2} Use \verb|ifft2()| to convert the FFT back and
-plot the result versus the original greyscale image (use
+plot the result versus the original gray-scale image (use
 \verb|imagesc()|) to check that everything is working fine. Analyze
 the difference between the two images (i.e., actually subtract them)
 to satisfy yourself that any changes are merely small errors

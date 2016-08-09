@@ -20,21 +20,15 @@ time). You will use the \texttt{samplehold} method to do this:
 % where  obj = AnalogSignal
 %        h = hold time in sec (sampling interval)
 %        x = resultant sampled AnalogSignal
-%
-% This function produces a 1D line plot of the provided discrete or digital
-% signal in a "stairstep" fashion. In other words, each value in x (which
-% is a y coordinate of the plotted point (n, x)) is connected by a straight
-% line to the same y value at the next sample number (n+1, x), and then by
-% a vertical line to the next sample value, (n+1, x+1).
 \end{lstlisting}
 
-\paragraph{Step 2.1} Create an analog sine waveform ranging from -5 to
+\paragraph{Step 1.1} Create an analog sine waveform ranging from -5 to
 5V with a frequency of 200Hz and a duration of 2 seconds. Produce a
 plot with X-axis limits set to make the waveform visible (i.e., don't
 just make a 2s plot that tries (and fails) to show 400 cycles of the
 sinusoid.
 
-\paragraph{Step 2.2} Use the \texttt{samplehold} method to produce
+\paragraph{Step 1.2} Use the \texttt{samplehold} method to produce
 sampled versions of this signal at 300Hz, 500Hz, 1000Hz, and
 2000Hz. Use the Matlab \texttt{subplot} command, and the
 \texttt{discreteplot} function provided with this class's Matlab code,
@@ -46,11 +40,11 @@ that all sampled versions are equally useful in achieving this? Why or
 why not (in other words, your answer to this question should not be
 just ``yes'' or ``no'')?
 
-\paragraph{Step 2.3} Let's look at aliasing in a little more detail
+\paragraph{Step 1.3} Let's look at aliasing in a little more detail
 and with a lot more numerical precision. You'll recall from the text
 that, once we sample a signal, we have limited the range of
 frequencies that we can represent in our discrete signal to the range
-$0 \leq \hat{\omega} \leq \pi/2$, corresponding to a range of apparent
+$0 \leq \hat{\omega} \leq \pi$, corresponding to a range of apparent
 frequencies in the physical world of $0 \leq \omega' \leq \omega_s/2$
 (or $0 \leq f' \leq f_s/2$). Any frequency in the original signal
 above $f_s/2$ will be \emph{aliased} into the range of possible
@@ -60,18 +54,18 @@ duration of 1s. This will make it easy to count cycles when
 plotted. Set up a figure that can hold three plots and plot this
 analog signal in the top plot.
 
-\paragraph{Step 2.4} Sample this signal at 25Hz and use the
+\paragraph{Step 1.4} Sample this signal at 25Hz and use the
 \texttt{discreteplot} function to plot the sampled signal in the
 middle. Sample it at 15Hz and similarly plot that sampled signal at
 the bottom.
 
-\paragraph{Step 2.5} Before examining the plots in detail, answer the
+\paragraph{Step 1.5} Before examining the plots in detail, answer the
 following questions: For each of the two sampling frequencies, what is
 the range of apparent frequencies that can be represented? For each,
 will a sinusoid with $f = 10$Hz be aliased? If so, what will be the
 digital frequency and the apparent frequency of a 10Hz sinusoid?
 
-\paragraph{Step 2.6} Examine the plots and count the number of
+\paragraph{Step 1.6} Examine the plots and count the number of
 up-and-down cycles in each. Don't worry that each cycle doesn't look
 the same, or that every other cycle seems different; just count
 each. You should see 10 cycles in the top graph; how many do you see
@@ -98,7 +92,7 @@ with this class's Matlab code to perform this conversion:
 %      otherwise, set ouput value range = input value range
 \end{lstlisting}
 
-\paragraph{Step 3.1} Write a Matlab function that compares two signals
+\paragraph{Step 2.1} Write a Matlab function that compares two signals
 by computing the \emph{signal to noise ratio} (SNR) that results from
 changing one into the other (by quantization). Your function should do
 this by first computing \emph{root mean squared} (RMS) error between
@@ -121,19 +115,19 @@ did in the textbook, because we are now doing the computation for a
 
 
 
-  \paragraph{Step 3.2} Use your code to compute the SNR for a
+  \paragraph{Step 2.2} Use your code to compute the SNR for a
   quantized sinusoid. Generate an analog signal with with a range of 0
   to 5, frequency of 10Hz, and duration 2sec. Sample it at 25Hz. Use
   2, 4, 8, 12, and 16 bits quantization, and plot SNR on the Y-axis
   versus number of quantization bits on the X-axis.
 
-  \paragraph{Step 3.3} Repeat Step 3.2 using a square waveform with
+  \paragraph{Step 2.3} Repeat Step 3.2 using a square waveform with
   the same parameters.
 
-  \paragraph{Step 3.4} Repeat Step 3.2 using a triangle waveform with
+  \paragraph{Step 2.4} Repeat Step 3.2 using a triangle waveform with
   the same parameters.
 
-  \paragraph{Step 3.5} As you double the number of bits used in
+  \paragraph{Step 2.5} As you double the number of bits used in
   quantization, how does the SNR change? How does this compare to what
   your learned from the textbook? Refer to specific features of your
   plots from Steps~3.2--3.4 to justify your answer.
