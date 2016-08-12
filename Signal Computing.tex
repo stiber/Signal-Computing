@@ -54,6 +54,12 @@
 %\usepackage{html}
 \usepackage[chapter]{algorithm}
 
+% To get footnote text for figures on the same page
+\usepackage{afterpage}
+
+% For overlaying a picture
+\usepackage[percent]{overpic}
+
 % Superscripts outside math mode
 \newcommand{\spscript}[2]{\mbox{#1}$^\mathrm{#2}$}
 
@@ -201,6 +207,11 @@
 
 \newcommand{\commentedout}[1]{}
 
+% Variable thickness \hrulefill
+\makeatletter
+  \def\vhrulefill#1{\leavevmode\leaders\hrule\@height#1\hfill \kern\z@}
+\makeatother
+
 \title{Signal Computing: Digital Signals in the Software Domain}
 
 % \author{} isn't being used in this document, so no attempt to make
@@ -220,18 +231,22 @@
 
 \begin{titlepage}
 
-\mbox{}\\[0.5in]
-\begin{center}
-\mbox{}\hrulefill\mbox{}\\[0.25in]
+% Another possibility for overlaying a picture
+% \usepackage[percent]{overpic} needed above
+% \begin{overpic}[width=\textwidth,grid,tics=10]{cover}
+\begin{overpic}[width=\textwidth]{cover}
+ \put (0,85) {\begin{minipage}{\textwidth}\begin{center}
+\begin{bfseries}
+\mbox{}\vhrulefill{2pt}\mbox{}\\[0.25in]
 {\Huge Signal Computing:}\\[0.25in]
 {\LARGE Digital Signals in the Software Domain}\\[0.25in]
-\mbox{}\hrulefill\mbox{}\\[3in]
-
-\mbox{}\hfill
-\parbox{1.5in}{\mbox{}}
-\parbox{3in}{Fall 2016}\\[0.25in]
-\mbox{}\hfill
-\parbox{3in}{\raggedright
+\mbox{}\vhrulefill{2pt}\mbox{}
+\end{bfseries}
+\end{center}
+\end{minipage}}
+\put (55,-10) {\begin{minipage}{3in}
+\begin{bfseries}
+Fall 2016\\[0.25in]
 Michael Stiber\\
 Bilin Zhang Stiber\\
 University of Washington Bothell\\
@@ -241,8 +256,16 @@ Eric C. Larson\\
 Southern Methodist University\\
 Lyle School of Engineering\\
 3145 Dyer Street\\
-Dallas, TX 75205}
-\end{center}
+Dallas, TX 75205
+\end{bfseries}
+\end{minipage}}
+\end{overpic}
+
+% \mbox{}
+% \vspace*{5in}
+% \includegraphics[width=\textwidth]{cover}
+% \vspace*{-11in}
+
 
 \newpage
 \mbox{}\vspace{2in}

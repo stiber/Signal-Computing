@@ -1351,6 +1351,23 @@ to show that its value is unity:
 \caption{The sinc function.\label{fig:sinc}}
 \end{figure}
 
+% alpha = [-10:0.01:10];
+%
+% % Create plot
+% plot(alpha,sinc(alpha/pi),'LineWidth',2,'Color',[0 0 1]);
+%
+% % Create xlabel
+% xlabel('\alpha','FontSize',36);
+%
+% % Create ylabel
+% ylabel('sinc(\alpha)','FontSize',36);
+%
+% xlim(axes1,[-32 32]);
+% box(gca,'on');
+% % Set the remaining axes properties
+% set(gca,'FontSize',30,'XGrid','on','XTick',[-31.4 -15.7 0 15.7 31.4],...
+%     'XTickLabel',{'-10\pi','-5\pi','0','5\pi','10\pi'},'YGrid','on');
+
 The magnitude of $\sinc\alpha$ therefore decreases from unity at
 $\alpha=0$ to zero at $\alpha=\pi$. As $\alpha$ increases from $\pi$
 to $2\pi$, $\sinc\alpha$ increases from zero to a maximum less than

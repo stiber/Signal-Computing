@@ -246,7 +246,28 @@ samples were taken from two successive cycles, or if a single cycle
 was skipped in between them, or if a hundred cycles were
 skipped. If we sample a signal and then reconstruct it from the samples we must assume that in between samples the signal is smooth (i.e., it has no other frequencies above the Nyquist frequency). 
 
-To reconstruct a signal from its samples we need to talk about the notion of \emph{actual frequency} versus \emph{digital frequency} and \emph{apparent frequency}. We can use these quantities to calculate precisely if a frequency will alias, and at what frequency it will appear. The actual frequency of a signal is the continuous time frequency that we are accustomed to talking about. For  $e^{j\omega_0 t}$, the actual frequency is $\omega_0$. The digital frequency is the frequency at which the signal appears to be based on the indices, $n$, of the sampled signal. Once sampled, $ e^{j\omega_0 t}$ becomes $ e^{j\omega_0 nT_s}$ which has a digital frequency of $\hat{\omega}_0=\omega_0 T_s=\omega_0 \frac{2\pi}{\omega_s}$.  
+\begin{figure}
+  \centerline{\includegraphics[width=0.7\textwidth]{ch-computer/apparent-frequency}}
+  \caption[Sampling and apparent frequency]{Sampling an analog signal,
+    $x(t)$, with an analog (actual) frequency $f$ produces a digital
+    signal, $x[n]$, at a digital frequency $\hat{f}$. If one examines
+    that digital signal and converts $\hat{f}$ back to an analog
+    frequency, the apparent frequency is $f'$, which may not be the
+    same as $f$, due to aliasing.\label{fg:apparent-frequency}}
+\end{figure}
+
+To reconstruct a signal from its samples we need to talk about the
+notion of \emph{actual frequency} versus \emph{digital frequency} and
+\emph{apparent frequency}, as shown in
+figure~\ref{fg:apparent-frequency}. We can use these quantities to
+calculate precisely if a frequency will alias, and at what frequency
+it will appear. The actual frequency of a signal is the continuous
+time frequency that we are accustomed to talking about. For
+$e^{j\omega_0 t}$, the actual frequency is $\omega_0$. The digital
+frequency is the frequency at which the signal appears to be based on
+the indices, $n$, of the sampled signal. Once sampled, $ e^{j\omega_0
+  t}$ becomes $ e^{j\omega_0 nT_s}$ which has a digital frequency of
+$\hat{\omega}_0=\omega_0 T_s=\omega_0 \frac{2\pi}{\omega_s}$.
 
 \begin{align}
 x(t) & = \exp(j\underbrace{\omega_0}_{\stackrel{}{\text{actual}}}t) \notag\\

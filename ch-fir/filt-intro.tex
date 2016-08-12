@@ -170,7 +170,7 @@ A block diagram is a type of data flow diagram: it shows flow of
 signal \emph{data} within the filter (in contrast to a \emph{flow chart}, which
 \index{flow chart}
 \index{diagram!flow chart}
-shows flow of \emph{control} within a program. In
+shows flow of \emph{control} within a program). In
 figure~\ref{fig:ff-bdiag}, the input signal data $x(t)$ branches, with
 one copy sent to an adder (``+'') and another sent to a delay
 block. The output of the delay block is sent to a multiplier, which
@@ -197,17 +197,26 @@ $\omega$. We can factor out the $e^{j\omega t}$ in
 equation~(\ref{eq:ff-filt-ph}) to obtain:
 \begin{align}
 y(t) &= [1 + b_1 e^{-j\omega \tau}] e^{j\omega t}\\
-&= \mathcal{H}(\omega) e^{j\omega t} \label{eq:fresp-mult} \\
-&= \mathcal{H}(\omega) x(t)
+&= [1 + b_1 e^{-j\omega \tau}] x(t)
 \end{align}
-where 
-\begin{equation}
-\mathcal{H}(\omega) = \frac{y(t)}{x(t)} = 1+b_1 e^{-j\omega \tau}
-\end{equation}
 \index{filter!frequency response|emph}%
-is called the filter's \emph{frequency response}: how its output
-varies as a function of the input frequency (i.e., the ratio of output
-to input). Remember that $\tau$
+We now define a filter's \emph{frequency response} (how its output
+varies as a function of the input frequency) to be the ratio of
+output to input,
+\begin{equation}
+\mathcal{H}(\omega) = \frac{y(t)}{x(t)}
+\end{equation}
+which in this case is
+\begin{equation}
+\mathcal{H}(\omega) = 1+b_1 e^{-j\omega \tau}
+\end{equation}
+So, in general, the output of a filter can be expressed as the product
+of its input and its frequency response,
+\begin{equation}
+ y(t) = \mathcal{H}(\omega) x(t) \label{eq:fresp-mult}
+\end{equation}
+
+Remember that $\tau$
 \index{frequency response}
 is a constant delay; what can vary here (besides $t$, which is the
 same for both $x(t)$ and $y(t)$) is the frequency of the input,

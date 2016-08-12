@@ -135,6 +135,7 @@ See~\ref{sc:ch6ex} \#\ref{it:ch6ex1}--\ref{it:ch6ex2} for answers.
 \end{enumerate}}
 
 \subsection{Example: z-transform of an impulse}
+\label{sc:zx-impulse}
 
 \index{z-transform!of an impulse}
 \index{unit impulse}
@@ -212,6 +213,7 @@ See~\ref{sc:ch6ex} \#\ref{it:ch6ex3}--\ref{it:ch6ex4} for answers.
 \end{enumerate}}
 
 \subsection{Example: z-transform of exponential signal}
+\label{sc:zx-exp}
 
 \index{z-transform!of an exponential}
 An exponential signal is defined as 
@@ -242,6 +244,7 @@ this case is $\alpha z^{-1}$. We can show this by rewriting
 equation~(\ref{eq:exp-zt}) as $X(z) = 1 + \alpha z^{-1} + \alpha^{2}
 z^{-2} + \cdots$. Rewriting the \spscript{$i+1$}{st} element of this
 series as a recurrence relation (in terms of the \spscript{$i$}{th}),
+\index{recurrence relation}
 we get $X(z)_{i+1} = X(z)_i \alpha z^{-1}$, which shows the common ratio.
   
 If we have a geometric series in which successive terms $b_i$ and
@@ -737,14 +740,14 @@ examples of using these properties.
 
 \index{z-transform!of a time-shifted impulse}
 Remember that the z-transform of the unit impulse
-$\delta[n]$ was previously discussed
+$\delta[n]$ was discussed in section~\ref{sc:zx-impulse}
 \begin{equation}
 \delta[n] = \left\{\begin{array}{ll}
                         1 & n=0 \\
                         0 & n \neq 0
           \end{array}\right.
 \end{equation}
-is 1 and that the z-transform of the shifted unit impulse
+as being 1 and that the z-transform of the shifted unit impulse
 $\delta[n-k]$ is $z^{-k}$? Using the time-shifting property of the
 z-transform, this is easy to determine:
 \begin{equation}

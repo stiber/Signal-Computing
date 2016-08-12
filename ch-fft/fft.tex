@@ -462,7 +462,7 @@ X[k] &= \frac{1-a^Ne^{-jkN2\pi/N}}{1-ae^{-jk2\pi/N}} \notag\\
 
 \begin{figure}
 \centerline{\includegraphics[height=3.5in]{ch-fft/dft_expX2}}
-\caption{The magnitude of DFT for the
+\caption[First half of DFT of {$x[n] = 0.8^n$}]{Magnitude of DFT for the
 signal~\protect\ref{fig:dft-exp-xX} top is plotted for the first half
 of its range.
 \label{fig:dft-exp-X2}}
@@ -873,8 +873,8 @@ x[n] = \sin(2\pi f_1 n T_s) + \sin(2\pi f_2 n T_s),
 
 \begin{figure}
 \centerline{\includegraphics[width=5in]{ch-fft/fft_sin_xX}}
-\caption[Sum of two sinusoids $x$ with $N=512$ samples and its 
-FFT $|X|$]{Sum of two sinusoids $x$ with $N=512$ samples (top) and its
+\caption[Sum of two sinusoids with 512 samples and its 
+FFT]{Sum of two sinusoids $x$ with $N=512$ samples (top) and its
 FFT $|X|$ (bottom). The sampling frequency is $f_s=100$Hz, $f_1=25
 \Delta f=4.8828$Hz and $f_2=128 \Delta f=25.0$Hz, where frequency step
 $\Delta f=f_s/N=0.1953$Hz/sample.
@@ -896,8 +896,8 @@ introduced.
 
 \begin{figure}
 \centerline{\includegraphics[width=5in]{ch-fft/fft-leakage}}
-\caption[Sum of two sinusoids $x$ with $N=512$ samples and its  
-FFT $|X|$; different frequencies]{Similar input signals as in
+\caption[Sum of two sinusoids with 512 samples and its  
+FFT; different frequencies]{Similar input signals as in
 figure~\protect\ref{fig:fft-sin-xX}, but here the two frequencies are
 $f_1=5$Hz and $f_2=25$Hz for the top plot and $f_1=5$Hz and $f_2=24$Hz
 for the bottom.
@@ -1189,19 +1189,19 @@ spectrum within windows at particular times.
 
 \begin{figure}[p]
 \centerline{\includegraphics[height=0.35\textheight]{ch-fft/ufft_cardinal1_spg512_511}}
-\caption[A bird call waveform and its spectrogram]{A bird call
-waveform (top) and its spectrogram (bottom). The window size is 512
-samples and the overlap is 511 samples (increment is 1). Color
-indicates magnitude, with color key on the right of the
-figure.\label{fig:ufft-birdspg-c1}}
+\caption[Bird call waveform and spectrogram; window size 512 samples,
+overlap 511]{A bird call waveform (top) and its spectrogram
+  (bottom). The window size is 512 samples and the overlap is 511
+  samples (increment is 1). Color indicates magnitude, with color key
+  on the right of the figure.\label{fig:ufft-birdspg-c1}}
 \end{figure}
 
 \begin{figure}
 \centerline{\includegraphics[height=0.35\textheight]{ch-fft/ufft_cardinal1_spg128_127}}
-\caption[Same data as figure~\ref{fig:ufft-birdspg-c1};
-window size 128 samples, overlap 127]{The same data as
-figure~\ref{fig:ufft-birdspg-c1}, but the window size is 128 samples
-and overlap is 127 (increment is 1).\label{fig:ufft-birdspg-c2}}
+\caption[Bird call waveform and spectrogram; window size 128 samples,
+overlap 127]{The same data as figure~\ref{fig:ufft-birdspg-c1}, but
+  the window size is 128 samples and overlap is 127 (increment is
+  1).\label{fig:ufft-birdspg-c2}}
 \end{figure}
 
 \index{spectrogram!of a bird call}
@@ -1234,18 +1234,17 @@ of the short window.
 
 \begin{figure}[p]
 \centerline{\includegraphics[height=0.4\textheight]{ch-fft/ufft_bluewing1am_spg512_511}}
-\caption[Another bird call waveform and its spectrogram; 512 sample
+\caption[Different bird call waveform and spectrogram; 512 sample
 window, overlap 511]{Another bird call waveform (top) and its
-spectrogram (bottom), with window size of 512 samples and overlap of
-511 samples.\label{fig:ufft-birdspg-b1}}
+  spectrogram (bottom), with window size of 512 samples and overlap of
+  511 samples.\label{fig:ufft-birdspg-b1}}
 \end{figure}
 
 \begin{figure}[p]
 \centerline{\includegraphics[height=0.4\textheight]{ch-fft/ufft_bluewing1am_spg128_127}}
-\caption[Same data as figure~\protect\ref{fig:ufft-birdspg-b1}; 128
-sample window, overlap 127]{Same data as
-figure~\protect\ref{fig:ufft-birdspg-b1}, but with window size of 128
-samples and overlap of 127.\label{fig:ufft-birdspg-b2}}
+\caption[Bird call waveform; 128 sample window, overlap 127]{Same data
+  as figure~\protect\ref{fig:ufft-birdspg-b1}, but with window size of
+  128 samples and overlap of 127.\label{fig:ufft-birdspg-b2}}
 \end{figure}
 
 Figures~\ref{fig:ufft-birdspg-b1} and~\ref{fig:ufft-birdspg-b2} are

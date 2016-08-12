@@ -167,8 +167,10 @@ this result, we obtain the inverse transform
 h[n] = 2\left(\frac{1}{2}\right)^n, \quad n\ge 0 \label{eq:fb-eximp}
 \end{equation}
 where the left and right sides of equation~(\ref{eq:fb-eximp}) are the
-inverse z-transforms of the left and right sides
-of~(\ref{eq:fb-exxfer}).  This is the corresponding impulse response.
+inverse z-transforms of $H(z)$ and $2/(1-\frac{1}{2}z^{-1})$
+from equation~(\ref{eq:fb-exxfer}), respectively (the latter making
+use of our example from section~\ref{sc:zx-exp}).  This is the
+corresponding impulse response.
 
 \subsection{Stability}
 
@@ -235,6 +237,8 @@ Its transfer function is
 H(z) &= \frac{1}{1 + \sum_{k=1}^N a_k z^{-k}} \notag \\
      &= \frac{z^N}{z^N+\sum_{k=1}^N a_k z^{N-k}} \label{eq:manypoles}
 \end{align}
+where we've multiplied by $z^N/z^N$, as is our usual practice, to
+produce a ratio of polynomials with positive exponents.
 
 Let $p_i, i=1, 2,...,N$ be its poles (the roots of the denominator
 polynomial). Let's not worry about how we can get them (we know how if
@@ -274,7 +278,11 @@ Consider the unit impulse $\delta[n]$,
 \end{array}\right.
 \end{equation}
 Any discrete input signal can be thought of as a weighted sum of
-delayed unit impulses,
+delayed unit impulses. This is a straightforward application of the
+knowledge that $\delta[n]=1$ when $n=0$,  $\delta[n-1]=1$  when $n=1$,
+$\delta[n-2]=1$ when $n=2$, etc. Each of these is zero for all other
+time indices, so we can use a sum of impulses, each multiplied by the
+corresponding element of $x[n]$, to express a discrete signal:
 \begin{align}
 x[n] &= \{x[0], x[1], x[2], \ldots\} \notag \\
      &= x[0]\delta[n] + x[1]\delta[n-1] + x[2]\delta[n-2] + \cdots
@@ -323,12 +331,15 @@ $|\mathcal{H}(\hat{\omega})|_B^2$ (the $1/\sqrt{2}$ amplitude points
 written as $|\mathcal{H}(\hat{\omega})|_B$). If the peak value of
 power is $|\mathcal{H}(\hat{\omega})|_p^2$ and the peak amplitude is
 $|\mathcal{H}(\hat{\omega})|_p$, the bandwidth points are located at
+the (two) values of $\hat{\omega}$ that satisfy the following
+relationship:
 \begin{equation}
 \underbrace{|\mathcal{H}(\hat{\omega})|_B}_{\stackrel{\text{cutoff}}{_\text{amplitude}}}
   = \frac{1}{2}\underbrace{|\mathcal{H}(\hat{\omega})|_p^2}_{\stackrel{\text{peak}}{_\text{power}}}
   = \frac{1}{\sqrt{2}}\underbrace{|\mathcal{H}(\hat{\omega})|_p}_{\stackrel{\text{peak}}{_\text{amplitude}}}
 \label{eq:fb-band}
 \end{equation}
+
 Since $20\log_{10}(1/\sqrt{2})=-3\mathrm{dB}$
 \begin{equation}
 \frac{|\mathcal{H}(\hat{\omega})|_B}{|\mathcal{H}(\hat{\omega})|_p} 
@@ -355,18 +366,18 @@ $\hat{\omega}_0=0$ and $z=e^{j\hat{\omega}}$
 \label{fig:fb-exp1pc0_phi}}
 \end{figure}
 
-Let's take a look at the case in which a pole is on the real axis and
-no other poles are nearby; the pole is $a_1=re^{j\hat{\omega}_0}$,
-$r=R$ and $\hat{\omega}_0=0$ (so $a_1=R$). A point on the unit circle
-is $z=e^{j\hat{\omega}}$. This situation is illustrated in
-figure~\ref{fig:fb-exp1pc0_phi}.  We know that the one pole transfer
-function is
+Let's make matters simple and take a look at the case in which a pole
+is on the real axis and no other poles are nearby; the pole is
+$a_1=re^{j\hat{\omega}_0}$, $r=R$ and $\hat{\omega}_0=0$ (so
+$a_1=R$). A point on the unit circle is $z=e^{j\hat{\omega}}$. This
+situation is illustrated in figure~\ref{fig:fb-exp1pc0_phi}.  We know
+that the one pole transfer function is
 \begin{equation}
 H(z)=\frac{1}{1-a_1z^{-1}}
 \end{equation}
 with magnitude 
 \begin{equation}
-|H(z)|=\left|\frac{1}{1-a_1z^{-1}}\right|
+|H(z)|=\left|\frac{1}{1-a_1z^{-1}}\right| \label{eq:reson-mag}
 \end{equation}
 
 Consider the inverse square of the magnitude, substituting in our
@@ -388,7 +399,8 @@ expressions for $a_1$ and $z$,
 \end{align}
 The peak of $|\mathcal{H}(\hat{\omega})|^2$ should be the value of
 angle $\hat{\omega}_p=\hat{\omega}$ that makes
-$1/|\mathcal{H}(\hat{\omega})|^2=1-2R\cos\hat{\omega} + R^2$ minimum,
+$1/|\mathcal{H}(\hat{\omega})|^2=1-2R\cos\hat{\omega} + R^2$ minimum
+(and so $|\mathcal{H}(\hat{\omega})|^2$ maximum),
 that is when $\hat{\omega}=0$. The power at this peak is determined by
 substituting $\hat{\omega}=0$ into equation~(\ref{eq:reson-inv-mag2})
 and taking its reciprocal:
@@ -444,6 +456,48 @@ If we want a low-pass filter with a particular bandwidth,
 equation~(\ref{eq:calc-bw}) gives us a way to determine its pole
 location.
 
+\begin{figure}
+\centerline{\includegraphics[height=3.5in]{ch-iir/design-example}}
+\caption[Feedback filter design]{Designing a simple one-pole feedback
+  filter. A filter's frequency 
+  response is sketched for the situation where we want the center of
+  its passband at $\hat{\omega}_p$ and we wish to ensure that another
+  frequency, $\hat{\omega}_2 = \hat{\omega}_p + \hat{\omega}_d$, is
+  well outside the passband. We choose 
+  the filter's cutoff frequencies, $\hat{\omega}_{B_1} =
+  \hat{\omega}_p - \hat{\omega}_B$ and $\hat{\omega}_{B_2} =
+  \hat{\omega}_p  + \hat{\omega}_B$, to achieve this.
+  \label{fig:design-example}}
+\end{figure}
+
+Let's consider how we might use these observations to design a filter,
+as sketched in figure~\ref{fig:design-example}. We want the peak of the
+filter's frequency response (the center of its passband) to be at the
+frequency $\hat{\omega}_p$ and we want to ensure that it filters out
+some other frequency, $\hat{\omega}_2$. We choose the -3dB points to
+be at a distance $\pm\hat{\omega}_B$ from $\hat{\omega}_p$, labelled
+$\hat{\omega}_{B_1}$ and $\hat{\omega}_{B_2}$ in the figure. These
+cutoff frequencies are chosen to ensure that $\hat{\omega}_2$ is well
+outside the passband.
+
+Our design problem is to choose the pole location. The peak frequency
+for the passband, $\hat{\omega}_p$, gives us the pole angle, so all we
+need to do is determine the pole radius, $R$, to give us
+$a_1=Re^{j\hat{\omega}_p}$. Looking at equation~(\ref{eq:reson-mag}),
+we can substitute this value of $a_1$ and $z=e^{j\hat{\omega}}$ and
+collect terms:
+\begin{align}
+|\mathcal{H}(\hat{\omega})| &=
+\left|\frac{1}{1-Re^{j\hat{\omega}_p}e^{-j\hat{\omega}}}\right| \notag\\
+  &= \left|\frac{1}{1-Re^{j(\hat{\omega}_p - \hat{\omega})}}\right|
+\end{align}
+We just need to make sure that when the frequency $\hat{\omega} =
+\hat{\omega}_2$, $|\mathcal{H}(\hat{\omega})|$ is below -3dB. Clearly,
+we can achieve this by ensuring that the half bandwidth, $B$, is less
+than $\hat{\omega}_d$. We can then use equation~(\ref{eq:calc-bw}) to
+determine the value of $R$ that ensures this, and we have the correct
+pole location.
+
 \problemset{
 \subsubsection{Self-Test Exercises}
 
@@ -481,11 +535,35 @@ y[n] = \underbrace{b_0x[n] + b_1x[n-1] + \cdots +
 \label{eq:gen-impl}
 \end{equation}
 
+\afterpage{
+\begin{figure}
+\centerline{\begin{tabular}{cc}
+\noindent\parbox[c]{0.45\textwidth}{\includegraphics[width=0.45\textwidth]{ch-iir/Elliptic-Filter-Response}}
+  &
+\noindent\parbox[c]{0.45\textwidth}{\includegraphics[width=0.45\textwidth]{ch-iir/Butterworth-Filter-Response}}
+\end{tabular}}
+\caption[Example filter frequency responses]{Example filter frequency
+  responses: elliptic (left)\protect\footnotemark and Butterworth
+  (right)\protect\footnotemark.\label{fig:filter-fr-examples}}
+\end{figure}
+\addtocounter{footnote}{-1}
+\footnotetext{By Inductiveload (Own work) [Public domain], via
+    Wikimedia Commons.}
+\footnotetext{By Alejo2083 (Own work) [GFDL
+  (\url{http://www.gnu.org/copyleft/fdl.html)}, CC-BY-SA-3.0
+  (\url{http://creativecommons.org/licenses/by-sa/3.0/}) or CC BY-SA
+  2.5-2.0-1.0
+  (\url{http://creativecommons.org/licenses/by-sa/2.5-2.0-1.0})], via
+  Wikimedia Commons.}
+}
+
 Depending on the coefficients $\{b_k\}$ and $\{a_\ell\}$, the
 filter will show different features. Some of these features have
 proven so useful that these forms of~(\ref{eq:gen-xfer}) have acquired
-special names, such as elliptic, Butterworth, etc (usually, based on
-the form of the numerator and/or denominator polynomial).
+special names, such as elliptic, Butterworth, etc. (usually, based on
+the form of the numerator and/or denominator
+polynomial). Figure~\ref{fig:filter-fr-examples} presents some example
+frequency responses.
 
 \section{Implementation}
 
@@ -559,6 +637,7 @@ example.
 
 \paragraph{Example~4}
 Consider the following two recurrence relations for computing the
+\index{recurrence relation}
 series $\{x[n]\} = \{1/3^n\}$ ($n = 0, 1, 2, \ldots$):
 \begin{align}
 x'[n]  &= \frac{1}{3} x'[n-1] \label{eq:series-direct} \\
