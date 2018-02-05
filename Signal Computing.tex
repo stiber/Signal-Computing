@@ -58,7 +58,7 @@
 \usepackage{afterpage}
 
 % For overlaying a picture
-\usepackage[percent]{overpic}
+% \usepackage[percent]{overpic}
 
 % Superscripts outside math mode
 \newcommand{\spscript}[2]{\mbox{#1}$^\mathrm{#2}$}
@@ -234,19 +234,24 @@
 % Another possibility for overlaying a picture
 % \usepackage[percent]{overpic} needed above
 % \begin{overpic}[width=\textwidth,grid,tics=10]{cover}
-\begin{overpic}[width=\textwidth]{cover}
- \put (0,85) {\begin{minipage}{\textwidth}\begin{center}
+%
+% \begin{overpic}[width=\textwidth]{cover}
+% \put (0,85) {\begin{minipage}{\textwidth}
+\mbox{}\\[0.5in]
+\begin{center}
 \begin{bfseries}
 \mbox{}\vhrulefill{2pt}\mbox{}\\[0.25in]
 {\Huge Signal Computing:}\\[0.25in]
 {\LARGE Digital Signals in the Software Domain}\\[0.25in]
-\mbox{}\vhrulefill{2pt}\mbox{}
+\mbox{}\vhrulefill{2pt}\mbox{}\\[3in]
 \end{bfseries}
-\end{center}
-\end{minipage}}
-\put (55,-10) {\begin{minipage}{3in}
-\begin{bfseries}
-Fall 2016\\[0.25in]
+
+%\end{minipage}}
+%\put (55,-10) {\begin{minipage}{3in}
+\mbox{}\hfill
+\parbox{1.5in}{\mbox{}}
+\parbox{3in}{\raggedright
+Winter 2018\\[0.25in]
 Michael Stiber\\
 Bilin Zhang Stiber\\
 University of Washington Bothell\\
@@ -256,10 +261,10 @@ Eric C. Larson\\
 Southern Methodist University\\
 Lyle School of Engineering\\
 3145 Dyer Street\\
-Dallas, TX 75205
-\end{bfseries}
-\end{minipage}}
-\end{overpic}
+Dallas, TX 75205}
+\end{center}
+%\end{minipage}}
+%\end{overpic}
 
 % \mbox{}
 % \vspace*{5in}
@@ -270,10 +275,11 @@ Dallas, TX 75205
 \newpage
 \mbox{}\vspace{2in}
 \begin{flushright}
-Copyright \copyright\ 2002--2016 by Michael and Bilin Stiber and Eric
+Copyright \copyright\ 2002--2018 by Michael and Bilin Stiber and Eric
 C. Larson\\[1in]
 This material is based upon work supported by the National Science
-Foundation under Grant No. 0443118.\\[2in]
+Foundation under Grant No. 0443118.\\[1in]
+Cover art by Eduardo Sainos.\\[1in]
 This work is licensed under the Creative Commons
 Attribution-ShareAlike 4.0 International License. To view a copy of
 this license, visit
