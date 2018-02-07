@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/23119912.svg)](https://zenodo.org/badge/latestdoi/23119912)
+
 Signal-Computing
 ================
 
