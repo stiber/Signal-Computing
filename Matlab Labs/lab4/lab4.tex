@@ -79,15 +79,18 @@ term.
 
 You can visualize the zero locations with the following code:
 \begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
-plot(r, 'o')
+plot(complex(r), 'o')
 rectangle('Position', [-1 -1 2 2], 'Curvature', [1 1])
 line([-1 1], [0 0], 'Color', [0 0 0])
 line([0 0], [-1 1], 'Color', [0 0 0])
 axis equal
 \end{lstlisting}
-Here, we use the unfortunately named \verb|rectangle| function
-to draw the unit circle and the \verb|line| function to draw the real
-and imaginary axes.
+Here, we use the unfortunately named \verb|rectangle| function to draw
+the unit circle and the \verb|line| function to draw the real and
+imaginary axes. Note also that we have to make sure that the value of
+$r$ that we pass to the \verb|plot()| function is complex (since we
+want to plot it on the complex plane) using the \verb|complex()|
+function, because the roots of a polynomial can be real.
 
 Finally, you can compute and plot the magnitude of the filter's
 frequency response pretty directly in Matlab:

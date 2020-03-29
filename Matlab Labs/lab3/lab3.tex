@@ -32,13 +32,22 @@ sinusoid.
 sampled versions of this signal at 300Hz, 500Hz, 1000Hz, and
 2000Hz. Use the Matlab \texttt{subplot} command, and the
 \texttt{discreteplot} function provided with this class's Matlab code,
-to plot the original and all four sampled signals together. Clearly,
-the results are not the same, and none look identical to the original
-sine wave. What are the two essential pieces of information about a
-sine wave that need to be preserved when sampling it? Does it appear
-that all sampled versions are equally useful in achieving this? Why or
-why not (in other words, your answer to this question should not be
-just ``yes'' or ``no'')?
+to plot the original and all four sampled signals together. One of the
+things that you will note from these plots is that the X axes of these
+plots do not have units of continuous time; their units are \emph{not}
+seconds. Instead, the X axis values are sample count, starting with
+sample 1. You will want these plots to show their signals over the
+same time duration, and so you'll need to choose that duration,
+then figure out, for each sampled signal, how many samples correspond
+to that duration, and then set the X axis limits for each figure so
+that the plots show equal durations.
+
+Clearly, the results are not the same, and none look identical to the
+original sine wave. What are the two essential pieces of information
+about a sine wave that need to be preserved when sampling it? Does it
+appear that all sampled versions are equally useful in achieving this?
+Why or why not (in other words, your answer to this question should
+not be just ``yes'' or ``no'')?
 
 \paragraph{Step 1.3} Let's look at aliasing in a little more detail
 and with a lot more numerical precision. You'll recall from the text
@@ -121,13 +130,13 @@ did in the textbook, because we are now doing the computation for a
   2, 4, 8, 12, and 16 bits quantization, and plot SNR on the Y-axis
   versus number of quantization bits on the X-axis.
 
-  \paragraph{Step 2.3} Repeat Step 3.2 using a square waveform with
+  \paragraph{Step 2.3} Repeat Step 2.2 using a square waveform with
   the same parameters.
 
-  \paragraph{Step 2.4} Repeat Step 3.2 using a triangle waveform with
+  \paragraph{Step 2.4} Repeat Step 2.2 using a triangle waveform with
   the same parameters.
 
   \paragraph{Step 2.5} As you double the number of bits used in
   quantization, how does the SNR change? How does this compare to what
   your learned from the textbook? Refer to specific features of your
-  plots from Steps~3.2--3.4 to justify your answer.
+  plots from Steps~2.2--2.4 to justify your answer.

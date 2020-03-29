@@ -240,22 +240,22 @@ other images.
 
 \paragraph{Step 3.3} Let's quantize the image's spectral
 content. First, find the number of zero elements in the FFT, using
-something like \verb|origZero=length(find(abs(a)==0));|, where
-\verb|a| is the FFT. \emph{Remember to exclude the DC value in the
+something like \verb|origZero=length(find(abs(origX)==0));|, where
+\verb|origX| is the FFT. \emph{Remember to exclude the DC value in the
   \texttt{fft2} output in figuring out this range.} Then, zero out
 additional frequency components by zeroing out all with magnitudes
 below some threshold. You'll want to set the threshold somewhere
-between the min and max magnitudes of \verb|a|, which you can get as
-\verb|mn=min(min(abs(a)));| and \verb|mx=max(max(abs(a)));|. Let's
+between the min and max magnitudes of \verb|origX|, which you can get as
+\verb|mn=min(min(abs(origX)));| and \verb|mx=max(max(abs(origX)));|. Let's
 make four tests, with thresholds 5\%, 10\%, 20\%, and 50\% of the way
 between the min and max, i.e., \verb|th=0.05*(mx-mn)+mn;|. Zero out
 all FFT values below the threshold using something like:
 \begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
-b = a;
-b(abs(a)<th) = 0;   % Uses logical array indexing
+compX = origX;
+compX(abs(origX)<th) = 0;   % Uses logical array indexing
 \end{lstlisting}
 You can count the number of elements thresholded by finding the number
-of zero elements in \verb|b| at this point and subtracting the number
+of zero elements in \verb|compX| at this point and subtracting the number
 that were originally zero (i.e., \verb|origZero|). This is an estimate
 of the amount the image could be compressed with an entropy
 coder. Express the number of thresholded elements as a fraction of the
@@ -270,17 +270,20 @@ values may still be large enough to produce too large of a range. Can
 you suggest an approach that will take this into account? How does the
 JPEG algorithm deal with or avoid this problem?
 
+\begin{sloppypar}
 \paragraph{Step 3.4} Now we will see the effect of this thresholding
 on image quality. Convert the thresholded FFT back to an image using
-something like \verb|c = abs(ifft2(b));|. For each type of image and
-each threshold value, plot the original image and the final processed
-image. Compute the mean squared error (MSE) between the original and
-reconstructed image (mean squared error for matrices can be computed
-as \verb|mean(mean((a-c).^2))|).  What can you say about the effects
-on the image and MSE?  Collect your code together as a script to
-automate the thresholding and reconstruction, so you can easily
-compute MSE for a number of thresholds. Plot MSE vs. threshold
+something like \verb|reconstructed = abs(ifft2(compX));|. For each
+type of image and each threshold value, plot the original image and
+the final processed image. Compute the mean squared error (MSE)
+between the original and reconstructed image (mean squared error for
+matrices can be computed as
+\verb|mean(mean((original-reconstructed).^2))|).  What can you say
+about the effects on the image and MSE?  Collect your code together as
+a script to automate the thresholding and reconstruction, so you can
+easily compute MSE for a number of thresholds. Plot MSE vs. threshold
 percentage (just as you plotted fraction of pixels thresholded
 vs. threshold in step 3.3).
+\end{sloppypar}
 
 % LocalWords:  WebQ MATLAB DSP

@@ -215,6 +215,7 @@ classdef AnalogSignal
 
         function y = square(f, t)
             % SQUARE Generate a square wave with values in range [0, 1]
+	    %        with 50% duty cycle
             %   Y = SQUARE(F, T)
             %   Where:
             %   F = number of positive/negative waves per second

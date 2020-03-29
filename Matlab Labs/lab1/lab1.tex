@@ -188,14 +188,14 @@ beginning), the command \verb|help firstsin| would also produce useful
 output.
 
 Add three lines of code to your script, so that it will plot a cosine
-on top of the sine in a different color. Use the \texttt{hold}
-function to add a plot of
+using the same axes as the sine (i.e., ``on top of the sine''). Use
+the \texttt{hold} function to add a plot of
 \begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
 0.75*cos(2*pi*f*t)
 \end{lstlisting}
-
-to the plot. Save the plot using the MATLAB \texttt{print} command as
-a PNG file named \texttt{step14.png} by typing:
+to the plot. So, your final graph will have two functions
+plotted. Save the plot using the MATLAB \texttt{print} command as a
+PNG file named \texttt{step14.png} by typing:
 \begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
 print -dpng step14
 \end{lstlisting}
@@ -274,7 +274,7 @@ phases and amplitudes.  Use the following function prototype to start you off:
 
 
 Include your code in your writeup. Additionally, include a plot of
-\texttt{x = sumcos(20, [0 pi/4 pi/2 3*pi/2], 200, 0.25);} versus
+\texttt{x = sumcos(20, [0 pi/4 pi/2 3*pi/2], [1 2 3 4], 200, 0.25);} versus
 time.
 
 Hint: the MATLAB \verb|length| function is useful in determining the

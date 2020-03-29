@@ -12,8 +12,9 @@ and functions at
 \subsection{Beating}
 
 In this section, you will use the Matlab \texttt{AnalogSignal} class
-to simulate an analog signal generator. The constructor takes the
-following arguments:
+(described previously in lab~1 and its
+figure~\ref{fg:analogsignal-help}) to simulate an analog signal
+generator. The constructor takes the following arguments:
 \begin{lstlisting}[style=Matlab-editor,basicstyle=\mlttfamily\small]
 % AnalogSignal(type, amplitude, frequency, dur)
 %    Where:
@@ -32,7 +33,7 @@ your report
 
 \paragraph{Step 1.1} Verify that you can get a triangle wave. What is
 the code to generate and plot a triangle wave ranging from -1 to 1
-Volts with a frequency of 10Hz and a duration of 1sec?
+Volts with a frequency of 10Hz and a duration of 1 second?
 
 \paragraph{Step 1.2} Next, verify that you can generate a sine wave of
 1 second duration at a frequency of 440Hz, ranging from -1 to +1. What
@@ -43,9 +44,10 @@ C. Use the Matlab \texttt{set(gca, 'XLim', [\itshape{Xmin},
   \itshape{Xmax}])} function call to set the X axis limits so that the
 waveform is apparent (i.e., you're not just plotting a solid blob).
 
-\paragraph{Step 1.3} Generate sine waves of identical range and
-duration, but with frequencies of 442, 444, and 448 Hz. Now, generate
-the sums of 440Hz and each of these new signals to generate beating
+\paragraph{Step 1.3} Generate three sine waves of identical range and
+duration, but with frequencies of 442, 444, and 448 Hz. Next, generate
+the three sums of 440Hz and each of these new signals separately (so,
+440Hz + 442Hz, 440Hz + 444Hz, and 440Hz + 448Hz) to generate beating
 akin to tuning an instrument against the 440Hz standard. Play each sum
 signal; can you hear the beating? Plot each sum signal for its full 1s
 duration. The beating ``envelope'' should be obvious. What is the beat
@@ -57,8 +59,8 @@ relate to the textbook discussion of beating?
 
 
 \paragraph{Step 2.1} Recall that any periodic signal can be
-represented as a sum of harmonic sinusoids.  The amplitude of each
-harmonic is known as the Fourier Series. It may at first seem like
+represented as a sum of harmonic sinusoids.  The amplitudes of these
+harmonics is collectively known as the Fourier Series. It may at first seem like
 sums of sinusoids would be poor approximations of real periodic
 signals, but this is not the case. We can illustrate this using a
 triangle wave. The formula for synthesis of a triangle wave with
@@ -75,7 +77,7 @@ Fourier series):
   in Hz, and so $\omega_0 = 2\pi f_0$. Notice that the Fourier Series
   of the triangle wave only uses odd harmonics (i.e., the only
   non-zero frequencies are $(2k+1)\omega_0=\omega_0, 3\omega_0,
-  5\omega_0 \cdots$). Also notice that resulting wave will have zero
+  5\omega_0 \cdots$). Also notice that the resulting wave will have zero
   mean because there is no ``DC'' term (i.e., $2k+1 \neq 0$ for any
   integer k).
 

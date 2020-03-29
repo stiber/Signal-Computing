@@ -682,7 +682,7 @@ $N$ total data points.
 \ENDIF
 \STATE Shuffle the $x[n]$ in bit-reversed order
 \STATE $\mathit{Size} = 2$ \COMMENT{$\mathit{Size}=1$ DFTs already done}
-\WHILE{$\mathit{Size} < N$}
+\WHILE{$\mathit{Size} \leq N$}
    \STATE Compute $N/\mathit{Size}$ DFTs from the existing ones as
           $X_{\mathit{Size}/2}[k]^{\mathit{even}} +
           e^{-jk2\pi/\mathit{Size}}X_{\mathit{Size}/2}[k]^{\mathit{odd}}$
@@ -714,36 +714,38 @@ Let's compute the FFT of the signal, $x[n] = \{0, 1, 0, 1, 0, 1, 0,
 1\}$, $n = \{0, 1, 2, 3, 4, 5, 6, 7\}$. The first thing we'll do is
 write the signal out as a 1D array, with indices in binary:
 \begin{center}
-  \begin{tabular}{|c|c|c|c|c|c|c|c|} \hline
-    0   & 1   & 0   & 1   & 0   & 1   & 0   & 1   \\ \hline
-    000 & 001 & 010 & 011 & 100 & 101 & 110 & 111 \\ \hline
+  \begin{tabular}{r|c|c|c|c|c|c|c|c|} \hline
+    $x[n]$ & 0   & 1   & 0   & 1   & 0   & 1   & 0   & 1   \\ \hline
+    $n$ & 000 & 001 & 010 & 011 & 100 & 101 & 110 & 111 \\ \hline
   \end{tabular}
 \end{center}
 
 Next, we sort the elements according to their bit-reversed indices:
 \begin{center}
-  \begin{tabular}{|c|c|c|c|c|c|c|c|} \hline
-    0   & 0   & 0   & 0   & 1   & 1   & 1   & 1   \\ \hline
-    000 & 100 & 010 & 110 & 001 & 101 & 011 & 111 \\ \hline
+  \begin{tabular}{r|c|c|c|c|c|c|c|c|} \hline
+    $x[n]$ & 0   & 0   & 0   & 0   & 1   & 1   & 1   & 1   \\ \hline
+    $n$ 000 & 100 & 010 & 110 & 001 & 101 & 011 & 111 \\ \hline
   \end{tabular}
 \end{center}
 
 Each of these elements is already a 1-point FFT; we now begin merging
-them into 2-point ones ($X_2[0]$ and $X_2[1]$), as in
+them into 2-point ones ($X_2[0]= x[\mathit{even}] + x[\mathit{odd}]$
+and $X_2[1]= x[\mathit{even}] - x[\mathit{odd}]$), as in
 equations~(\ref{eq:2fft-even}) and~(\ref{eq:2fft-odd}):
 \begin{center}
-  \begin{tabular}{|c|c||c|c||c|c||c|c|} \hline
-    0   & 0   & 0   & 0   & 2   & 0   & 2   & 0   \\ \hline
-    0   & 1   & 0   & 1   & 0   & 1   & 0   & 1   \\ \hline
+  \begin{tabular}{r|c|c||c|c||c|c||c|c|} \hline
+    $X_2[k]$ & 0   & 0   & 0   & 0   & 2   & 0   & 2   & 0   \\ \hline
+    $k$        & 0   & 1   & 0   & 1   & 0   & 1   & 0   & 1   \\ \hline
   \end{tabular}
 \end{center}
 
 Now we have four 2-point FFTs; we now merge adjacent pairs of
 points. So, we will be computing $X_4[k]$ for $k=\{0, 1, 2, 3\}$. To
-compute elements 2 and 3, we need to remember
-equations~(\ref{eq:fft-repeat-even}) and~(\ref{eq:fft-repeat-odd}): we
-get $X_2[2] = X_2[0]$ and $X_2[3] = X_2[1]$. The resulting equations
-are:
+compute elements $k=2$ and $k=3$, we need to remember
+equations~(\ref{eq:fft-repeat-even}) and~(\ref{eq:fft-repeat-odd}) ---
+that, since the transform $X$ is periodic, we simply repeat the
+2-point FFTs to get the ``extra'' two points. So, $X_2[2] = X_2[0]$
+and $X_2[3] = X_2[1]$. The resulting equations are:
 \begin{align*}
   X_4[0] &= X_2[0]^{\mathit{even}} +   e^{-j(0)2\pi/4}X_2[0]^{\mathit{odd}} \\
   X_4[1] &= X_2[1]^{\mathit{even}} +   e^{-j(1)2\pi/4}X_2[1]^{\mathit{odd}} \\
@@ -767,9 +769,9 @@ and then simplify,
 \end{align*}
 yielding:
 \begin{center}
-  \begin{tabular}{|c|c|c|c||c|c|c|c|} \hline
-    0   & 0   & 0   & 0   & 4   & 0   & 0   & 0   \\ \hline
-    0   & 1   & 2   & 3   & 0   & 1   & 2   & 3   \\ \hline
+  \begin{tabular}{r|c|c|c|c||c|c|c|c|} \hline
+    $X_4[k]$ & 0   & 0   & 0   & 0   & 4   & 0   & 0   & 0   \\ \hline
+    $k$        & 0   & 1   & 2   & 3   & 0   & 1   & 2   & 3   \\ \hline
   \end{tabular}
 \end{center}
 
@@ -798,9 +800,9 @@ producing:
 
 The final result is:
 \begin{center}
-  \begin{tabular}{|c|c|c|c|c|c|c|c|} \hline
-    4   & 0   & 0   & 0   & -4  & 0   & 0   & 0   \\ \hline
-    0   & 1   & 2   & 3   & 4   & 5   & 6   & 7   \\ \hline
+  \begin{tabular}{r|c|c|c|c|c|c|c|c|} \hline
+    $X_8[k]$ & 4   & 0   & 0   & 0   & -4  & 0   & 0   & 0   \\ \hline
+    $k$        & 0   & 1   & 2   & 3   & 4   & 5   & 6   & 7   \\ \hline
   \end{tabular}
 \end{center}
 
@@ -1269,7 +1271,7 @@ presented next.
 
 \begin{figure}
 \centerline{\includegraphics[width=4in]{ch-fft/ufft_hamming_w512}}
-\caption{A 512-point Hann window in the time domain.\label{fig:ufft-hmw}}
+\caption{A 512-point Hamming window in the time domain.\label{fig:ufft-hmw}}
 \end{figure}
 
 \index{FFT!Hamming window and}
