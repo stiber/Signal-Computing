@@ -89,4 +89,9 @@ sympy-plots-for-*.tex/
 *.xdy
 
 # emacs
-.emacs-backups
+.emacs-backups/
+
+
+# MacOS
+.DS_Store
+
